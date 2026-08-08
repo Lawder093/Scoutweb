@@ -43,6 +43,12 @@ export type Database = {
           category: string;
           cover_image_path: string | null;
           author_id: string | null;
+          source_id: number | null;
+          source_url: string | null;
+          source_modified_at: string | null;
+          author_name: string | null;
+          categories: string[];
+          tags: string[];
           is_published: boolean;
           published_at: string | null;
           created_at: string;
@@ -57,6 +63,12 @@ export type Database = {
           category: string;
           cover_image_path?: string | null;
           author_id?: string | null;
+          source_id?: number | null;
+          source_url?: string | null;
+          source_modified_at?: string | null;
+          author_name?: string | null;
+          categories?: string[];
+          tags?: string[];
           is_published?: boolean;
           published_at?: string | null;
           created_at?: string;
@@ -71,6 +83,12 @@ export type Database = {
           category?: string;
           cover_image_path?: string | null;
           author_id?: string | null;
+          source_id?: number | null;
+          source_url?: string | null;
+          source_modified_at?: string | null;
+          author_name?: string | null;
+          categories?: string[];
+          tags?: string[];
           is_published?: boolean;
           published_at?: string | null;
           created_at?: string;

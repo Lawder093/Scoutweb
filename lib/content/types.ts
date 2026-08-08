@@ -11,6 +11,8 @@ export type BlogPost = {
   dateLabel: string;
   coverImageUrl: string | null;
   authorName: string | null;
+  sourceUrl: string | null;
+  categories: string[];
   tone: ContentTone;
 };
 

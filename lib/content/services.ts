@@ -44,7 +44,9 @@ function mapBlogPost(
     publishedAt,
     dateLabel: formatDate(publishedAt),
     coverImageUrl: resolvePublicAssetUrl(client, row.cover_image_path),
-    authorName: null,
+    authorName: row.author_name,
+    sourceUrl: row.source_url,
+    categories: row.categories,
     tone: toneAt(index),
   };
 }

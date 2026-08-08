@@ -5,9 +5,10 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: supabaseHostname
-      ? [{ protocol: "https", hostname: supabaseHostname, pathname: "/**" }]
-      : [],
+    remotePatterns: [
+      ...(supabaseHostname ? [{ protocol: "https", hostname: supabaseHostname, pathname: "/**" }] : []),
+      { protocol: "https", hostname: "escultista.org", pathname: "/**" },
+    ],
   },
 };
 

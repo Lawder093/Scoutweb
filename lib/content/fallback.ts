@@ -39,6 +39,8 @@ export const fallbackBlogPosts: BlogPost[] = articles.map((article, index) => {
     dateLabel: article.date,
     coverImageUrl: article.image,
     authorName: null,
+    sourceUrl: null,
+    categories: [article.category],
     tone: toneAt(index),
   };
 });

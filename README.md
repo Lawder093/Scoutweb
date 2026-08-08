@@ -30,6 +30,22 @@ Para cargar el contenido inicial, ejecuta después `supabase/seed.sql` desde el 
 
 Las consultas públicas pasan por repositorios server-side y solo devuelven artículos publicados y recursos públicos. El cliente admin existe únicamente para futuras tareas protegidas de administración y nunca se importa desde el navegador.
 
+### Importar el blog existente
+
+El importador consulta la API pública de WordPress de `escultista.org`, conserva la fecha original de publicación y actualización, autor, categorías, etiquetas, URL fuente, extracto y contenido HTML sanitizado. Usa `source_id` para que pueda ejecutarse nuevamente sin duplicar entradas.
+
+Después de aplicar las migraciones, configura temporalmente `SUPABASE_SECRET_KEY` en `.env.local` y ejecuta:
+
+```bash
+npm run import:blog
+```
+
+Para revisar el número de entradas y el rango de fechas sin escribir en Supabase:
+
+```bash
+npm run import:blog -- --dry-run
+```
+
 ## Rutas editoriales
 
 - `/blog` muestra los artículos publicados.
