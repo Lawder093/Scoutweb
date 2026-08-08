@@ -8,7 +8,8 @@
     "start": "next start",
     "typecheck": "tsc --noEmit --incremental false",
     "audit": "npm audit --omit=dev",
-    "import:blog": "node --env-file=.env.local scripts/import-escultista-blog.mjs"
+    "import:blog": "node --env-file=.env.local scripts/import-escultista-blog.mjs",
+    "sync:blog:local": "node --env-file=.env.local scripts/import-escultista-blog.mjs --local"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",

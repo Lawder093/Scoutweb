@@ -1,4 +1,5 @@
 import { articles, libraryBooks } from "@/lib/site-data";
+import importedBlogPosts from "@/content/blog/posts.json";
 import type { BlogPost, ContentTone, LibraryResource } from "./types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
@@ -25,7 +26,7 @@ function slugify(value: string): string {
     .replace(/(^-|-$)/g, "");
 }
 
-export const fallbackBlogPosts: BlogPost[] = articles.map((article, index) => {
+const staticFallbackBlogPosts: BlogPost[] = articles.map((article, index) => {
   const publishedAt = new Date(Date.UTC(2024, index === 0 ? 8 : 7, index === 0 ? 12 : index === 1 ? 28 : 6, 12)).toISOString();
 
   return {
@@ -44,6 +45,24 @@ export const fallbackBlogPosts: BlogPost[] = articles.map((article, index) => {
     tone: toneAt(index),
   };
 });
+
+const importedFallbackBlogPosts: BlogPost[] = importedBlogPosts.map((post, index) => ({
+  id: post.id,
+  slug: post.slug,
+  title: post.title,
+  excerpt: post.excerpt,
+  body: post.body,
+  category: post.category,
+  publishedAt: post.publishedAt,
+  dateLabel: post.dateLabel,
+  coverImageUrl: post.coverImageUrl,
+  authorName: post.authorName,
+  sourceUrl: post.sourceUrl,
+  categories: post.categories,
+  tone: toneAt(index),
+}));
+
+export const fallbackBlogPosts = importedFallbackBlogPosts.length > 0 ? importedFallbackBlogPosts : staticFallbackBlogPosts;
 
 export const fallbackLibraryResources: LibraryResource[] = libraryBooks.map((book, index) => {
   const publishedAt = new Date(Date.UTC(2024, 8, 20 - index * 2, 12)).toISOString();

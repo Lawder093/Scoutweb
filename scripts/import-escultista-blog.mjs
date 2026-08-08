@@ -1,9 +1,12 @@
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
 import { createClient } from "@supabase/supabase-js";
 
 const SOURCE_URL = process.env.ESCULTISTA_SOURCE_URL ?? "https://escultista.org";
 const SUPABASE_URL = process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
 const isDryRun = process.argv.includes("--dry-run");
+const isLocalExport = process.argv.includes("--local");
 const pageSize = 100;
 const importBatchSize = 50;
 
@@ -11,7 +14,7 @@ if (!SUPABASE_URL) {
   throw new Error("Falta SUPABASE_URL o NEXT_PUBLIC_SUPABASE_URL en el entorno.");
 }
 
-if (!isDryRun && !SUPABASE_SECRET_KEY) {
+if (!isDryRun && !isLocalExport && !SUPABASE_SECRET_KEY) {
   throw new Error("Falta SUPABASE_SECRET_KEY en el entorno para realizar la importación.");
 }
 
@@ -148,13 +151,43 @@ async function upsertRows(client, rows) {
   }
 }
 
+async function exportLocalRows(rows) {
+  const tones = ["primary", "secondary", "accent", "mist", "ink", "accent"];
+  const localRows = rows.map((row, index) => ({
+    id: `escultista-${row.source_id}`,
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    body: row.body,
+    category: row.category,
+    publishedAt: row.published_at,
+    dateLabel: new Intl.DateTimeFormat("es-MX", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(row.published_at)),
+    coverImageUrl: row.cover_image_path,
+    authorName: row.author_name,
+    sourceUrl: row.source_url,
+    categories: row.categories,
+    tone: tones[index % tones.length],
+  }));
+  const outputPath = resolve(process.cwd(), "content/blog/posts.json");
+  await mkdir(dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(localRows, null, 2)}\n`, "utf8");
+  console.log(`Exportación local escrita en ${outputPath}.`);
+}
+
 const rows = await fetchAllPosts();
 const dates = rows.map((row) => row.published_at).filter(Boolean).sort();
 
 console.log(`Encontradas ${rows.length} entradas de ${SOURCE_URL}.`);
 console.log(`Rango de publicación: ${dates[0] ?? "sin fecha"} — ${dates.at(-1) ?? "sin fecha"}.`);
 
-if (!isDryRun) {
+if (isLocalExport) {
+  await exportLocalRows(rows);
+} else if (!isDryRun) {
   const client = createClient(SUPABASE_URL, SUPABASE_SECRET_KEY, {
     auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
   });

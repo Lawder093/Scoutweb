@@ -46,6 +46,14 @@ Para revisar el número de entradas y el rango de fechas sin escribir en Supabas
 npm run import:blog -- --dry-run
 ```
 
+Si prefieres trabajar sin Supabase, exporta las entradas directamente al proyecto:
+
+```bash
+npm run sync:blog:local
+```
+
+Esto genera `content/blog/posts.json` con las 312 entradas y sus fechas. El sitio utiliza ese archivo como fallback completo cuando Supabase no está disponible.
+
 ## Rutas editoriales
 
 - `/blog` muestra los artículos publicados.
