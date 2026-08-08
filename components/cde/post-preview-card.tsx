@@ -1,0 +1,7 @@
+import Image from "next/image";
+import { Heart, MessageCircle, MoreHorizontal, Share2 } from "lucide-react";
+import type { CDEFeedPost } from "@/content/cdes/types";
+
+export function PostPreviewCard({ post }: { post: CDEFeedPost }) {
+  return <article className="rounded-[1.7rem] border border-white/10 bg-white/10 p-5 backdrop-blur-sm sm:p-6"><div className="flex items-start justify-between"><div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-full bg-accent text-xs font-black text-ink">{post.author.slice(0, 1)}</span><div><h3 className="text-sm font-extrabold">{post.author}</h3><p className="mt-0.5 text-[11px] text-white/45">{post.role} · {post.time}</p></div></div><MoreHorizontal size={18} className="text-white/45" /></div><p className="mt-5 text-sm leading-7 text-white/75">{post.text}</p>{post.image && <div className="relative mt-5 aspect-[1.6/1] overflow-hidden rounded-xl"><Image src={post.image} alt="Actividad de la comunidad" fill className="object-cover" sizes="(max-width: 768px) 90vw, 40vw" /></div>}<div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4 text-xs font-semibold text-white/50"><span className="flex items-center gap-1.5"><Heart size={15} />{post.likes}</span><span className="flex items-center gap-1.5"><MessageCircle size={15} />{post.comments}</span><Share2 size={15} /></div></article>;
+}

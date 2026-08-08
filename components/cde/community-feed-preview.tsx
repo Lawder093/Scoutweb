@@ -1,0 +1,9 @@
+import { MessageCircle, UsersRound } from "lucide-react";
+import { Reveal } from "@/components/reveal";
+import { SectionTitle } from "./section-title";
+import { PostPreviewCard } from "./post-preview-card";
+import type { CDEData } from "@/content/cdes/types";
+
+export function CommunityFeedPreview({ cde }: { cde: CDEData }) {
+  return <section id="conecta" className="scroll-mt-36 bg-ink py-20 text-white sm:py-28"><div className="section-shell"><Reveal><SectionTitle dark eyebrow="04 · Conecta" title={<>La comunidad<br /><span className="text-accent">también conversa.</span></>} description="Una vista previa del futuro espacio común entre CDEs. Por ahora es una demostración estática: la conversación real vendrá después." /></Reveal><div className="mt-14 grid gap-5 lg:grid-cols-[.8fr_1.2fr]"><Reveal delay={0.08} className="rounded-[2rem] bg-primary p-7 sm:p-9"><div className="flex h-12 w-12 place-items-center justify-center rounded-2xl bg-accent text-ink"><UsersRound size={22} /></div><h3 className="display-title mt-9 text-3xl leading-tight sm:text-4xl">Un espacio para compartir lo que estamos aprendiendo.</h3><p className="mt-5 text-sm leading-7 text-white/70">Aquí podrán convivir noticias, preguntas, fotos y comentarios de las comunidades que forman parte de la red.</p><div className="mt-8 space-y-3 border-t border-white/20 pt-6 text-sm font-bold text-white/75"><p className="flex items-center gap-2"><MessageCircle size={16} className="text-accent" /> Conversaciones entre CDEs</p><p className="flex items-center gap-2"><UsersRound size={16} className="text-accent" /> Participación comunitaria</p></div></Reveal><div className="space-y-4">{cde.feed.map((post, index) => <Reveal key={`${post.author}-${post.time}`} delay={0.14 + index * 0.08}><PostPreviewCard post={post} /></Reveal>)}</div></div></div></section>;
+}

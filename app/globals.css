@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #831817;
+  --color-secondary: #000000;
+  --color-accent: #f6a006;
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-mist: #fff8ed;
+  --font-display: "Bodoni 72", Didot, "Bodoni MT", Georgia, serif;
+  --font-sans: Lato, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(131, 24, 23, 0.22);
+}
+
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+}
+
+.section-shell {
+  width: min(100% - 2.5rem, 1180px);
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 1.8rem;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.display-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.focus-ring:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.hand-underline {
+  position: relative;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+.hand-underline::after {
+  position: absolute;
+  z-index: -1;
+  right: -0.08em;
+  bottom: 0.03em;
+  left: -0.08em;
+  height: 0.26em;
+  border-radius: 100%;
+  background: var(--color-accent);
+  content: "";
+  transform: rotate(-1.5deg);
+}
+
+.marker-pulse {
+  animation: marker-pulse 2.2s ease-out infinite;
+}
+
+@keyframes marker-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(131, 24, 23, 0.35); }
+  70% { box-shadow: 0 0 0 13px rgba(131, 24, 23, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(131, 24, 23, 0); }
+}
+
+@media (max-width: 640px) {
+  .section-shell {
+    width: min(100% - 2rem, 1180px);
+  }
+}
