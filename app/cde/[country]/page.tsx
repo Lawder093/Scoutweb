@@ -6,13 +6,15 @@ export function generateStaticParams() {
   return Object.keys(cdes).map((country) => ({ country }));
 }
 
-export async function generateMetadata({ params }: { params: { country: string } }) {
-  const cde = getCDE(params.country);
-  return { title: cde ? `${cde.communityName} · Escultismo Crítico Popular` : "CDE · Escultismo Crítico Popular", description: cde?.description };
+export async function generateMetadata({ params }: { params: Promise<{ country: string }> }) {
+  const { country } = await params;
+  const cde = getCDE(country);
+  return { title: cde?.communityName ?? "CDE", description: cde?.description };
 }
 
-export default function CdeCountryPage({ params }: { params: { country: string } }) {
-  const cde = getCDE(params.country);
+export default async function CdeCountryPage({ params }: { params: Promise<{ country: string }> }) {
+  const { country } = await params;
+  const cde = getCDE(country);
   if (!cde) notFound();
   return <CDELayout cde={cde} />;
 }

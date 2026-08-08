@@ -73,6 +73,8 @@ export const fallbackLibraryResources: LibraryResource[] = libraryBooks.map((boo
     title: book.title,
     creator: book.author,
     description: "Recurso editorial para compartir, adaptar y llevar al territorio.",
+    categories: ["Recursos educativos"],
+    tags: ["educación popular", "aprendizaje colectivo"],
     publishedAt,
     dateLabel: dateLabel(publishedAt),
     coverImageUrl: null,

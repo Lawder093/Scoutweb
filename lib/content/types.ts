@@ -22,6 +22,8 @@ export type LibraryResource = {
   title: string;
   creator: string;
   description: string;
+  categories: string[];
+  tags: string[];
   publishedAt: string;
   dateLabel: string;
   coverImageUrl: string | null;

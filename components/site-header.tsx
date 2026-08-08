@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -17,6 +17,17 @@ const navigation = [
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
 
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -34,6 +45,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={`focus-ring rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:bg-secondary/10 hover:text-secondary ${isActive(item.href) ? "bg-primary/10 text-primary" : "text-ink/70"}`}
+                aria-current={isActive(item.href) ? "page" : undefined}
               >
                 {item.label}
               </Link>
@@ -47,6 +59,7 @@ export function SiteHeader() {
             <button
               type="button"
               aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
               aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
               className="focus-ring grid h-10 w-10 place-items-center rounded-full border border-ink/10 text-ink md:hidden"
               onClick={() => setIsOpen(!isOpen)}
@@ -57,12 +70,13 @@ export function SiteHeader() {
         </div>
 
         {isOpen && (
-          <nav className="border-t border-ink/10 py-3 md:hidden" aria-label="Menú móvil">
+          <nav id="mobile-navigation" className="border-t border-ink/10 py-3 md:hidden" aria-label="Menú móvil">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="focus-ring block rounded-xl px-3 py-3 text-sm font-semibold text-ink/75 hover:bg-secondary/10 hover:text-secondary"
+                aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { getBlogPosts } from "@/lib/content/services";
 
 export const metadata = {
-  title: "Blog · Escultismo Crítico Popular",
+  title: "Blog",
   description: "Historias, conversaciones y proyectos del movimiento.",
 };
 

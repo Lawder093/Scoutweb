@@ -10,6 +10,10 @@ const isLocalExport = process.argv.includes("--local");
 const pageSize = 100;
 const importBatchSize = 50;
 
+function writeStatus(message) {
+  process.stdout.write(`${message}\n`);
+}
+
 if (!SUPABASE_URL) {
   throw new Error("Falta SUPABASE_URL o NEXT_PUBLIC_SUPABASE_URL en el entorno.");
 }
@@ -134,7 +138,7 @@ async function fetchAllPosts() {
   for (let page = 2; page <= firstPage.totalPages; page += 1) {
     const currentPage = await fetchPage(page);
     posts.push(...currentPage.posts);
-    console.log(`WordPress: página ${page}/${firstPage.totalPages} · ${posts.length} entradas recopiladas`);
+    writeStatus(`WordPress: página ${page}/${firstPage.totalPages} · ${posts.length} entradas recopiladas`);
   }
 
   return posts.map(buildBlogRow);
@@ -147,7 +151,7 @@ async function upsertRows(client, rows) {
     if (error) {
       throw new Error(`Supabase rechazó el lote ${start + 1}-${start + batch.length}: ${error.message}`);
     }
-    console.log(`Supabase: lote ${start + 1}-${start + batch.length} importado`);
+    writeStatus(`Supabase: lote ${start + 1}-${start + batch.length} importado`);
   }
 }
 
@@ -176,14 +180,14 @@ async function exportLocalRows(rows) {
   const outputPath = resolve(process.cwd(), "content/blog/posts.json");
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(localRows, null, 2)}\n`, "utf8");
-  console.log(`Exportación local escrita en ${outputPath}.`);
+  writeStatus(`Exportación local escrita en ${outputPath}.`);
 }
 
 const rows = await fetchAllPosts();
 const dates = rows.map((row) => row.published_at).filter(Boolean).sort();
 
-console.log(`Encontradas ${rows.length} entradas de ${SOURCE_URL}.`);
-console.log(`Rango de publicación: ${dates[0] ?? "sin fecha"} — ${dates.at(-1) ?? "sin fecha"}.`);
+writeStatus(`Encontradas ${rows.length} entradas de ${SOURCE_URL}.`);
+writeStatus(`Rango de publicación: ${dates[0] ?? "sin fecha"} — ${dates.at(-1) ?? "sin fecha"}.`);
 
 if (isLocalExport) {
   await exportLocalRows(rows);
@@ -192,7 +196,7 @@ if (isLocalExport) {
     auth: { autoRefreshToken: false, detectSessionInUrl: false, persistSession: false },
   });
   await upsertRows(client, rows);
-  console.log("Importación completada.");
+  writeStatus("Importación completada.");
 } else {
-  console.log("Dry run completado; no se modificó Supabase.");
+  writeStatus("Dry run completado; no se modificó Supabase.");
 }

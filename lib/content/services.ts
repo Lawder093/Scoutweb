@@ -5,6 +5,7 @@ import { fallbackBlogPosts, fallbackLibraryResources } from "./fallback";
 import { findPublishedBlogPost, listPublishedBlogPosts, type BlogPostRow } from "./repositories/blog";
 import { findPublicLibraryResource, listPublicLibraryResources, type LibraryResourceRow } from "./repositories/library";
 import { resolvePublicAssetUrl } from "./storage";
+import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, ContentTone, LibraryResource } from "./types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
@@ -39,7 +40,7 @@ function mapBlogPost(
     slug: row.slug,
     title: row.title,
     excerpt: row.excerpt,
-    body: row.body,
+    body: sanitizeHtml(row.body),
     category: row.category,
     publishedAt,
     dateLabel: formatDate(publishedAt),
@@ -64,6 +65,8 @@ function mapLibraryResource(
     title: row.title,
     creator: row.creator,
     description: row.description,
+    categories: ["Recursos educativos"],
+    tags: [],
     publishedAt,
     dateLabel: formatDate(publishedAt),
     coverImageUrl: resolvePublicAssetUrl(client, row.cover_image_path),

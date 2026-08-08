@@ -1,15 +1,42 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getBlogPostBySlug } from "@/lib/content/services";
+import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getBlogPostBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
+
+  if (!post) {
+    return { title: "Artículo no encontrado", robots: { index: false, follow: false } };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: absoluteUrl(`/blog/${post.slug}`) },
+    openGraph: {
+      type: "article",
+      url: absoluteUrl(`/blog/${post.slug}`),
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.publishedAt,
+      images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
+    },
+    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt, images: post.coverImageUrl ? [post.coverImageUrl] : undefined },
+  };
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();

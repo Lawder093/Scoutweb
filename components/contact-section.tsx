@@ -8,13 +8,14 @@ const contactWays = [
   { title: "Sigue la conversación", text: "Noticias, recursos y convocatorias", href: "#redes", icon: Instagram },
 ];
 
-export function ContactSection() {
+export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
     <section id="contacto" className="bg-mist py-24 sm:py-32">
       <div className="section-shell">
         <Reveal>
           <SectionHeading
             eyebrow="Contacto"
+            headingLevel={headingLevel}
             title={<>La ronda está <span className="text-primary">abierta.</span></>}
             description="Si quieres activar un proyecto, compartir una experiencia o simplemente saludar, aquí estamos. Este espacio se construye con muchas manos."
           />

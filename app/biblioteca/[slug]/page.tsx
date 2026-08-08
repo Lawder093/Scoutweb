@@ -1,15 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowDownToLine, ArrowLeft, BookOpen } from "lucide-react";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getLibraryResourceBySlug } from "@/lib/content/services";
+import { absoluteUrl } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export default async function LibraryResourcePage({ params }: { params: { slug: string } }) {
-  const resource = await getLibraryResourceBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const resource = await getLibraryResourceBySlug(slug);
+
+  if (!resource) {
+    return { title: "Recurso no encontrado", robots: { index: false, follow: false } };
+  }
+
+  return {
+    title: resource.title,
+    description: resource.description,
+    alternates: { canonical: absoluteUrl(`/biblioteca/${resource.slug}`) },
+    openGraph: {
+      type: "article",
+      url: absoluteUrl(`/biblioteca/${resource.slug}`),
+      title: resource.title,
+      description: resource.description,
+      images: resource.coverImageUrl ? [resource.coverImageUrl] : undefined,
+    },
+  };
+}
+
+export default async function LibraryResourcePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const resource = await getLibraryResourceBySlug(slug);
 
   if (!resource) {
     notFound();

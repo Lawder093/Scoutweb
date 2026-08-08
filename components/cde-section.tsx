@@ -3,12 +3,12 @@ import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { LatinAmericaMap } from "./latin-america-map";
 
-export function CdeSection() {
+export function CdeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
     <section id="cde" className="overflow-hidden bg-paper py-24 sm:py-32">
       <div className="section-shell">
         <Reveal>
-          <SectionHeading eyebrow="La red" title={<>Crecer en <span className="text-secondary">comunidad.</span></>} description="Los Centros de Desarrollo Escultista son espacios autónomos para experimentar, compartir herramientas y poner el cuerpo a la transformación." />
+          <SectionHeading headingLevel={headingLevel} eyebrow="La red" title={<>Crecer en <span className="text-secondary">comunidad.</span></>} description="Los Centros de Desarrollo Escultista son espacios autónomos para experimentar, compartir herramientas y poner el cuerpo a la transformación." />
         </Reveal>
         <div className="mt-16 grid items-center gap-10 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
           <Reveal delay={0.1} className="order-2 lg:order-1"><LatinAmericaMap /></Reveal>
