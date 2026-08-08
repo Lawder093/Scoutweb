@@ -1,0 +1,30 @@
+export type ContentTone = "primary" | "secondary" | "accent" | "ink" | "mist";
+
+export type BlogPost = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  body: string;
+  category: string;
+  publishedAt: string;
+  dateLabel: string;
+  coverImageUrl: string | null;
+  authorName: string | null;
+  tone: ContentTone;
+};
+
+export type LibraryResource = {
+  id: string;
+  slug: string;
+  title: string;
+  creator: string;
+  description: string;
+  publishedAt: string;
+  dateLabel: string;
+  coverImageUrl: string | null;
+  readerUrl: string | null;
+  downloadUrl: string | null;
+  displayOrder: number;
+  tone: ContentTone;
+};

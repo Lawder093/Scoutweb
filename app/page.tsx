@@ -9,8 +9,13 @@ import { LibraryPreview } from "@/components/library-preview";
 import { BlogPreview } from "@/components/blog-preview";
 import { CTA } from "@/components/cta";
 import { SiteFooter } from "@/components/site-footer";
+import { getBlogPosts, getLibraryResources } from "@/lib/content/services";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const [posts, resources] = await Promise.all([getBlogPosts(3), getLibraryResources(6)]);
+
   return (
     <>
       <SiteHeader />
@@ -21,8 +26,8 @@ export default function HomePage() {
         <Map />
         <Timeline />
         <Partners />
-        <LibraryPreview />
-        <BlogPreview />
+        <LibraryPreview resources={resources} />
+        <BlogPreview posts={posts} />
         <CTA />
       </main>
       <SiteFooter />
