@@ -9,6 +9,13 @@ export const mexico: CDEData = {
   description: "Un laboratorio para imaginar pedagogías que nazcan del barrio, del cuerpo y de la organización cotidiana.",
   heroImage: "/images/scouts-hero.png",
   welcome: "Bienvenides al Centro de Desarrollo Escultista de México. Aquí la aventura comienza cuando nos preguntamos qué podemos hacer juntes con lo que tenemos a la mano.",
+  origin: "El grupo nace de la experiencia del escultismo en Puebla y de la necesidad de construir una educación no formal conectada con el barrio, el territorio y la organización popular.",
+  communities: [
+    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Primeros encuentros con el juego, la imaginación y el cuidado compartido.", ageRange: "5 a 6 años" },
+    { id: "manada", kind: "Manada", name: "Manada", description: "Explorar el entorno, aprender haciendo y construir autonomía en grupo.", ageRange: "7 a 10 años" },
+    { id: "tropa", kind: "Tropa", name: "Tropa", description: "Aventuras, proyectos y preguntas para leer el territorio con otras personas.", ageRange: "11 a 14 años" },
+    { id: "clan", kind: "Clan", name: "Clan", description: "Participación juvenil, servicio y acompañamiento para transformar lo cotidiano.", ageRange: "15 a 17 años" },
+  ],
   history: [
     "Nuestro punto de partida está en la historia del escultismo en Puebla y en las experiencias que han buscado llevar la educación más allá del aula.",
     "Hoy construimos un espacio para compartir prácticas, acompañar procesos juveniles y fortalecer el vínculo entre territorio, juego y organización popular.",
@@ -27,13 +34,13 @@ export const mexico: CDEData = {
     { year: "Hoy", title: "Una red en movimiento", text: "El CDE conecta formación, territorio y cuidado para seguir aprendiendo juntes." },
   ],
   educators: [
-    { name: "Mariana López", role: "Acompañante de comunidad", bio: "Facilita procesos de grupo y espacios de escucha con adolescentes.", interests: ["Cuidado", "Asambleas"], image: "/images/scouts-circle.png" },
-    { name: "Iván Herrera", role: "Coordinador de territorio", bio: "Diseña rutas educativas para leer el barrio caminando.", interests: ["Cartografía", "Juego"], image: "/images/scouts-hero.png" },
-    { name: "Sofía Ramírez", role: "Formadora", bio: "Acompaña talleres sobre pedagogía crítica y organización popular.", interests: ["Pedagogía", "Arte"], image: "/images/scouts-circle.png" },
+    { name: "Mariana López", role: "Acompañante de comunidad", community: "Ronda", bio: "Facilita procesos de grupo y espacios de escucha con adolescentes.", interests: ["Cuidado", "Asambleas"], image: "/images/scouts-circle.png" },
+    { name: "Iván Herrera", role: "Coordinador de territorio", community: "Tropa", bio: "Diseña rutas educativas para leer el barrio caminando.", interests: ["Cartografía", "Juego"], image: "/images/scouts-hero.png" },
+    { name: "Sofía Ramírez", role: "Formadora", community: "Clan", bio: "Acompaña talleres sobre pedagogía crítica y organización popular.", interests: ["Pedagogía", "Arte"], image: "/images/scouts-circle.png" },
   ],
-  projects: [
-    { title: "Campamento de preguntas incómodas", description: "Tres días para desmontar certezas, cocinar juntes y volver a mirar el barrio.", status: "En curso", date: "Agosto 2024", image: "/images/scouts-hero.png" },
-    { title: "Escuela de acompañantes", description: "Un espacio de formación para quienes sostienen grupos y comunidades educativas.", status: "Próximo", date: "Octubre 2024", image: "/images/scouts-circle.png" },
+  activities: [
+    { id: "campamento-preguntas", title: "Campamento de preguntas incómodas", date: "Agosto 2024", image: "/images/scouts-hero.png", summary: "Tres días para desmontar certezas, cocinar juntes y volver a mirar el barrio.", content: "La actividad reúne a las comunidades del CDE para compartir preguntas, tareas y aprendizajes a través de la vida al aire libre." },
+    { id: "escuela-acompanantes", title: "Escuela de acompañantes", date: "Octubre 2024", image: "/images/scouts-circle.png", summary: "Un espacio de formación para quienes sostienen grupos y comunidades educativas.", content: "La escuela abre un proceso de formación común sobre cuidado, escucha y herramientas para acompañar grupos." },
   ],
   gallery: [
     { src: "/images/scouts-hero.png", alt: "Grupo caminando por la montaña", label: "Salir al territorio" },

@@ -9,6 +9,12 @@ export const argentina: CDEData = {
   description: "Un espacio para recuperar el juego, la memoria y la acción colectiva como herramientas de transformación.",
   heroImage: "/images/scouts-hero.png",
   welcome: "Bienvenides al Centro de Desarrollo Escultista de Argentina. Aquí la alegría no es una pausa de la lucha: es una manera de organizarnos.",
+  origin: "El grupo se organiza alrededor de la pregunta por cómo sostener prácticas educativas críticas sin perder la imaginación, el juego y el deseo de construir con otras personas.",
+  communities: [
+    { id: "manada", kind: "Manada", name: "Manada", description: "Historias, juego y exploración para crecer en compañía.", ageRange: "7 a 10 años" },
+    { id: "tropa", kind: "Tropa", name: "Tropa", description: "Aventuras y proyectos para poner el cuerpo en la vida comunitaria.", ageRange: "11 a 14 años" },
+    { id: "clan", kind: "Clan", name: "Clan", description: "Memoria, participación y autonomía para multiplicar la ronda.", ageRange: "15 a 17 años" },
+  ],
   history: [
     "La comunidad crece alrededor de la pregunta por cómo sostener prácticas educativas críticas sin perder la imaginación, el juego y el deseo.",
     "Nos encontramos para recuperar memorias, inventar herramientas y compartirlas con quienes también están armando comunidad.",
@@ -27,13 +33,13 @@ export const argentina: CDEData = {
     { year: "Futuro", title: "Multiplicar la ronda", text: "Cada experiencia compartida puede convertirse en una nueva puerta de entrada." },
   ],
   educators: [
-    { name: "Lucía Fernández", role: "Coordinadora pedagógica", bio: "Diseña experiencias de juego, memoria y participación juvenil.", interests: ["Juego", "Memoria"], image: "/images/scouts-circle.png" },
-    { name: "Tomás Pereyra", role: "Acompañante de grupo", bio: "Facilita procesos colectivos con una mirada puesta en el cuidado.", interests: ["Asambleas", "Cuerpo"], image: "/images/scouts-hero.png" },
-    { name: "Emilia Sosa", role: "Articuladora comunitaria", bio: "Construye puentes entre organizaciones y espacios educativos.", interests: ["Redes", "Arte"], image: "/images/scouts-circle.png" },
+    { name: "Lucía Fernández", role: "Coordinadora pedagógica", community: "Manada", bio: "Diseña experiencias de juego, memoria y participación juvenil.", interests: ["Juego", "Memoria"], image: "/images/scouts-circle.png" },
+    { name: "Tomás Pereyra", role: "Acompañante de grupo", community: "Tropa", bio: "Facilita procesos colectivos con una mirada puesta en el cuidado.", interests: ["Asambleas", "Cuerpo"], image: "/images/scouts-hero.png" },
+    { name: "Emilia Sosa", role: "Articuladora comunitaria", community: "Clan", bio: "Construye puentes entre organizaciones y espacios educativos.", interests: ["Redes", "Arte"], image: "/images/scouts-circle.png" },
   ],
-  projects: [
-    { title: "Juegos para asambleas", description: "Una colección de dinámicas para abrir la palabra y tomar decisiones juntes.", status: "En curso", date: "Octubre 2024", image: "/images/scouts-circle.png" },
-    { title: "Archivo de experiencias", description: "Un espacio para guardar las historias que hacen crecer al movimiento.", status: "Próximo", date: "Diciembre 2024", image: "/images/scouts-hero.png" },
+  activities: [
+    { id: "juegos-asambleas", title: "Juegos para asambleas", date: "Octubre 2024", image: "/images/scouts-circle.png", summary: "Una colección de dinámicas para abrir la palabra y tomar decisiones juntes.", content: "La colección reúne juegos y ejercicios que ayudan a preparar conversaciones y asambleas comunitarias." },
+    { id: "archivo-experiencias", title: "Archivo de experiencias", date: "Diciembre 2024", image: "/images/scouts-hero.png", summary: "Un espacio para guardar las historias que hacen crecer al movimiento.", content: "El archivo comienza con relatos de actividades, encuentros y aprendizajes que pueden compartirse entre grupos." },
   ],
   gallery: [
     { src: "/images/scouts-circle.png", alt: "Grupo en círculo", label: "Abrir la palabra" },
