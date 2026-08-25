@@ -3,7 +3,7 @@ import { cdes } from "@/content/cdes";
 import { getBlogPosts, getLibraryResources } from "@/lib/content/services";
 import { absoluteUrl } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [posts, resources] = await Promise.all([getBlogPosts(1000), getLibraryResources(1000)]);

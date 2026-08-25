@@ -21,7 +21,7 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
         <BookOpen size={21} strokeWidth={1.6} />
       </div>
       {resource.coverImageUrl ? (
-        <Image src={resource.coverImageUrl} alt="" fill unoptimized={resource.coverImageUrl.startsWith("http")} className="absolute inset-0 -z-0 object-cover opacity-20" sizes="(max-width: 768px) 50vw, 33vw" />
+        <Image src={resource.coverImageUrl} alt="" fill className="absolute inset-0 -z-0 object-cover opacity-20" sizes="(max-width: 768px) 50vw, 33vw" />
       ) : (
         <div className="absolute -right-6 top-16 h-28 w-28 rounded-full border-[18px] border-current opacity-10" aria-hidden="true" />
       )}

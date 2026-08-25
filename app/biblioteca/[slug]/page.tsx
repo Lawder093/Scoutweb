@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { getLibraryResourceBySlug } from "@/lib/content/services";
 import { absoluteUrl } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -48,7 +48,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
           <Link href="/biblioteca" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} /> Volver a la biblioteca</Link>
           <div className="mt-12 grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div className="relative aspect-[0.78/1] overflow-hidden rounded-[2rem] bg-primary p-8 text-white">
-              {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill unoptimized={resource.coverImageUrl.startsWith("http")} className="object-cover opacity-70" sizes="(max-width: 1024px) 90vw, 420px" /> : <BookOpen className="absolute bottom-8 right-8 opacity-20" size={120} strokeWidth={1} />}
+              {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-cover opacity-70" sizes="(max-width: 1024px) 90vw, 420px" /> : <BookOpen className="absolute bottom-8 right-8 opacity-20" size={120} strokeWidth={1} />}
               <div className="relative z-10 flex h-full flex-col justify-between"><span className="text-5xl font-black opacity-25">{String(resource.displayOrder).padStart(2, "0")}</span><p className="display-title text-4xl leading-[0.95]">{resource.title}</p></div>
             </div>
             <div>

@@ -9,7 +9,7 @@ export const metadata = {
   description: "Recursos, juegos y herramientas libres para compartir y adaptar.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function BibliotecaPage() {
   const resources = await getLibraryResources(12);

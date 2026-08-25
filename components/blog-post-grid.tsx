@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { BlogPost } from "@/lib/content/types";
+import type { BlogPost, BlogPostSummary } from "@/lib/content/types";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { BlogPostCard } from "./blog-post-card";
 
-export function BlogPostGrid({ posts, dark = false, showAllLink = true }: { posts: BlogPost[]; dark?: boolean; showAllLink?: boolean }) {
+export function BlogPostGrid({ posts, dark = false, showAllLink = true }: { posts: (BlogPost | BlogPostSummary)[]; dark?: boolean; showAllLink?: boolean }) {
   return (
     <section id="historias" className={dark ? "bg-ink py-24 text-white sm:py-32" : "bg-mist py-24 sm:py-32"}>
       <div className="section-shell">

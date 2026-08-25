@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { getBlogPostBySlug } from "@/lib/content/services";
 import { absoluteUrl } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -53,7 +53,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <h1 className="display-title mt-6 text-5xl leading-[0.9] sm:text-8xl">{post.title}</h1>
             <div className="mt-7 flex items-center gap-2 text-sm text-ink/55"><CalendarDays size={15} />{post.dateLabel}</div>
           </div>
-          {post.coverImageUrl && <div className="relative mt-12 aspect-[1.8/1] overflow-hidden rounded-[2rem] bg-mist"><Image src={post.coverImageUrl} alt="" fill unoptimized={post.coverImageUrl.startsWith("http")} className="object-cover" sizes="(max-width: 1280px) 90vw, 1100px" /></div>}
+          {post.coverImageUrl && <div className="relative mt-12 aspect-[1.8/1] overflow-hidden rounded-[2rem] bg-mist"><Image src={post.coverImageUrl} alt="" fill className="object-cover" sizes="(max-width: 1280px) 90vw, 1100px" /></div>}
           <div className="mt-12 max-w-3xl text-lg leading-8 text-ink/75 sm:text-xl [&_a]:font-bold [&_a]:text-primary [&_a]:underline [&_h2]:display-title [&_h2]:mt-10 [&_h2]:text-3xl [&_p]:mt-6 [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-6" dangerouslySetInnerHTML={{ __html: post.body }} />
           {post.sourceUrl && <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="focus-ring mt-10 inline-flex text-sm font-extrabold text-secondary hover:text-primary">Ver publicación original ↗</a>}
         </article>

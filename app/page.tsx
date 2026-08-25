@@ -11,7 +11,7 @@ import { CTA } from "@/components/cta";
 import { SiteFooter } from "@/components/site-footer";
 import { getBlogPosts, getLibraryResources } from "@/lib/content/services";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function HomePage() {
   const [posts, resources] = await Promise.all([getBlogPosts(3), getLibraryResources(6)]);

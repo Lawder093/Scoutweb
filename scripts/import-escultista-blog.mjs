@@ -185,9 +185,13 @@ async function exportLocalRows(rows) {
     tone: tones[index % tones.length],
   }));
   const outputPath = resolve(process.cwd(), "content/blog/posts.json");
+  const summaryPath = resolve(process.cwd(), "content/blog/posts-summary.json");
+  const summaryRows = localRows.map(({ body, ...summary }) => summary);
   await mkdir(dirname(outputPath), { recursive: true });
   await writeFile(outputPath, `${JSON.stringify(localRows, null, 2)}\n`, "utf8");
+  await writeFile(summaryPath, `${JSON.stringify(summaryRows, null, 2)}\n`, "utf8");
   writeStatus(`Exportación local escrita en ${outputPath}.`);
+  writeStatus(`Resúmenes locales escritos en ${summaryPath}.`);
 }
 
 const rows = await fetchAllPosts();

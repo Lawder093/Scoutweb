@@ -9,7 +9,7 @@ export const metadata = {
   description: "El archivo completo de Escultista: historias, conversaciones, proyectos y aprendizajes del movimiento.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function BlogPage() {
   const posts = await getBlogPostSummaries(1000);

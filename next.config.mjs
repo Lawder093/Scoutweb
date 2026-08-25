@@ -21,6 +21,8 @@ const supabaseHostname = getSupabaseHostname();
 const nextConfig = {
   outputFileTracingRoot: projectRoot,
   images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 3600,
     remotePatterns: [
       ...(supabaseHostname ? [{ protocol: "https", hostname: supabaseHostname, pathname: "/**" }] : []),
       { protocol: "https", hostname: "escultista.org", pathname: "/**" },
