@@ -1,5 +1,6 @@
 import { articles, libraryBooks } from "@/lib/site-data";
 import importedBlogPosts from "@/content/blog/posts.json";
+import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, ContentTone, LibraryResource } from "./types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
@@ -42,6 +43,7 @@ const staticFallbackBlogPosts: BlogPost[] = articles.map((article, index) => {
     authorName: null,
     sourceUrl: null,
     categories: [article.category],
+    tags: [],
     tone: toneAt(index),
   };
 });
@@ -51,7 +53,7 @@ const importedFallbackBlogPosts: BlogPost[] = importedBlogPosts.map((post, index
   slug: post.slug,
   title: post.title,
   excerpt: post.excerpt,
-  body: post.body,
+  body: sanitizeHtml(post.body),
   category: post.category,
   publishedAt: post.publishedAt,
   dateLabel: post.dateLabel,
@@ -59,6 +61,7 @@ const importedFallbackBlogPosts: BlogPost[] = importedBlogPosts.map((post, index
   authorName: post.authorName,
   sourceUrl: post.sourceUrl,
   categories: post.categories,
+  tags: post.tags ?? [],
   tone: toneAt(index),
 }));
 

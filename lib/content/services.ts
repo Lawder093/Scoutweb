@@ -6,7 +6,7 @@ import { findPublishedBlogPost, listPublishedBlogPosts, type BlogPostRow } from 
 import { findPublicLibraryResource, listPublicLibraryResources, type LibraryResourceRow } from "./repositories/library";
 import { resolvePublicAssetUrl } from "./storage";
 import { sanitizeHtml } from "./sanitize";
-import type { BlogPost, ContentTone, LibraryResource } from "./types";
+import type { BlogPost, BlogPostSummary, ContentTone, LibraryResource } from "./types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
 
@@ -48,6 +48,7 @@ function mapBlogPost(
     authorName: row.author_name,
     sourceUrl: row.source_url,
     categories: row.categories,
+    tags: row.tags,
     tone: toneAt(index),
   };
 }
@@ -86,6 +87,11 @@ export async function getBlogPosts(limit = 12): Promise<BlogPost[]> {
     logFallback("Contenido editorial no disponible; se utilizará el contenido local", error);
     return fallbackBlogPosts.slice(0, limit);
   }
+}
+
+export async function getBlogPostSummaries(limit = 1000): Promise<BlogPostSummary[]> {
+  const posts = await getBlogPosts(limit);
+  return posts.map(({ body, ...summary }) => summary);
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {

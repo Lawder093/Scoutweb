@@ -51,8 +51,14 @@ function sanitizeHtml(value) {
   return value
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
+    .replace(/<\/?(?:iframe|object|embed|form|input|button|textarea|select|meta|link)[^>]*>/gi, "")
     .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/javascript:/gi, "");
+    .replace(/\s(?:href|src)\s*=\s*("([^"]*)"|'([^']*)'|([^\s>]+))/gi, (match, quoted, doubleValue, singleValue, bareValue) => {
+      const url = doubleValue ?? singleValue ?? bareValue ?? "";
+      return /^(?:https?:|mailto:|tel:|\/|#)/i.test(url.trim()) ? match : "";
+    })
+    .replace(/javascript\s*:/gi, "")
+    .replace(/data\s*:/gi, "");
 }
 
 function slugify(value) {
@@ -175,6 +181,7 @@ async function exportLocalRows(rows) {
     authorName: row.author_name,
     sourceUrl: row.source_url,
     categories: row.categories,
+    tags: row.tags,
     tone: tones[index % tones.length],
   }));
   const outputPath = resolve(process.cwd(), "content/blog/posts.json");
