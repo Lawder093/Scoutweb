@@ -10,11 +10,11 @@ const contactWays = [
 
 export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
-    <section id="contacto" className="bg-mist py-24 sm:py-32">
+    <section id="sumate" className="bg-mist py-24 sm:py-32">
       <div className="section-shell">
         <Reveal>
           <SectionHeading
-            eyebrow="Contacto"
+            eyebrow="Súmate"
             headingLevel={headingLevel}
             title={<>La ronda está <span className="text-primary">abierta.</span></>}
             description="Si quieres activar un proyecto, compartir una experiencia o simplemente saludar, aquí estamos. Este espacio se construye con muchas manos."

@@ -11,7 +11,7 @@ const navigation = [
   { label: "CDE", href: "/cde" },
   { label: "Biblioteca", href: "/biblioteca" },
   { label: "Blog", href: "/blog" },
-  { label: "Contacto", href: "/contacto" },
+  { label: "Tienda", href: "/tienda" },
 ];
 
 export function SiteHeader() {
@@ -53,7 +53,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/contacto" className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 sm:block">
+            <Link href="/sumate" className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 sm:block">
               Súmate
             </Link>
             <button

@@ -20,7 +20,7 @@ export function CdeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2"
               <div className="mt-8 space-y-3 border-t border-ink/10 pt-6">
                 {["Escuela de formación", "Laboratorio de proyectos", "Red de cuidados"].map((item, index) => <div key={item} className="flex items-center gap-3 text-sm font-bold"><span className="grid h-7 w-7 place-items-center rounded-full bg-white text-xs text-secondary">0{index + 1}</span>{item}</div>)}
               </div>
-              <a href="/contacto" className="focus-ring mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-secondary transition-colors hover:text-primary">Quiero activar un CDE <ArrowUpRight size={16} /></a>
+              <a href="/sumate" className="focus-ring mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-secondary transition-colors hover:text-primary">Quiero activar un CDE <ArrowUpRight size={16} /></a>
             </div>
           </Reveal>
         </div>
