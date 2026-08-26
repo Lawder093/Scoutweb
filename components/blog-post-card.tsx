@@ -24,7 +24,7 @@ export function BlogPostCard({ post, index = 0 }: { post: BlogPost | BlogPostSum
         </div>
         <div className="p-6 sm:p-7">
           <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] font-extrabold uppercase tracking-[0.15em] opacity-60"><span>{post.category}</span><span className="flex items-center gap-1"><CalendarDays size={13} aria-hidden="true" />{post.dateLabel}</span></div>
-          <h3 className="display-title mt-5 text-2xl leading-[0.98]">{post.title}</h3>
+          <h3 className="display-title mt-5 break-words text-2xl leading-[0.98]">{post.title}</h3>
           <p className="mt-4 text-sm leading-6 opacity-70">{post.excerpt}</p>
           <span className="mt-6 inline-flex items-center gap-2 text-sm font-extrabold opacity-80">Leer más <ArrowUpRight size={16} aria-hidden="true" /></span>
         </div>

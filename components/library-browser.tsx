@@ -63,19 +63,19 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
             Buscar
             <span className="relative mt-2 block">
               <Search size={17} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink/45" aria-hidden="true" />
-              <input id="library-search" type="search" value={query} onChange={(event) => updateQuery(event.target.value)} placeholder="Título, autor o palabra clave" className="focus-ring h-12 w-full rounded-xl border border-ink/15 bg-paper pl-10 pr-3 text-sm font-medium outline-none placeholder:text-ink/40" />
+              <input id="library-search" type="search" value={query} onChange={(event) => updateQuery(event.target.value)} placeholder="Título, autor o palabra clave" className="focus-ring h-12 w-full rounded-xl border border-ink/15 bg-paper pl-10 pr-3 text-base font-medium outline-none placeholder:text-ink/40 sm:text-sm" />
             </span>
           </label>
-          <label className="block text-sm font-bold text-ink">Categoría<select value={category} onChange={(event) => updateCategory(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-sm font-medium outline-none">{categories.map((option) => <option key={option}>{option}</option>)}</select></label>
-          <label className="block text-sm font-bold text-ink">Etiqueta<select value={tag} onChange={(event) => updateTag(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-sm font-medium outline-none">{tags.map((option) => <option key={option}>{option}</option>)}</select></label>
-          <label className="block text-sm font-bold text-ink">Ordenar<select value={sort} onChange={(event) => { setSort(event.target.value as SortOption); setPage(1); }} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-sm font-medium outline-none"><option value="order">Orden editorial</option><option value="recent">Más recientes</option><option value="title">Título A–Z</option></select></label>
+          <label className="block text-sm font-bold text-ink">Categoría<select value={category} onChange={(event) => updateCategory(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm">{categories.map((option) => <option key={option}>{option}</option>)}</select></label>
+          <label className="block text-sm font-bold text-ink">Etiqueta<select value={tag} onChange={(event) => updateTag(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm">{tags.map((option) => <option key={option}>{option}</option>)}</select></label>
+          <label className="block text-sm font-bold text-ink">Ordenar<select value={sort} onChange={(event) => { setSort(event.target.value as SortOption); setPage(1); }} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm"><option value="order">Orden editorial</option><option value="recent">Más recientes</option><option value="title">Título A–Z</option></select></label>
         </div>
       </div>
 
       <p className="mt-7 text-sm font-bold text-ink/60" aria-live="polite">{filteredResources.length} {filteredResources.length === 1 ? "recurso encontrado" : "recursos encontrados"}</p>
 
       {visibleResources.length > 0 ? (
-        <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3">
           {visibleResources.map((resource, index) => <Reveal key={resource.id} delay={index * 0.05}><LibraryResourceCard resource={resource} /></Reveal>)}
         </div>
       ) : (

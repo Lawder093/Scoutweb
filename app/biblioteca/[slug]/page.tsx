@@ -43,7 +43,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
   return (
     <>
       <SiteHeader />
-      <main className="pt-16">
+      <main className="pt-20 sm:pt-16">
         <article className="section-shell py-20 sm:py-28">
           <Link href="/biblioteca" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} /> Volver a la biblioteca</Link>
           <div className="mt-12 grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
@@ -53,7 +53,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
             </div>
             <div>
               <span className="eyebrow">{resource.creator}</span>
-              <h1 className="display-title mt-6 text-5xl leading-[0.9] sm:text-7xl">{resource.title}</h1>
+              <h1 className="display-title mt-6 break-words text-5xl leading-[0.9] sm:text-7xl">{resource.title}</h1>
               <p className="mt-8 max-w-2xl text-lg leading-8 text-ink/70">{resource.description}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {resource.downloadUrl ? <a href={resource.downloadUrl} download className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white"><ArrowDownToLine size={16} /> Descargar recurso</a> : <span className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-sm font-bold text-ink/45"><ArrowDownToLine size={16} /> Archivo en preparación</span>}

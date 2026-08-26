@@ -14,6 +14,8 @@ const navigation = [
   { label: "Tienda", href: "/tienda" },
 ];
 
+const mobileNavigation = [...navigation, { label: "Súmate", href: "/sumate" }];
+
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -32,8 +34,8 @@ export function SiteHeader() {
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
-      <div className="mx-auto max-w-[1240px] rounded-full border border-ink/10 bg-paper/90 px-4 shadow-card backdrop-blur-md sm:px-5">
+    <header className="site-header fixed inset-x-0 top-0 z-50">
+      <div className="mx-auto max-w-[1240px] rounded-full border border-ink/10 bg-paper/90 px-3 shadow-card backdrop-blur-md sm:px-5">
         <div className="flex h-[62px] items-center justify-between">
           <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" onClick={() => setIsOpen(false)}>
             <span className="block rounded-lg bg-white px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
@@ -53,7 +55,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/sumate" className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 sm:block">
+            <Link href="/sumate" className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 md:block">
               Súmate
             </Link>
             <button
@@ -70,8 +72,8 @@ export function SiteHeader() {
         </div>
 
         {isOpen && (
-          <nav id="mobile-navigation" className="border-t border-ink/10 py-3 md:hidden" aria-label="Menú móvil">
-            {navigation.map((item) => (
+          <nav id="mobile-navigation" className="max-h-[calc(100dvh-6rem)] overflow-y-auto border-t border-ink/10 py-3 md:hidden" aria-label="Menú móvil">
+            {mobileNavigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}

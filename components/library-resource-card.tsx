@@ -15,7 +15,7 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
   const readerUrl = resource.readerUrl ?? `/biblioteca/${resource.slug}`;
 
   return (
-    <article className={`group relative flex min-h-[300px] flex-col overflow-hidden rounded-[1.6rem] ${toneClasses[resource.tone]} p-5 transition-transform hover:-translate-y-1 sm:min-h-[350px] sm:p-7`}>
+    <article className={`group relative flex min-h-[300px] min-w-0 flex-col overflow-hidden rounded-[1.6rem] ${toneClasses[resource.tone]} p-5 transition-transform hover:-translate-y-1 sm:min-h-[350px] sm:p-7`}>
       <div className="flex items-start justify-between">
         <span className="text-3xl font-black opacity-20">{String(resource.displayOrder).padStart(2, "0")}</span>
         <BookOpen size={21} strokeWidth={1.6} />
@@ -26,8 +26,8 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
         <div className="absolute -right-6 top-16 h-28 w-28 rounded-full border-[18px] border-current opacity-10" aria-hidden="true" />
       )}
       <div className="relative z-10 mt-auto">
-        <p className="text-[10px] font-extrabold uppercase tracking-[0.13em] opacity-60">{resource.creator}</p>
-        <h3 className={`display-title mt-3 leading-[0.95] ${compact ? "text-2xl" : "text-2xl sm:text-3xl"}`}>{resource.title}</h3>
+        <p className="break-words text-[10px] font-extrabold uppercase tracking-[0.13em] opacity-60">{resource.creator}</p>
+        <h3 className={`display-title mt-3 break-words leading-[0.95] ${compact ? "text-2xl" : "text-2xl sm:text-3xl"}`}>{resource.title}</h3>
         {!compact && <p className="mt-4 max-w-sm text-sm leading-6 opacity-70">{resource.description}</p>}
         <div className="mt-5 flex flex-wrap gap-2">
           <Link href={readerUrl} className="focus-ring inline-flex items-center gap-1 rounded-full bg-paper/20 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[0.1em] transition-colors hover:bg-paper/35">
