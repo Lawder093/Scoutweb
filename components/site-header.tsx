@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -14,7 +14,8 @@ const navigation = [
   { label: "Tienda", href: "/tienda" },
 ];
 
-const mobileNavigation = [...navigation, { label: "Súmate", href: "/sumate" }];
+const loginItem = { label: "Entrar", href: "/login" };
+const mobileNavigation = [...navigation, { label: "Súmate", href: "/sumate" }, loginItem];
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +75,14 @@ export function SiteHeader() {
             <Link href="/sumate" className="focus-ring hidden rounded-full bg-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] text-white transition-transform hover:-translate-y-0.5 md:block">
               Súmate
             </Link>
+            <Link
+              href={loginItem.href}
+              aria-label="Entrar al área editorial"
+              className={`focus-ring hidden items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.1em] transition-colors md:inline-flex ${isActive(loginItem.href) ? "border-primary bg-primary/10 text-primary" : "border-ink/15 text-ink/70 hover:border-primary/40 hover:text-primary"}`}
+            >
+              <LogIn size={15} aria-hidden="true" />
+              {loginItem.label}
+            </Link>
             <button
               type="button"
               aria-expanded={isOpen}
@@ -93,7 +102,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="focus-ring block rounded-xl px-3 py-3 text-sm font-semibold text-ink/75 hover:bg-secondary/10 hover:text-secondary"
+                className={`focus-ring block rounded-xl px-3 py-3 text-sm font-semibold hover:bg-secondary/10 hover:text-secondary ${item.href === loginItem.href ? "mt-2 border-t border-ink/10 pt-4 text-primary" : "text-ink/75"}`}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
               >
