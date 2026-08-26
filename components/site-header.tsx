@@ -23,19 +23,35 @@ export function SiteHeader() {
   useEffect(() => {
     if (!isOpen) return;
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsOpen(false);
     };
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [isOpen]);
+
+  useEffect(() => {
+    const closeMenuOnDesktop = () => {
+      if (window.innerWidth >= 768) setIsOpen(false);
+    };
+
+    window.addEventListener("resize", closeMenuOnDesktop);
+    return () => window.removeEventListener("resize", closeMenuOnDesktop);
+  }, []);
 
   const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto max-w-[1240px] rounded-full border border-ink/10 bg-paper/90 px-3 shadow-card backdrop-blur-md sm:px-5">
+      {isOpen && <button type="button" aria-label="Cerrar menú" className="fixed inset-0 z-40 bg-ink/45 backdrop-blur-[2px] md:hidden" onClick={() => setIsOpen(false)} />}
+      <div className={`relative z-50 mx-auto max-w-[1240px] border border-ink/10 px-3 transition-[border-radius,background-color,box-shadow] duration-200 sm:px-5 ${isOpen ? "rounded-[1.75rem] bg-paper shadow-xl" : "rounded-full bg-paper/90 shadow-card backdrop-blur-md"}`}>
         <div className="flex h-[62px] items-center justify-between">
           <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" onClick={() => setIsOpen(false)}>
             <span className="block rounded-lg bg-white px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
