@@ -11,7 +11,7 @@ import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, BlogPostSummary, ContentTone, LibraryResource } from "./types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
-const useSupabase = process.env.CONTENT_SOURCE === "supabase";
+const useSupabase = process.env.CONTENT_SOURCE !== "local" && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
 
 function toneAt(index: number): ContentTone {
   return tones[index % tones.length];

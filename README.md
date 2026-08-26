@@ -22,6 +22,15 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 
 `SUPABASE_SECRET_KEY` solo debe existir en entornos de servidor y nunca debe utilizarse en componentes cliente ni subirse al repositorio.
 
+## Acceso editorial y blog
+
+1. Crea la cuenta editorial en Supabase Authentication → Users.
+2. Configura `CONTENT_ADMIN_EMAILS` con el correo autorizado, separado por comas.
+3. Configura `CONTENT_SOURCE=supabase` para que las publicaciones guardadas sean visibles en el blog público.
+4. Entra a `/login` y, después de iniciar sesión, abre `/admin/blog`.
+
+El formulario guarda borradores o publicaciones en `public.blog_posts`. El contenido escrito se convierte a HTML seguro en el servidor; no se permite insertar HTML arbitrario desde el formulario.
+
 ## Supabase
 
 El esquema editorial se encuentra en `supabase/migrations/20260807120000_create_content_schema.sql`. Crea las tablas `content_authors`, `blog_posts` y `library_resources`, activa RLS y configura el bucket público `content-assets` para imágenes y archivos PDF.
