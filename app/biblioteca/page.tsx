@@ -12,7 +12,7 @@ export const metadata = {
 export const revalidate = 300;
 
 export default async function BibliotecaPage() {
-  const resources = await getLibraryResources(12);
+  const resources = await getLibraryResources(1000);
 
   return (
     <>

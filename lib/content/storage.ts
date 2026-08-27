@@ -19,3 +19,18 @@ export function resolvePublicAssetUrl(
 
   return client.storage.from(CONTENT_ASSETS_BUCKET).getPublicUrl(assetPath).data.publicUrl;
 }
+
+export function resolvePublicDownloadUrl(
+  client: SupabaseClient<Database>,
+  assetPath: string | null,
+): string | null {
+  if (!assetPath) {
+    return null;
+  }
+
+  if (assetPath.startsWith("/") || assetPath.startsWith("http://") || assetPath.startsWith("https://")) {
+    return assetPath;
+  }
+
+  return client.storage.from(CONTENT_ASSETS_BUCKET).getPublicUrl(assetPath, { download: true }).data.publicUrl;
+}

@@ -9,6 +9,8 @@
     "typecheck": "tsc --noEmit --incremental false",
     "audit": "npm audit --omit=dev",
     "import:blog": "node --env-file=.env.local scripts/import-escultista-blog.mjs",
+    "import:blog:local": "node --env-file=.env.local scripts/import-local-blog.mjs",
+    "import:library": "node --env-file=.env.local scripts/import-escultista-library.mjs",
     "sync:blog:local": "node --env-file=.env.local scripts/import-escultista-blog.mjs --local"
   },
   "dependencies": {

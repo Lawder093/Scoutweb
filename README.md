@@ -55,6 +55,15 @@ Para revisar el número de entradas y el rango de fechas sin escribir en Supabas
 npm run import:blog -- --dry-run
 ```
 
+Si ya existe el archivo local `content/blog/posts.json` y quieres cargarlo directamente en Supabase, usa el importador idempotente:
+
+```bash
+npm run import:blog:local -- --dry-run
+npm run import:blog:local
+```
+
+Este proceso valida las 312 entradas, conserva sus fechas originales y usa el identificador de Escultista como `source_id` para actualizar registros existentes sin duplicarlos.
+
 Si prefieres trabajar sin Supabase, exporta las entradas directamente al proyecto:
 
 ```bash
@@ -62,6 +71,17 @@ npm run sync:blog:local
 ```
 
 Esto genera `content/blog/posts.json` con las 312 entradas y sus fechas. El sitio utiliza ese archivo como fallback completo cuando Supabase no está disponible.
+
+### Importar materiales PDF
+
+La biblioteca puede importar los PDF públicos enlazados desde la sección Documentos de Escultista. El proceso descarga los archivos al bucket público `content-assets`, registra el catálogo en `library_resources` y puede ejecutarse nuevamente sin duplicar recursos:
+
+```bash
+npm run import:library -- --dry-run
+npm run import:library
+```
+
+Los seis recursos ficticios de la semilla inicial se ocultan al completar la importación para mostrar únicamente materiales reales.
 
 ## Rutas editoriales
 

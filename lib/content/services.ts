@@ -7,7 +7,7 @@ import { fallbackLibraryResources } from "./fallback-library";
 import { findPublishedBlogPost, listPublishedBlogPostSummaries, type BlogPostRow, type BlogPostSummaryRow } from "./repositories/blog";
 import { listPublishedCDEActivities, type CDEActivityRow } from "./repositories/cde-activities";
 import { findPublicLibraryResource, listPublicLibraryResources, type LibraryResourceRow } from "./repositories/library";
-import { resolvePublicAssetUrl } from "./storage";
+import { resolvePublicAssetUrl, resolvePublicDownloadUrl } from "./storage";
 import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, BlogPostSummary, ContentTone, LibraryResource } from "./types";
 import type { CDEActivity } from "@/content/cdes/types";
@@ -66,7 +66,7 @@ function mapLibraryResource(row: LibraryResourceRow, index: number, client: Retu
     dateLabel: formatDate(publishedAt),
     coverImageUrl: resolvePublicAssetUrl(client, row.cover_image_path),
     readerUrl: "/biblioteca/" + row.slug,
-    downloadUrl: resolvePublicAssetUrl(client, row.file_path),
+    downloadUrl: resolvePublicDownloadUrl(client, row.file_path),
     displayOrder: row.display_order,
     tone: toneAt(index),
   };
