@@ -69,7 +69,17 @@ Esto genera `content/blog/posts.json` con las 312 entradas y sus fechas. El siti
 - `/blog/[slug]` muestra el detalle de un artículo.
 - `/biblioteca` muestra los recursos públicos.
 - `/biblioteca/[slug]` muestra el detalle y el enlace de descarga cuando existe un archivo.
-- `/cde/[country]` continúa utilizando los datos estáticos escalables de `content/cdes`.
+- `/admin` redirige al panel administrativo.
+- `/admin/blog` permite crear, editar, publicar, despublicar y eliminar entradas.
+- `/admin/conecta` permite crear y administrar usuarios de Conecta con contraseñas cifradas.
+- `/admin/actividades` permite publicar una actividad en un CDE específico y cargar su imagen al bucket `content-assets`.
+- `/cde/[country]` utiliza los datos estáticos escalables de `content/cdes` y muestra las actividades publicadas para ese CDE desde Supabase, con fallback local.
+
+### Dashboard de administración
+
+Después de aplicar las migraciones editoriales existentes, ejecuta también `supabase/migrations/20260826120000_create_admin_and_cde_activities.sql` desde el SQL Editor. Esta migración crea `conecta_users` y `cde_activities`, activa RLS y deja las actividades públicas visibles únicamente cuando están publicadas.
+
+El panel se protege con la cuenta editorial de Supabase y `CONTENT_ADMIN_EMAILS`. Los usuarios de Conecta son registros independientes: sus nombres y contraseñas cifradas se administran desde el panel y no tienen acceso al dashboard editorial.
 
 ## Validación
 

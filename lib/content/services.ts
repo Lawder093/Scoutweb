@@ -5,10 +5,12 @@ import { createSupabasePublicServerClient } from "@/lib/supabase/public-server";
 import { fallbackBlogPostSummaries } from "./fallback-summaries";
 import { fallbackLibraryResources } from "./fallback-library";
 import { findPublishedBlogPost, listPublishedBlogPostSummaries, type BlogPostRow, type BlogPostSummaryRow } from "./repositories/blog";
+import { listPublishedCDEActivities, type CDEActivityRow } from "./repositories/cde-activities";
 import { findPublicLibraryResource, listPublicLibraryResources, type LibraryResourceRow } from "./repositories/library";
 import { resolvePublicAssetUrl } from "./storage";
 import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, BlogPostSummary, ContentTone, LibraryResource } from "./types";
+import type { CDEActivity } from "@/content/cdes/types";
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
 const useSupabase = process.env.CONTENT_SOURCE !== "local" && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
@@ -70,6 +72,17 @@ function mapLibraryResource(row: LibraryResourceRow, index: number, client: Retu
   };
 }
 
+function mapCDEActivity(row: CDEActivityRow, fallbackImage: string, client: ReturnType<typeof createSupabasePublicServerClient>): CDEActivity {
+  return {
+    id: row.id,
+    title: row.title,
+    date: new Intl.DateTimeFormat("es-MX", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${row.event_date}T12:00:00Z`)),
+    image: resolvePublicAssetUrl(client, row.image_path) ?? fallbackImage,
+    summary: row.summary,
+    content: row.body || undefined,
+  };
+}
+
 async function getLocalBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   const { fallbackBlogPosts } = await import("./fallback");
   return fallbackBlogPosts.find((post) => post.slug === slug) ?? null;
@@ -88,6 +101,18 @@ export async function getBlogPosts(limit = 12): Promise<BlogPostSummary[]> {
 }
 
 export const getBlogPostSummaries = getBlogPosts;
+
+export async function getCDEActivities(cdeSlug: string, fallback: CDEActivity[], fallbackImage: string, limit = 12): Promise<CDEActivity[]> {
+  if (!useSupabase) return fallback;
+  try {
+    const client = createSupabasePublicServerClient();
+    const rows = await listPublishedCDEActivities(client, cdeSlug, limit);
+    return rows.length > 0 ? rows.map((row) => mapCDEActivity(row, fallbackImage, client)) : fallback;
+  } catch (error) {
+    logFallback("Actividades del CDE no disponibles; se utilizará el contenido local", error);
+    return fallback;
+  }
+}
 
 export const getBlogPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
   if (!useSupabase) return getLocalBlogPostBySlug(slug);

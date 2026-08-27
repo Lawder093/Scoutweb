@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import { CDELayout } from "@/components/cde/cde-layout";
 import { cdes, getCDE } from "@/content/cdes";
 
+export const revalidate = 60;
+
 export function generateStaticParams() {
   return Object.keys(cdes).map((country) => ({ country }));
 }

@@ -152,6 +152,78 @@ export type Database = {
         };
         Relationships: [];
       };
+      conecta_users: {
+        Row: {
+          id: string;
+          name: string;
+          password_hash: string;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          password_hash: string;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          password_hash?: string;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      cde_activities: {
+        Row: {
+          id: string;
+          cde_slug: string;
+          slug: string;
+          title: string;
+          event_date: string;
+          image_path: string | null;
+          summary: string;
+          body: string;
+          is_published: boolean;
+          published_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          cde_slug: string;
+          slug: string;
+          title: string;
+          event_date: string;
+          image_path?: string | null;
+          summary: string;
+          body?: string;
+          is_published?: boolean;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          cde_slug?: string;
+          slug?: string;
+          title?: string;
+          event_date?: string;
+          image_path?: string | null;
+          summary?: string;
+          body?: string;
+          is_published?: boolean;
+          published_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
