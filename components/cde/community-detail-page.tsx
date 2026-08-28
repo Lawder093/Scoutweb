@@ -25,7 +25,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
           </Link>
         </div>
 
-        <section className="bg-ink py-14 text-white sm:py-20">
+        <section data-glass-tone="dark" className="bg-ink py-14 text-white sm:py-20">
           <div className="section-shell grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
             <Reveal>
               <span className="eyebrow text-accent">{cde.communityName} · {community.kind}</span>
@@ -123,7 +123,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
           </div>
         </section>
 
-        <section id="fundamento" className="scroll-mt-36 bg-ink py-20 text-white sm:py-28">
+        <section id="fundamento" data-glass-tone="dark" className="scroll-mt-36 bg-ink py-20 text-white sm:py-28">
           <div className="section-shell">
             <Reveal>
               <SectionTitle

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink text-white sm:min-h-screen">
+    <section id="inicio" data-glass-tone="dark" className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink text-white sm:min-h-screen">
       <Image src="/images/inicio-cover.jpg" alt="Comunidad de escultismo popular reunida" fill priority className="object-cover object-[55%_center] sm:object-[60%_center]" sizes="100vw" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(29,43,52,.92)_0%,rgba(29,43,52,.74)_36%,rgba(29,43,52,.22)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink/45 to-transparent" />

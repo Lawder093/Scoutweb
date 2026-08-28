@@ -9,7 +9,7 @@ export function CDEHero({ cde }: { cde: CDEData }) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-white">
+    <section data-glass-tone="dark" className="relative isolate overflow-hidden bg-ink text-white">
       <Image src={cde.heroImage} alt={`Comunidad ${cde.country}`} fill priority className="object-cover object-center" sizes="100vw" />
       <div className="absolute inset-0 -z-0 bg-[linear-gradient(90deg,rgba(29,43,52,.94)_0%,rgba(29,43,52,.76)_48%,rgba(29,43,52,.32)_100%)]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/55 to-transparent" />
