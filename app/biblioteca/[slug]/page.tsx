@@ -5,6 +5,7 @@ import { ArrowDownToLine, ArrowLeft, BookOpen } from "lucide-react";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { PdfReader } from "@/components/pdf-reader";
 import { getLibraryResourceBySlug } from "@/lib/content/services";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -60,6 +61,13 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
               </div>
             </div>
           </div>
+          {resource.fileUrl ? (
+            <PdfReader title={resource.title} url={resource.fileUrl} />
+          ) : (
+            <div className="mt-16 rounded-[1.6rem] border border-ink/10 bg-paper px-6 py-8 text-sm leading-6 text-ink/65 sm:px-8">
+              El lector PDF estará disponible cuando se publique el archivo de este recurso.
+            </div>
+          )}
         </article>
       </main>
       <SiteFooter />

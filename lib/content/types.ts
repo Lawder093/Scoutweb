@@ -31,6 +31,7 @@ export type LibraryResource = {
   dateLabel: string;
   coverImageUrl: string | null;
   readerUrl: string | null;
+  fileUrl: string | null;
   downloadUrl: string | null;
   displayOrder: number;
   tone: ContentTone;

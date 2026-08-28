@@ -82,6 +82,7 @@ export const fallbackLibraryResources: LibraryResource[] = libraryBooks.map((boo
     dateLabel: dateLabel(publishedAt),
     coverImageUrl: null,
     readerUrl: null,
+    fileUrl: null,
     downloadUrl: null,
     displayOrder: index + 1,
     tone: toneAt(index),
