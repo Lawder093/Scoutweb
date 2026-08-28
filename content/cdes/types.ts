@@ -18,6 +18,7 @@ export type CDECommunity = {
   description: string;
   ageRange: string;
   image?: string;
+  page?: CDECommunityPageData;
 };
 
 export type CDEEducator = {
@@ -45,6 +46,25 @@ export type CDEActivity = {
   summary: string;
   content?: string;
   href?: string;
+};
+
+export type CDECommunityCurriculumItem = {
+  title: string;
+  description: string;
+  topics: string[];
+};
+
+export type CDEKnowledgeFoundationItem = {
+  title: string;
+  text: string;
+};
+
+export type CDECommunityPageData = {
+  introduction: string;
+  purpose: string;
+  curriculum: CDECommunityCurriculumItem[];
+  knowledgeFoundation: CDEKnowledgeFoundationItem[];
+  activities: CDEActivity[];
 };
 
 export type CDEGalleryItem = {

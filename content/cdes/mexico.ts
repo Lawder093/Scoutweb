@@ -11,7 +11,7 @@ export const mexico: CDEData = {
   welcome: "Bienvenides al Centro de Desarrollo Escultista de México. Aquí la aventura comienza cuando nos preguntamos qué podemos hacer juntes con lo que tenemos a la mano.",
   origin: "El grupo nace de la experiencia del escultismo en Puebla y de la necesidad de construir una educación no formal conectada con el barrio, el territorio y la organización popular.",
   communities: [
-    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Primeros encuentros con el juego, la imaginación y el cuidado compartido.", ageRange: "5 a 6 años" },
+    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Primeros encuentros con el juego, la imaginación y el cuidado compartido.", ageRange: "3 a 6 años" },
     { id: "manada", kind: "Manada", name: "Manada", description: "Explorar el entorno, aprender haciendo y construir autonomía en grupo.", ageRange: "7 a 10 años" },
     { id: "tropa", kind: "Tropa", name: "Tropa", description: "Aventuras, proyectos y preguntas para leer el territorio con otras personas.", ageRange: "11 a 14 años" },
     { id: "clan", kind: "Clan", name: "Clan", description: "Participación juvenil, servicio y acompañamiento para transformar lo cotidiano.", ageRange: "15 a 17 años" },

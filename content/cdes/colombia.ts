@@ -11,7 +11,7 @@ export const colombia: CDEData = {
   welcome: "Bienvenides al Centro de Desarrollo Escultista de Colombia. Nos encontramos para aprender a leer el territorio, defender la vida y caminar con otros ritmos.",
   origin: "El CDE Colombia surge del encuentro entre experiencias educativas, comunitarias y de cuidado que buscan defender la vida y leer cada territorio desde sus propias voces.",
   communities: [
-    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Jugar, preguntar y descubrir el territorio desde los primeros años.", ageRange: "5 a 6 años" },
+    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Jugar, preguntar y descubrir el territorio desde los primeros años.", ageRange: "3 a 6 años" },
     { id: "tropa", kind: "Tropa", name: "Tropa", description: "Caminatas, proyectos y aprendizajes para fortalecer la acción colectiva.", ageRange: "11 a 14 años" },
     { id: "clan", kind: "Clan", name: "Clan", description: "Juventudes que conectan memoria, participación y defensa de la vida.", ageRange: "15 a 17 años" },
   ],
