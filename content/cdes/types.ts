@@ -11,6 +11,15 @@ export type CDETimelineItem = {
 
 export type CDECommunityKind = "Ronda" | "Manada" | "Tropa" | "Clan";
 
+export type CDECommunityPhotoSize = "small" | "medium" | "large" | "tall";
+
+export type CDECommunityPhoto = {
+  src: string;
+  alt: string;
+  label: string;
+  size: CDECommunityPhotoSize;
+};
+
 export type CDECommunity = {
   id: string;
   kind: CDECommunityKind;
@@ -18,6 +27,7 @@ export type CDECommunity = {
   description: string;
   ageRange: string;
   image?: string;
+  photoReel?: CDECommunityPhoto[];
   page?: CDECommunityPageData;
 };
 
@@ -65,6 +75,7 @@ export type CDECommunityPageData = {
   curriculum: CDECommunityCurriculumItem[];
   knowledgeFoundation: CDEKnowledgeFoundationItem[];
   activities: CDEActivity[];
+  photoReel?: CDECommunityPhoto[];
 };
 
 export type CDEGalleryItem = {

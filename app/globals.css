@@ -142,6 +142,39 @@ button {
   100% { box-shadow: 0 0 0 0 rgba(131, 24, 23, 0); }
 }
 
+.photo-reel__viewport {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+.photo-reel__track {
+  display: flex;
+  width: max-content;
+  gap: 1rem;
+  padding-inline: 1rem;
+  animation: community-photo-reel 38s linear infinite;
+  will-change: transform;
+}
+
+.photo-reel__viewport:hover .photo-reel__track,
+.photo-reel__viewport:focus-within .photo-reel__track {
+  animation-play-state: paused;
+}
+
+.photo-reel__item {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: var(--color-secondary);
+}
+
+@keyframes community-photo-reel {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 0.5rem)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -154,6 +187,10 @@ button {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .photo-reel__track {
+    animation: none;
   }
 }
 
