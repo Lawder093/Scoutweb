@@ -7,10 +7,10 @@ export const methodCards = [
 ];
 
 export const timeline = [
-  { year: "1933", title: "Fundación del escultismo en Puebla", text: "La ciudad de Puebla se convierte en uno de los primeros territorios donde el escultismo encuentra una forma organizada de acompañar a niñas, niños y adolescentes.", image: "/images/scouts-circle.png", label: "Archivo histórico · Puebla" },
-  { year: "2000", title: "Inicio de la transformación del proyecto educativo", text: "Comienza un proceso de análisis que abre la puerta a nuevas prácticas y a una presencia más profunda del escultismo en la vida comunitaria.", image: "/images/scouts-hero.png", label: "Memoria viva · Educación" },
-  { year: "2003", title: "Trabajo con comunidades y escuelas", text: "El ingreso a WFIS impulsa actividades piloto con comunidades indígenas, escuelas públicas, casas hogar e infancias campesinas.", image: "/images/scouts-circle.png", label: "Territorio · Organización" },
-  { year: "Actualmente", title: "Escultismo Crítico Popular en Latinoamérica", text: "La propuesta sigue creciendo como una práctica de educación no formal, pedagogía crítica y organización popular que conecta territorios.", image: "/images/scouts-hero.png", label: "Presente · Red latinoamericana" },
+  { year: "1933", title: "Fundación del escultismo en Puebla", text: "La ciudad de Puebla se convierte en uno de los primeros territorios donde el escultismo encuentra una forma organizada de acompañar a niñas, niños y adolescentes.", image: "/images/history/chipilo-1933.jpg", label: "Archivo histórico · Chipilo, mayo de 1933" },
+  { year: "2000", title: "Inicio de la transformación del proyecto educativo", text: "Comienza un proceso de análisis que abre la puerta a nuevas prácticas y a una presencia más profunda del escultismo en la vida comunitaria.", image: "/images/history/comunidad-2000.jpg", label: "Memoria viva · Comunidad educativa" },
+  { year: "2003", title: "Trabajo con comunidades y escuelas", text: "El ingreso a WFIS impulsa actividades piloto con comunidades indígenas, escuelas públicas, casas hogar e infancias campesinas.", image: "/images/history/comunidad-2003.jpg", label: "Territorio · Trabajo comunitario" },
+  { year: "Actualmente", title: "Escultismo Crítico Popular en Latinoamérica", text: "La propuesta sigue creciendo como una práctica de educación no formal, pedagogía crítica y organización popular que conecta territorios.", image: "/images/history/actividad-comunitaria.jpg", label: "Presente · Comunidad en acción" },
 ];
 
 export const libraryBooks = [
