@@ -57,6 +57,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
               <h1 className="display-title mt-6 break-words text-5xl leading-[0.9] sm:text-7xl">{resource.title}</h1>
               <p className="mt-8 max-w-2xl text-lg leading-8 text-ink/70">{resource.description}</p>
               <div className="mt-8 flex flex-wrap gap-3">
+                {resource.fileUrl ? <a href="#lector-pdf" className="focus-ring inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 text-sm font-bold text-white"><BookOpen size={16} /> Leer en línea</a> : null}
                 {resource.downloadUrl ? <a href={resource.downloadUrl} download className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white"><ArrowDownToLine size={16} /> Descargar recurso</a> : <span className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-sm font-bold text-ink/45"><ArrowDownToLine size={16} /> Archivo en preparación</span>}
               </div>
             </div>

@@ -65,7 +65,7 @@ function mapLibraryResource(row: LibraryResourceRow, index: number, client: Retu
     publishedAt,
     dateLabel: formatDate(publishedAt),
     coverImageUrl: resolvePublicAssetUrl(client, row.cover_image_path),
-    readerUrl: "/biblioteca/" + row.slug,
+    readerUrl: "/biblioteca/" + row.slug + "#lector-pdf",
     fileUrl: resolvePublicAssetUrl(client, row.file_path),
     downloadUrl: resolvePublicDownloadUrl(client, row.file_path),
     displayOrder: row.display_order,

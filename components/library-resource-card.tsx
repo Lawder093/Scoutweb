@@ -12,7 +12,7 @@ const toneClasses: Record<ContentTone, string> = {
 };
 
 export function LibraryResourceCard({ resource, compact = false }: { resource: LibraryResource; compact?: boolean }) {
-  const readerUrl = resource.readerUrl ?? `/biblioteca/${resource.slug}`;
+  const readerUrl = resource.readerUrl ?? `/biblioteca/${resource.slug}#lector-pdf`;
 
   return (
     <article className={`group relative flex min-h-[300px] min-w-0 flex-col overflow-hidden rounded-[1.6rem] ${toneClasses[resource.tone]} p-5 transition-transform hover:-translate-y-1 sm:min-h-[350px] sm:p-7`}>

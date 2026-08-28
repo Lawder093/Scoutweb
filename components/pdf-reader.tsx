@@ -9,7 +9,7 @@ export function PdfReader({ title, url }: PdfReaderProps) {
   const viewerUrl = `${url}#page=1&view=FitH`;
 
   return (
-    <section id="lector-pdf" className="mt-16" aria-labelledby="lector-pdf-title">
+    <section id="lector-pdf" className="mt-16 scroll-mt-24" aria-labelledby="lector-pdf-title">
       <div className="flex flex-col gap-5 rounded-t-[1.6rem] bg-ink px-5 py-6 text-paper sm:flex-row sm:items-end sm:justify-between sm:px-8">
         <div>
           <span className="eyebrow text-accent">Lectura en línea</span>
