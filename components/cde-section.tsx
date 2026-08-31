@@ -1,7 +1,11 @@
 import { ArrowUpRight, Globe2 } from "lucide-react";
+import { cdes } from "@/content/cdes";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { LatinAmericaMap } from "./latin-america-map";
+import { CDECard } from "./cde/cde-card";
+
+const cdeList = Object.values(cdes);
 
 export function CdeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
@@ -23,6 +27,22 @@ export function CdeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2"
               <a href="/sumate" className="focus-ring mt-8 inline-flex items-center gap-2 text-sm font-extrabold text-secondary transition-colors hover:text-primary">Quiero activar un CDE <ArrowUpRight size={16} /></a>
             </div>
           </Reveal>
+        </div>
+        <div className="mt-20">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow">Conoce la red</p>
+              <h2 className="display-title mt-4 text-4xl leading-tight sm:text-5xl">Tres centros, <span className="text-primary">muchas formas</span> de hacer comunidad.</h2>
+              <p className="mt-5 text-base leading-7 text-ink/65">Cada Centro de Desarrollo Escultista parte de su territorio y comparte el compromiso de aprender, organizarse y transformar en colectivo.</p>
+            </div>
+          </Reveal>
+          <div className="mt-9 grid gap-5 md:grid-cols-3">
+            {cdeList.map((cde, index) => (
+              <Reveal key={cde.slug} delay={0.08 * index} className="h-full">
+                <CDECard cde={cde} index={index} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
