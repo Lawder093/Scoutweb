@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { cdes } from "@/content/cdes";
+import { storeProducts } from "@/content/store/products";
 import { getBlogPosts, getLibraryResources } from "@/lib/content/services";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -18,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl("/blog"), lastModified: now, changeFrequency: "daily", priority: 0.8 },
     ...posts.map((post) => ({ url: absoluteUrl(`/blog/${post.slug}`), lastModified: post.publishedAt, changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: absoluteUrl("/tienda"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    ...storeProducts.map((product) => ({ url: absoluteUrl(`/tienda/${product.id}`), lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: absoluteUrl("/sumate"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ];
 }

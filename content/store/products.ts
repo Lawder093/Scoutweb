@@ -1,5 +1,10 @@
 export type StoreProductTone = "primary" | "secondary" | "accent" | "ink";
 
+export type StoreProductDetail = {
+  label: string;
+  value: string;
+};
+
 export type StoreProduct = {
   id: string;
   name: string;
@@ -9,6 +14,7 @@ export type StoreProduct = {
   tone: StoreProductTone;
   image?: string;
   imageAlt?: string;
+  details?: StoreProductDetail[];
 };
 
 export const storeProducts: StoreProduct[] = [
@@ -21,6 +27,10 @@ export const storeProducts: StoreProduct[] = [
     tone: "ink",
     image: "/images/store/guia-progresion-comunidades.jpg",
     imageAlt: "Portada de la Guía de progresión para las comunidades educativas de Ronda, Manada, Tropa y Clan",
+    details: [
+      { label: "Formato", value: "Publicación impresa" },
+      { label: "Comunidades", value: "Ronda · Manada · Tropa · Clan" },
+    ],
   },
   {
     id: "panolleta-institucional",
@@ -55,3 +65,7 @@ export const storeProducts: StoreProduct[] = [
     tone: "ink",
   },
 ];
+
+export function getStoreProduct(id: string): StoreProduct | undefined {
+  return storeProducts.find((product) => product.id === id);
+}
