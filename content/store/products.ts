@@ -7,9 +7,21 @@ export type StoreProduct = {
   description: string;
   availability: string;
   tone: StoreProductTone;
+  image?: string;
+  imageAlt?: string;
 };
 
 export const storeProducts: StoreProduct[] = [
+  {
+    id: "guia-progresion-comunidades",
+    name: "Guía de progresión para las comunidades educativas de Ronda, Manada, Tropa y Clan",
+    category: "Materiales",
+    description: "Una guía impresa para acompañar las comunidades educativas de Ronda, Manada, Tropa y Clan desde el Escultismo Crítico Popular.",
+    availability: "Disponible",
+    tone: "ink",
+    image: "/images/store/guia-progresion-comunidades.jpg",
+    imageAlt: "Portada de la Guía de progresión para las comunidades educativas de Ronda, Manada, Tropa y Clan",
+  },
   {
     id: "panolleta-institucional",
     name: "Pañoleta institucional",

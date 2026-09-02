@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BadgeCheck, BookOpen, Flag, Shirt } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -24,12 +25,19 @@ function ProductCard({ product, index }: { product: StoreProduct; index: number 
 
   return (
     <Reveal delay={index * 0.06} className="group overflow-hidden rounded-[1.8rem] bg-paper shadow-card ring-1 ring-ink/10 transition-transform hover:-translate-y-1">
-      <div className={`relative flex h-48 items-end justify-between overflow-hidden p-6 ${colors.panel} ${colors.text}`}>
-        <div className="absolute -right-8 -top-10 h-36 w-36 rounded-full border border-white/20" aria-hidden="true" />
-        <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full border border-white/15" aria-hidden="true" />
-        <span className={`relative grid h-14 w-14 place-items-center rounded-2xl ${colors.icon}`}><Icon size={25} strokeWidth={1.8} /></span>
-        <span className="relative text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-65">Objeto físico</span>
-      </div>
+      {product.image ? (
+        <div className="relative flex h-64 items-center justify-center overflow-hidden bg-mist p-4 sm:h-72">
+          <Image src={product.image} alt={product.imageAlt ?? product.name} fill className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.02]" sizes="(max-width: 640px) 92vw, 50vw" />
+          <span className="absolute right-5 top-5 rounded-full bg-ink px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white">Objeto físico</span>
+        </div>
+      ) : (
+        <div className={`relative flex h-48 items-end justify-between overflow-hidden p-6 ${colors.panel} ${colors.text}`}>
+          <div className="absolute -right-8 -top-10 h-36 w-36 rounded-full border border-white/20" aria-hidden="true" />
+          <div className="absolute -bottom-16 -left-10 h-40 w-40 rounded-full border border-white/15" aria-hidden="true" />
+          <span className={`relative grid h-14 w-14 place-items-center rounded-2xl ${colors.icon}`}><Icon size={25} strokeWidth={1.8} /></span>
+          <span className="relative text-[10px] font-extrabold uppercase tracking-[0.16em] opacity-65">Objeto físico</span>
+        </div>
+      )}
       <div className="p-6 sm:p-7">
         <div className="flex items-center justify-between gap-3 text-[10px] font-extrabold uppercase tracking-[0.15em] text-secondary">
           <span>{product.category}</span>
