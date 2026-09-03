@@ -1,4 +1,5 @@
 import type { CDEData } from "./types";
+import { makeCommunity } from "./community-framework";
 
 export const colombia: CDEData = {
   slug: "colombia",
@@ -6,18 +7,18 @@ export const colombia: CDEData = {
   region: "Centro de Desarrollo Escultista · Colombia",
   communityName: "CDE Colombia",
   logoLabel: "CDE COL",
-  description: "Un punto de encuentro para cruzar saberes, territorios y formas de defender la vida en comunidad.",
+  description: "Un punto de encuentro para cruzar saberes, territorios y formas de defender la vida en comunidad desde Colombia.",
   heroImage: "/images/scouts-circle.png",
   welcome: "Bienvenides al Centro de Desarrollo Escultista de Colombia. Nos encontramos para aprender a leer el territorio, defender la vida y caminar con otros ritmos.",
-  origin: "El CDE Colombia surge del encuentro entre experiencias educativas, comunitarias y de cuidado que buscan defender la vida y leer cada territorio desde sus propias voces.",
+  origin: "El CDE Colombia se articula alrededor de experiencias como Meraki, en Bogotá, que llevan el escultismo crítico popular a los barrios, las calles y los proyectos culturales, ambientales y sociales construidos con la comunidad.",
   communities: [
-    { id: "ronda", kind: "Ronda", name: "Ronda", description: "Jugar, preguntar y descubrir el territorio desde los primeros años.", ageRange: "3 a 6 años" },
-    { id: "tropa", kind: "Tropa", name: "Tropa", description: "Caminatas, proyectos y aprendizajes para fortalecer la acción colectiva.", ageRange: "11 a 14 años" },
-    { id: "clan", kind: "Clan", name: "Clan", description: "Juventudes que conectan memoria, participación y defensa de la vida.", ageRange: "15 a 17 años" },
+    makeCommunity("Ronda", { description: "La Ronda colombiana parte del juego y la escucha para que las primeras preguntas sobre el territorio tengan un lugar seguro." }),
+    makeCommunity("Tropa", { description: "La Tropa colombiana organiza patrullas, rutas y proyectos para convertir la lectura del barrio en acción colectiva." }),
+    makeCommunity("Clan", { description: "El Clan colombiano conecta memoria, participación juvenil y defensa de la vida en proyectos con otras comunidades." }),
   ],
   history: [
-    "El CDE Colombia nace del deseo de reunir experiencias educativas, comunitarias y de cuidado que ya están transformando sus territorios.",
-    "Cada encuentro suma una voz: la de quienes facilitan, juegan, acompañan y sostienen la vida cotidiana desde abajo.",
+    "El vínculo con Colombia se fortalece a través de grupos que trabajan desde sus propios territorios y entienden el escultismo como una herramienta de educación popular, no como un formato único.",
+    "El encuentro con el CDE Meraki de Bogotá abrió una colaboración sostenida para compartir prácticas, proyectos y preguntas sobre cómo defender la vida desde el barrio.",
   ],
   philosophy: "La educación es una práctica de libertad cuando nos permite nombrar lo que vivimos, reconocer nuestras fuerzas y organizarnos para cambiarlo.",
   mission: "Conectar personas y experiencias que defienden la vida a través de la educación, el juego y el trabajo comunitario.",
@@ -32,14 +33,10 @@ export const colombia: CDEData = {
     { year: "Proceso", title: "Cuidar los vínculos", text: "La formación se convierte también en una práctica de escucha y acompañamiento." },
     { year: "Hoy", title: "Defender la vida", text: "El CDE abre espacios para compartir herramientas y fortalecer la acción comunitaria." },
   ],
-  educators: [
-    { name: "Camila Torres", role: "Facilitadora territorial", community: "Ronda", bio: "Acompaña grupos juveniles y procesos de memoria comunitaria.", interests: ["Memoria", "Territorio"], image: "/images/scouts-circle.png" },
-    { name: "Andrés Gómez", role: "Educador popular", community: "Tropa", bio: "Trabaja con metodologías participativas y educación al aire libre.", interests: ["Juego", "Cuidado"], image: "/images/scouts-hero.png" },
-    { name: "Valentina Ríos", role: "Coordinadora de red", community: "Clan", bio: "Conecta experiencias y facilita encuentros entre comunidades.", interests: ["Redes", "Formación"], image: "/images/scouts-circle.png" },
-  ],
+  educators: [],
   activities: [
-    { id: "cartografias-cuidado", title: "Cartografías del cuidado", date: "Septiembre 2024", image: "/images/scouts-circle.png", summary: "Mapear personas, espacios y prácticas que sostienen la vida en nuestros barrios.", content: "El grupo reúne relatos y lugares significativos para construir una cartografía comunitaria del cuidado." },
-    { id: "campamentos-comunitarios", title: "Campamentos comunitarios", date: "Noviembre 2024", image: "/images/scouts-hero.png", summary: "Aprender del paisaje y construir acuerdos para habitarlo de otra manera.", content: "Los campamentos proponen experiencias de vida al aire libre, escucha territorial y trabajo colectivo." },
+    { id: "meraki-territorio", title: "Meraki: proyectos desde el territorio", date: "Línea de trabajo", image: "/images/scouts-circle.png", summary: "Experiencias en Bogotá que enlazan juego, campismo y proyectos culturales, ambientales y sociales.", content: "La propuesta parte de las preguntas del grupo y de las condiciones del barrio para construir acciones con otras personas, no para hablar en su nombre." },
+    { id: "colombia-campismo-comunitario", title: "Campismo y organización comunitaria", date: "Práctica del programa", image: "/images/scouts-hero.png", summary: "Aprender técnicas al aire libre mientras se construyen acuerdos para cuidar el territorio.", content: "La vida al aire libre funciona como medio didáctico: prepara, observa, actúa y evalúa lo aprendido en comunidad." },
   ],
   gallery: [
     { src: "/images/scouts-circle.png", alt: "Grupo compartiendo un mapa", label: "Escuchar el territorio" },
@@ -48,7 +45,7 @@ export const colombia: CDEData = {
     { src: "/images/scouts-hero.png", alt: "Grupo en la montaña", label: "Defender la vida" },
   ],
   feed: [
-    { author: "CDE Colombia", role: "Actualización de comunidad", text: "Estamos reuniendo historias para la próxima cartografía del cuidado.", time: "Hace 1 día", comments: 6, likes: 31, image: "/images/scouts-circle.png" },
-    { author: "Camila Torres", role: "Facilitadora", text: "Caminar despacio también es una forma de estar atentes a lo que el territorio nos cuenta.", time: "Hace 4 días", comments: 3, likes: 19 },
+    { author: "CDE Colombia", role: "Nota de comunidad", text: "Reunimos historias para una cartografía comunitaria del cuidado.", time: "Próxima publicación", comments: 0, likes: 0, image: "/images/scouts-circle.png" },
+    { author: "CDE Colombia", role: "Nota de comunidad", text: "Caminar despacio también es una forma de estar atentes a lo que el territorio nos cuenta.", time: "Próxima publicación", comments: 0, likes: 0 },
   ],
 };

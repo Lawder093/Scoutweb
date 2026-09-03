@@ -79,10 +79,38 @@ function detectGlassTone(): GlassTone {
   return tones.length > 0 && darkToneCount > tones.length / 2 ? "dark" : "light";
 }
 
+function resetScrollPosition() {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [glassTone, setGlassTone] = useState<GlassTone>(pathname === "/" ? "dark" : "light");
+
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
+    return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (window.location.hash) return;
+
+    resetScrollPosition();
+    const frame = window.requestAnimationFrame(resetScrollPosition);
+    const timeout = window.setTimeout(resetScrollPosition, 100);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
+  }, [pathname]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -140,7 +168,7 @@ export function SiteHeader() {
   const handleNavigation = (href: string) => {
     setIsOpen(false);
     if (!href.includes("#")) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      resetScrollPosition();
     }
   };
   const isDarkGlass = glassTone === "dark";
@@ -157,7 +185,7 @@ export function SiteHeader() {
         data-state={isOpen ? "open" : "closed"}
       >
         <div className="flex h-[62px] items-center justify-between">
-          <Link href="/" className="focus-ring flex items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
+          <Link href="/" scroll={false} className="focus-ring flex items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
             <span className="site-header__logo block rounded-lg px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
           </Link>
 
@@ -166,6 +194,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                scroll={false}
                 className={`focus-ring rounded-full px-4 py-2 text-sm font-semibold transition-colors ${navBaseClass} ${isActive(item.href) ? navActiveClass : ""}`}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => handleNavigation(item.href)}
@@ -176,11 +205,12 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/sumate" onClick={() => handleNavigation("/sumate")} className={`focus-ring hidden rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 md:block ${isDarkGlass ? "bg-white text-ink" : "bg-ink text-white"}`}>
+            <Link href="/sumate" scroll={false} onClick={() => handleNavigation("/sumate")} className={`focus-ring hidden rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 md:block ${isDarkGlass ? "bg-white text-ink" : "bg-ink text-white"}`}>
               Súmate
             </Link>
             <Link
               href={loginItem.href}
+              scroll={false}
               aria-label="Entrar al área editorial"
               onClick={() => handleNavigation(loginItem.href)}
               className={`focus-ring hidden items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.1em] transition-colors md:inline-flex ${isDarkGlass ? (isActive(loginItem.href) ? "border-accent bg-accent/20 text-accent" : "border-white/25 text-white/80 hover:border-accent hover:text-accent") : (isActive(loginItem.href) ? "border-primary bg-primary/10 text-primary" : "border-ink/15 text-ink/70 hover:border-primary/40 hover:text-primary")}`}
@@ -207,6 +237,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
+                scroll={false}
                 className={`focus-ring block rounded-xl px-3 py-3 text-sm font-semibold ${mobileNavBaseClass} ${item.href === loginItem.href ? `mt-2 border-t pt-4 ${isDarkGlass ? "border-white/15 text-accent" : "border-ink/10 text-primary"}` : ""}`}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => handleNavigation(item.href)}

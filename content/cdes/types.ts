@@ -26,6 +26,7 @@ export type CDECommunity = {
   name: string;
   description: string;
   ageRange: string;
+  structure?: string;
   image?: string;
   photoReel?: CDECommunityPhoto[];
   page?: CDECommunityPageData;
@@ -72,6 +73,9 @@ export type CDEKnowledgeFoundationItem = {
 export type CDECommunityPageData = {
   introduction: string;
   purpose: string;
+  groupStructure?: string;
+  progression?: string;
+  focusAreas?: string[];
   curriculum: CDECommunityCurriculumItem[];
   knowledgeFoundation: CDEKnowledgeFoundationItem[];
   activities: CDEActivity[];
@@ -94,6 +98,11 @@ export type CDEFeedPost = {
   image?: string;
 };
 
+export type CDEHeritage = {
+  label: string;
+  text: string;
+};
+
 export type CDEData = {
   slug: string;
   country: string;
@@ -104,6 +113,7 @@ export type CDEData = {
   heroImage: string;
   welcome: string;
   origin: string;
+  heritage?: CDEHeritage;
   history: string[];
   communities: CDECommunity[];
   philosophy: string;

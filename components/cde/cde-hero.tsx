@@ -25,7 +25,7 @@ export function CDEHero({ cde }: { cde: CDEData }) {
             <MapPin size={14} className="shrink-0 text-accent" /> <span className="break-words">{cde.region}</span>
           </div>
           <div className="flex items-center gap-3 sm:gap-4">
-            <span className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white p-2 shadow-xl"><BrandMark size={48} decorative priority /><span className="absolute -bottom-2 -right-2 rounded-full bg-primary px-2 py-1 text-[8px] font-black tracking-[0.12em] text-white">CDE</span></span>
+            <span className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white p-2 shadow-xl"><BrandMark size={48} decorative priority /><span className="absolute -bottom-2 -right-2 rounded-full bg-primary px-2 py-1 text-[8px] font-black tracking-[0.12em] text-white">{cde.logoLabel}</span></span>
             <div className="min-w-0">
               <p className="break-words text-xs font-extrabold uppercase tracking-[0.16em] text-white/65">{cde.communityName}</p>
               <h1 className="display-title mt-2 break-words text-5xl leading-[0.85] sm:text-8xl">{cde.country}</h1>

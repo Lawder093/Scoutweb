@@ -73,6 +73,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary">Propósito educativo</p>
                 <p className="mt-3 text-base leading-7 text-ink/70">{page.purpose}</p>
               </div>
+              {page.focusAreas?.length ? <div className="mt-8 border-t border-ink/10 pt-7"><p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary">Áreas de desarrollo</p><div className="mt-4 flex flex-wrap gap-2">{page.focusAreas.map((area) => <span key={area} className="rounded-full bg-secondary/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.1em] text-secondary">{area}</span>)}</div></div> : null}
             </Reveal>
 
             <Reveal delay={0.08} className="rounded-[2rem] bg-accent p-7 sm:p-10">
@@ -87,8 +88,12 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
                   <dd className="mt-2 text-xl font-extrabold">{community.ageRange}</dd>
                 </div>
                 <div className="border-t border-ink/15 pt-6">
-                  <dt className="text-xs font-extrabold uppercase tracking-[0.14em] text-ink/55">Recorrido</dt>
-                  <dd className="mt-2 text-xl font-extrabold">Currículum, fundamento y práctica</dd>
+                  <dt className="text-xs font-extrabold uppercase tracking-[0.14em] text-ink/55">Organización</dt>
+                  <dd className="mt-2 text-xl font-extrabold">{page.groupStructure ?? community.structure ?? "Comunidad educativa"}</dd>
+                </div>
+                <div className="border-t border-ink/15 pt-6">
+                  <dt className="text-xs font-extrabold uppercase tracking-[0.14em] text-ink/55">Progresión</dt>
+                  <dd className="mt-2 text-base font-extrabold leading-6">{page.progression ?? "Ruta de aprendizaje situada"}</dd>
                 </div>
               </dl>
             </Reveal>
