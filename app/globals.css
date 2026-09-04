@@ -34,6 +34,21 @@ body {
   overflow-x: clip;
 }
 
+/* La vista de Colombia conserva el layout común, pero adopta la paleta
+   gráfica de Grupo Scout Meraki: negro, blanco y acentos naranja, verde y azul. */
+main[data-cde="colombia"] {
+  --color-primary: #e2671f;
+  --color-secondary: #080808;
+  --color-accent: #f6b735;
+  --color-ink: #101010;
+  --color-paper: #ffffff;
+  --color-mist: #fff6e9;
+  --meraki-orange: #e2671f;
+  --meraki-green: #009b58;
+  --meraki-blue: #0b4ea2;
+  --meraki-sky: #8bb7d0;
+}
+
 a {
   color: inherit;
   text-decoration: none;

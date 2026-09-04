@@ -9,7 +9,7 @@ export type CDETimelineItem = {
   text: string;
 };
 
-export type CDECommunityKind = "Ronda" | "Manada" | "Tropa" | "Clan";
+export type CDECommunityKind = "Ronda" | "Manada" | "Tropa" | "Iris" | "Clan";
 
 export type CDECommunityPhotoSize = "small" | "medium" | "large" | "tall";
 
@@ -28,6 +28,7 @@ export type CDECommunity = {
   ageRange: string;
   structure?: string;
   image?: string;
+  imageFit?: "cover" | "contain";
   photoReel?: CDECommunityPhoto[];
   page?: CDECommunityPageData;
 };

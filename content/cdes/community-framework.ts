@@ -106,6 +106,31 @@ export const communityFramework: Record<CDECommunityKind, CommunityFramework> = 
       { id: "tropa-proyecto-incidencia", title: "Proyecto de incidencia comunitaria", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "Investigar una situación cercana y diseñar una acción que la comunidad pueda reconocer y hacer suya.", content: "El proyecto se construye con la comunidad implicada, evita hablar por otras personas y evalúa tanto los resultados como las relaciones que se tejieron." },
     ],
   },
+  Iris: {
+    kind: "Iris",
+    ageRange: "14 a 18 años",
+    groupStructure: "Equipos de exploración y Programa de Jóvenes",
+    description: "Una comunidad juvenil para profundizar intereses, autonomía y participación en proyectos compartidos.",
+    introduction: "Iris acompaña a jóvenes que convierten sus intereses, preguntas y experiencias en aprendizajes que pueden circular dentro y fuera del grupo.",
+    purpose: "Sostener procesos de participación juvenil donde cada persona pueda investigar, crear, decidir y asumir responsabilidades con otras personas.",
+    progression: "Sistema de Especialidades, certificaciones y proyectos de juventud que reconocen aprendizajes situados.",
+    focusAreas: sharedFocusAreas,
+    curriculum: [
+      { title: "Intereses y búsquedas", description: "Las preguntas personales abren rutas de investigación, práctica y creación que se comparten con la comunidad.", topics: ["Curiosidad", "Investigación", "Creatividad"] },
+      { title: "Equipos que participan", description: "El grupo distribuye responsabilidades, acuerda proyectos y aprende a representar sus intereses sin perder la escucha.", topics: ["Participación", "Acuerdos", "Responsabilidad"] },
+      { title: "Proyecto de juventud", description: "La progresión conecta lo que cada persona aprende con acciones que tienen sentido para su territorio.", topics: ["Autonomía", "Proyecto", "Territorio"] },
+    ],
+    knowledgeFoundation: [
+      { title: "Interés que se comparte", text: "Investigar una pregunta también es construir una oportunidad para que otras personas aprendan y aporten." },
+      { title: "Participación juvenil", text: "Las y los jóvenes son sujetos de su proceso: proponen, deciden, actúan y revisan lo que el grupo va construyendo." },
+      { title: "Aprendizaje situado", text: "Los saberes se relacionan con la vida cotidiana, la cultura y los territorios que cada comunidad habita." },
+    ],
+    activities: [
+      { id: "iris-laboratorio", title: "Laboratorio de intereses", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "Explorar una pregunta propia y convertirla en una experiencia para compartir con el grupo.", content: "La actividad puede combinar conversación, investigación, creación y evaluación para que cada interés abra un aprendizaje colectivo." },
+      { id: "iris-proyecto", title: "Proyecto de juventud", date: "Práctica del programa", image: "/images/scouts-hero.png", summary: "Organizar una acción concreta a partir de una situación que el grupo reconoce en su territorio.", content: "El proyecto se construye con las personas implicadas y revisa tanto sus resultados como las relaciones que se fortalecieron en el camino." },
+      { id: "iris-especialidad", title: "Especialidad compartida", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "Poner una habilidad al servicio de una actividad, una comunidad o un proyecto común.", content: "La especialidad se convierte en una oportunidad para aprender y enseñar, no solamente en un reconocimiento individual." },
+    ],
+  },
   Clan: {
     kind: "Clan",
     ageRange: "18 a 21 años",
@@ -135,7 +160,7 @@ export const communityFramework: Record<CDECommunityKind, CommunityFramework> = 
 
 export function makeCommunity(
   kind: CDECommunityKind,
-  overrides: Partial<Pick<CDECommunity, "name" | "description" | "image" | "photoReel" | "page">> = {},
+  overrides: Partial<Pick<CDECommunity, "name" | "description" | "ageRange" | "structure" | "image" | "imageFit" | "photoReel" | "page">> = {},
 ): CDECommunity {
   const framework = communityFramework[kind];
 
@@ -144,9 +169,10 @@ export function makeCommunity(
     kind,
     name: overrides.name ?? kind,
     description: overrides.description ?? framework.description,
-    ageRange: framework.ageRange,
-    structure: framework.groupStructure,
+    ageRange: overrides.ageRange ?? framework.ageRange,
+    structure: overrides.structure ?? framework.groupStructure,
     ...(overrides.image ? { image: overrides.image } : {}),
+    ...(overrides.imageFit ? { imageFit: overrides.imageFit } : {}),
     ...(overrides.photoReel ? { photoReel: overrides.photoReel } : {}),
     ...(overrides.page ? { page: overrides.page } : {}),
   };

@@ -15,5 +15,5 @@ import { getCDEActivities } from "@/lib/content/services";
 export async function CDELayout({ cde }: { cde: CDEData }) {
   const activities = await getCDEActivities(cde.slug, cde.activities, cde.heroImage);
 
-  return <><SiteHeader /><main className="min-h-screen bg-paper"><div className="section-shell pb-5 pt-28"><BackToHomeButton /></div><CDEHero cde={cde} /><CDENavigation /><NosotrosSection cde={cde} /><CommunitiesSection cde={cde} /><EducatorsSection cde={cde} /><ActivitiesSection cde={cde} activities={activities} /><GallerySection cde={cde} /><CommunityFeedPreview /></main><SiteFooter /></>;
+  return <><SiteHeader /><main data-cde={cde.slug} className="min-h-screen bg-paper"><div className="section-shell pb-5 pt-28"><BackToHomeButton /></div><CDEHero cde={cde} /><CDENavigation /><NosotrosSection cde={cde} /><CommunitiesSection cde={cde} /><EducatorsSection cde={cde} /><ActivitiesSection cde={cde} activities={activities} /><GallerySection cde={cde} /><CommunityFeedPreview /></main><SiteFooter /></>;
 }

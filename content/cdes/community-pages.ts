@@ -21,6 +21,12 @@ const communityPhotoReels: Record<CDECommunityKind, CDECommunityPhoto[]> = {
     { src: "/images/scouts-hero.png", alt: "Personas scouts en movimiento", label: "Caminar juntes", size: "medium" },
     { src: "/images/inicio-cover.jpg", alt: "Comunidad en acción", label: "Cerrar el día", size: "small" },
   ],
+  Iris: [
+    { src: "/images/scouts-circle.png", alt: "Juventudes reunidas en comunidad", label: "Tomar la palabra", size: "large" },
+    { src: "/images/scouts-hero.png", alt: "Grupo scout recorriendo el territorio", label: "Investigar", size: "tall" },
+    { src: "/images/inicio-cover.jpg", alt: "Comunidad compartiendo aprendizajes", label: "Compartir saberes", size: "small" },
+    { src: "/images/scouts-circle.png", alt: "Personas construyendo acuerdos", label: "Organizarnos", size: "medium" },
+  ],
   Clan: [
     { src: "/images/inicio-cover.jpg", alt: "Juventudes reunidas en comunidad", label: "Tomar la palabra", size: "large" },
     { src: "/images/scouts-hero.png", alt: "Grupo scout recorriendo el territorio", label: "Organizarnos", size: "tall" },
