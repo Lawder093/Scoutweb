@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 
 export const metadata = {
   title: "Súmate",
-  description: "Ponte en contacto con la red de Escultismo Crítico Popular y encuentra una forma de participar.",
+  description: "Encuentra los canales oficiales, representantes y Centros de Desarrollo Escultista de la Comunidad Crítica de Escultismo Popular.",
 };
 
 export default function SumatePage() {
