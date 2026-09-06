@@ -11,6 +11,7 @@ const navigation = [
   { label: "CDE", href: "/cde" },
   { label: "Biblioteca", href: "/biblioteca" },
   { label: "Blog", href: "/blog" },
+  { label: "Conecta", href: "/conecta" },
   { label: "Tienda", href: "/tienda" },
 ];
 

@@ -156,28 +156,133 @@ export type Database = {
         Row: {
           id: string;
           name: string;
-          password_hash: string;
+          password_hash: string | null;
           is_active: boolean;
+          phone: string | null;
+          photo_path: string | null;
+          cde_slug: string | null;
+          community: string | null;
+          otp_code_hash: string | null;
+          otp_expires_at: string | null;
+          otp_requested_at: string | null;
+          otp_attempts: number;
+          last_login_at: string | null;
           created_at: string;
           updated_at: string;
         };
         Insert: {
           id?: string;
           name: string;
-          password_hash: string;
+          password_hash?: string | null;
           is_active?: boolean;
+          phone?: string | null;
+          photo_path?: string | null;
+          cde_slug?: string | null;
+          community?: string | null;
+          otp_code_hash?: string | null;
+          otp_expires_at?: string | null;
+          otp_requested_at?: string | null;
+          otp_attempts?: number;
+          last_login_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
         Update: {
           id?: string;
           name?: string;
-          password_hash?: string;
+          password_hash?: string | null;
           is_active?: boolean;
+          phone?: string | null;
+          photo_path?: string | null;
+          cde_slug?: string | null;
+          community?: string | null;
+          otp_code_hash?: string | null;
+          otp_expires_at?: string | null;
+          otp_requested_at?: string | null;
+          otp_attempts?: number;
+          last_login_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
         Relationships: [];
+      };
+      conecta_posts: {
+        Row: {
+          id: string;
+          title: string;
+          caption: string;
+          image_path: string;
+          location: string | null;
+          external_url: string | null;
+          is_published: boolean;
+          published_at: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          title: string;
+          caption: string;
+          image_path: string;
+          location?: string | null;
+          external_url?: string | null;
+          is_published?: boolean;
+          published_at?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          title?: string;
+          caption?: string;
+          image_path?: string;
+          location?: string | null;
+          external_url?: string | null;
+          is_published?: boolean;
+          published_at?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      conecta_comments: {
+        Row: {
+          id: string;
+          post_id: string;
+          user_id: string;
+          body: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          post_id: string;
+          user_id: string;
+          body: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          post_id?: string;
+          user_id?: string;
+          body?: string;
+          created_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "conecta_comments_post_id_fkey";
+            columns: ["post_id"];
+            isOneToOne: false;
+            referencedRelation: "conecta_posts";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "conecta_comments_user_id_fkey";
+            columns: ["user_id"];
+            isOneToOne: false;
+            referencedRelation: "conecta_users";
+            referencedColumns: ["id"];
+          }
+        ];
       };
       cde_activities: {
         Row: {

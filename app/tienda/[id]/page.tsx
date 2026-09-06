@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowUpRight, BadgeCheck } from "lucide-react";
 import { notFound } from "next/navigation";
 import { getStoreProduct, storeProducts } from "@/content/store/products";
@@ -57,7 +58,15 @@ export default async function StoreProductPage({ params }: { params: Promise<{ i
         <article className="section-shell py-16 sm:py-24">
           <Link href="/tienda" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} aria-hidden="true" /> Volver a la tienda</Link>
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16">
-            <div className="overflow-hidden rounded-[2rem] shadow-card ring-1 ring-ink/10"><StoreProductVisual product={product} variant="detail" /></div>
+            <div>
+              <div className="overflow-hidden rounded-[2rem] shadow-card ring-1 ring-ink/10"><StoreProductVisual product={product} variant="detail" /></div>
+              {product.additionalImages?.map((image) => (
+                <div key={image.src} className="relative mt-4 aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-mist p-4 shadow-card ring-1 ring-ink/10">
+                  <Image src={image.src} alt={image.alt} fill className="object-contain p-3" sizes="(max-width: 1024px) 92vw, 520px" />
+                  <span className="absolute bottom-4 left-4 rounded-full bg-ink px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white">Vista posterior</span>
+                </div>
+              ))}
+            </div>
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-3 text-[10px] font-extrabold uppercase tracking-[0.15em] text-secondary">
                 <span>{product.category}</span>

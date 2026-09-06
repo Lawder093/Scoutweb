@@ -22,6 +22,8 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 
 `SUPABASE_SECRET_KEY` solo debe existir en entornos de servidor y nunca debe utilizarse en componentes cliente ni subirse al repositorio.
 
+Para el primer prototipo de Conecta agrega también `CONECTA_SESSION_SECRET` con una cadena aleatoria larga y `CONECTA_OTP_MODE=prototype`. El modo prototipo muestra el código de un solo uso en la pantalla para poder probar el flujo antes de conectar Meta WhatsApp Business. No cambies a `whatsapp` hasta contar con esa integración.
+
 ## Acceso editorial y blog
 
 1. Crea la cuenta editorial en Supabase Authentication → Users.
@@ -91,15 +93,16 @@ Los seis recursos ficticios de la semilla inicial se ocultan al completar la imp
 - `/biblioteca/[slug]` muestra el detalle y el enlace de descarga cuando existe un archivo.
 - `/admin` redirige al panel administrativo.
 - `/admin/blog` permite crear, editar, publicar, despublicar y eliminar entradas.
-- `/admin/conecta` permite crear y administrar usuarios de Conecta con contraseñas cifradas.
+- `/conecta` es el feed privado global: sólo entran scouts pre-registrados y su sesión dura un día.
+- `/admin/conecta` permite pre-registrar scouts con teléfono, foto, CDE y comunidad, publicar una foto con texto y eliminar comentarios.
 - `/admin/actividades` permite publicar una actividad en un CDE específico y cargar su imagen al bucket `content-assets`.
 - `/cde/[country]` utiliza los datos estáticos escalables de `content/cdes` y muestra las actividades publicadas para ese CDE desde Supabase, con fallback local.
 
 ### Dashboard de administración
 
-Después de aplicar las migraciones editoriales existentes, ejecuta también `supabase/migrations/20260826120000_create_admin_and_cde_activities.sql` desde el SQL Editor. Esta migración crea `conecta_users` y `cde_activities`, activa RLS y deja las actividades públicas visibles únicamente cuando están publicadas.
+Después de aplicar las migraciones editoriales existentes, ejecuta también `supabase/migrations/20260826120000_create_admin_and_cde_activities.sql` y después `supabase/migrations/20260906120000_create_conecta_prototype.sql` desde el SQL Editor. La segunda amplía `conecta_users` para el pre-registro telefónico, crea `conecta_posts` y `conecta_comments`, y crea el bucket privado `conecta-private`; ambas tablas permanecen protegidas por RLS y sólo las consultas server-side con la clave secreta acceden al feed. Las imágenes se sirven con URLs firmadas, no con enlaces públicos.
 
-El panel se protege con la cuenta editorial de Supabase y `CONTENT_ADMIN_EMAILS`. Los usuarios de Conecta son registros independientes: sus nombres y contraseñas cifradas se administran desde el panel y no tienen acceso al dashboard editorial.
+El panel se protege con la cuenta editorial de Supabase y `CONTENT_ADMIN_EMAILS`. Los usuarios de Conecta son registros independientes: no tienen acceso al dashboard editorial. En este primer prototipo solicitan un código temporal; el envío real por WhatsApp queda como siguiente integración.
 
 ## Validación
 

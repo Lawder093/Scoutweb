@@ -14,10 +14,32 @@ export type StoreProduct = {
   tone: StoreProductTone;
   image?: string;
   imageAlt?: string;
+  additionalImages?: Array<{ src: string; alt: string }>;
   details?: StoreProductDetail[];
 };
 
 export const storeProducts: StoreProduct[] = [
+  {
+    id: "documentos-pedagogia",
+    name: "Escultismo Crítico Popular: Documentos de Pedagogía",
+    category: "Materiales",
+    description: "Una aproximación al entorno crítico desde la práctica escultista. Reúne documentos y desarrollos de pedagogía crítica para pensar la comunidad, el territorio, el trabajo, el poder y la fiesta como parte del programa educativo.",
+    availability: "Disponible",
+    tone: "accent",
+    image: "/images/store/escultismo-critico-popular-documentos-pedagogia.jpg",
+    imageAlt: "Portada del libro Escultismo Crítico Popular: Documentos de Pedagogía",
+    additionalImages: [
+      {
+        src: "/images/store/escultismo-critico-popular-documentos-pedagogia-reverso.jpg",
+        alt: "Contraportada del libro Escultismo Crítico Popular: Documentos de Pedagogía",
+      },
+    ],
+    details: [
+      { label: "Autor", value: "Gerardo Martínez-Hernández" },
+      { label: "Formato", value: "Publicación impresa" },
+      { label: "Tema", value: "Pedagogía crítica y escultismo" },
+    ],
+  },
   {
     id: "guia-progresion-comunidades",
     name: "Guía de progresión para las comunidades educativas de Ronda, Manada, Tropa y Clan",
