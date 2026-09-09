@@ -1,0 +1,210 @@
+export type LegalBlock =
+  | { type: "lead"; text: string }
+  | { type: "quote"; text: string; cite?: string }
+  | { type: "heading"; text: string; level?: 2 | 3 }
+  | { type: "paragraph"; text: string }
+  | { type: "list"; items: string[]; ordered?: boolean; style?: "decimal" | "upper-roman" }
+  | { type: "link"; label: string; href: string };
+
+export type LegalPage = {
+  slug: string;
+  title: string;
+  summary: string;
+  sourceUrl: string;
+  lastReviewed: string;
+  blocks: LegalBlock[];
+};
+
+const donataria: LegalPage = {
+  slug: "donataria-donaciones",
+  title: "Donataria y donaciones",
+  summary: "Información institucional sobre donaciones, autorización fiscal, CLUNI, proyectos y objetivos de desarrollo sostenible.",
+  sourceUrl: "https://escultista.org/donataria-donaciones/",
+  lastReviewed: "10 de febrero de 2026",
+  blocks: [
+    { type: "quote", text: "Casi todas las cosas buenas nacen de una actitud de aprecio por los demás.", cite: "Dalai Lama" },
+    { type: "lead", text: "Tus donaciones brindan un gran apoyo a nuestra comunidad de beneficiarios." },
+    { type: "link", label: "Presentación ejecutiva para donadores (PDF)", href: "https://drive.google.com/open?id=1rMM3NIYMqcUQbno_86vD1a1f9UFS3hWZ&authuser=geramart%40gmail.com&usp=drive_fs" },
+    { type: "heading", text: "Donaciones electrónicas" },
+    { type: "paragraph", text: "Puedes enviarnos un donativo a través de esta plataforma. Especialmente para donadores extranjeros." },
+    { type: "paragraph", text: "CTA: 0117588771\nCLABE: 012650001175887715" },
+    { type: "paragraph", text: "Sé parte de nuestro proyecto y apadrina a niñas, niños o adolescentes." },
+    { type: "heading", text: "¿Quiénes pueden donar?" },
+    { type: "paragraph", text: "Todas las personas, físicas o morales pueden donar en dinero o en especie a cualquiera de nuestras causas o proyectos. Sin embargo, al ser una donataria autorizada, dichas donaciones pueden ser deducidas de los impuestos de acuerdo con la información siguiente." },
+    { type: "paragraph", text: "De acuerdo con la publicación en el Diario Oficial de la Federación de la UMA el 9 de enero de 2026, se establece que, a partir del 01 de febrero de 2026, el valor diario de la Unidad de Medida y Actualización es de $117.31, por lo que, en caso de recibir donativos en los siguientes umbrales, se tendrán las siguientes obligaciones:\nDonativos por un valor igual o superior al equivalente a mil seiscientas cinco veces el valor diario de la UMA, es decir $188,282.55, las OSC deberán identificar al donante.\nLas donaciones sean por una cantidad igual o superior al equivalente a tres mil doscientas diez veces el valor diario de la UMA, es decir $376,565.10, las OSC deberán presentar Aviso a la Secretaría a través del portal de la UIF." },
+    { type: "heading", text: "Personas morales", level: 3 },
+    { type: "paragraph", text: "Podrán deducir los donativos no onerosos ni remunerativos cuyo monto total no exceda el 7% de la utilidad fiscal." },
+    { type: "heading", text: "Personas físicas", level: 3 },
+    { type: "paragraph", text: "Podrán deducir los donativos no onerosos ni remunerativos hasta en un 7% de los ingresos acumulables. Se debe considerar que sumado a las demás deducciones personales no excederán la cantidad establecida en el artículo 151 de la Ley del ISR." },
+    { type: "paragraph", text: "En la reglamentación Fiscal para 2025, el artículo 151 de la Ley del Impuesto sobre la Renta (ISR) se plantea que el monto total de las deducciones personales de las personas físicas no deberá exceder:" },
+    { type: "list", ordered: true, items: [
+      "Cinco veces el valor anual de la UMA: Con el valor diario de la UMA de $117.31 vigente a partir de febrero 2026 ($117.31 x 365.25 x 5), el tope aproximado es $213,973.20 pesos.",
+      "15% del total de los ingresos del contribuyente: Incluyendo aquellos ingresos por los que no se pague el impuesto (ingresos exentos).",
+    ] },
+    { type: "paragraph", text: "También tenemos la autorización para recibir donaciones internacionales. Es necesario que los donantes atiendan a las regulaciones del sistema tributario nacional para verificar la adecuada deducción de impuestos; en el caso de los United States of America, la deducción está acordada de manera binacional utilizando la factura de nuestra donataria en forma directa como válida." },
+    { type: "heading", text: "Objetos sociales autorizados por el SAT como donataria" },
+    { type: "paragraph", text: "De acuerdo con el instrumento notarial número 47,153 de fecha 25 de febrero de 2021, pasado ante la fe del Lic. Rodolfo Morales Moreno, Notario Público número 19 del Estado de Oaxaca, los fines sociales de su representada, según se desprende de sus estatutos, consisten en: “ARTÍCULO CUARTO. - La asociación tiene por objeto:" },
+    { type: "list", items: [
+      "1).- ASISTENCIAL.",
+      "a) La atención a requerimientos básicos de subsistencia en materia de alimentación, vestido o vivienda.",
+      "b) La asistencia o rehabilitación médica o la atención en establecimientos especializados.",
+      "f) Orientación social, educación o capacitación para el trabajo.",
+      "La asociación tendrá como beneficiarios en todas y cada una de sus actividades asistenciales que realiza a personas, sectores y regiones de escasos recursos; comunidades indígenas y grupos vulnerables por edad, sexo o problemas de discapacidad.",
+    ] },
+    { type: "heading", text: "CLUNI" },
+    { type: "paragraph", text: "La propuesta escultista se enfoca en el desarrollo personal, social y espiritual de los scouts, cuestionando y reconstruyendo elementos como el honor, la responsabilidad, la interacción social y la espiritualidad, para hacerlos más pertinentes y emancipadores." },
+    { type: "paragraph", text: "En relación con tener una asociación con CLUNI en México, es importante entender que la Clave Única de Inscripción al Registro Federal de las OSC (CLUNI) es un instrumento que permite a las Organizaciones de la Sociedad Civil (OSC) gestionar apoyos y estímulos del Gobierno de la República, para facilitar el cumplimiento de sus actividades. La asociación con CLUNI implica que la organización está legalmente constituida y registrada en México." },
+    { type: "paragraph", text: "La relación entre la propuesta con CLUNI permite brindar:" },
+    { type: "list", ordered: true, items: [
+      "Legalidad y Transparencia: Contar con CLUNI demuestra que la asociación está legalmente establecida y puede ser crucial para la transparencia en cuestiones financieras y administrativas. Esto alinea con la propuesta escultista de abordar temas financieros y donaciones de manera ética y responsable.",
+      "Donaciones y Recursos de la Tienda Scout: La legalidad de la asociación puede ser fundamental para gestionar donaciones de manera adecuada, y la tienda scout «El Apapacho» al estar respaldada por una entidad legalmente reconocida en la canalización de los recursos a personas que requieren nuestros servicios.",
+      "Desarrollo Sostenible: CLUNI puede ser esencial para asegurar la sostenibilidad financiera de acuerdo con los objetivos de Desarrollo Sostenible.",
+    ] },
+    { type: "heading", text: "Sistema Nacional para el Desarrollo Integral de la Familia" },
+    { type: "paragraph", text: "La página institucional presenta también la constancia de registro correspondiente." },
+    { type: "heading", text: "Campañas de donación permanente" },
+    { type: "link", label: "Regala música: campaña de donación permanente", href: "https://escultista.org/2025/02/12/https-escultista-org-regala-musica/" },
+    { type: "heading", text: "Objetivos de Desarrollo Sostenible" },
+    { type: "paragraph", text: "El 25 de septiembre de 2015 más de 150 líderes mundiales asistieron a la Cumbre de las Naciones Unidas sobre el Desarrollo Sostenible en Nueva York con el fin de aprobar la Agenda para el Desarrollo Sostenible. El documento final, titulado «Transformar Nuestro Mundo: la Agenda 2030 para el Desarrollo Sostenible», fue adoptado por los 193 Estados Miembros de las Naciones Unidas. Dicho documento incluye los 17 Objetivos del Desarrollo Sostenible (ODS) cuyo objetivo es poner fin a la pobreza, luchar contra la desigualdad y la injusticia, y hacer frente al cambio climático sin que nadie quede atrás para el 2030." },
+    { type: "paragraph", text: "Este nuevo marco de desarrollo da una oportunidad para el Sistema de las Naciones Unidas, a nivel mundial y en México, de focalizar nuestra cooperación y programación, de seguir abogando y promoviendo el tema de inclusión y equidad en un marco de derechos, de construir más ciudadanía para las y los mexicanos en este país." },
+    { type: "paragraph", text: "En ese sentido, nuestra organización de manera preponderante apela a los siguientes objetivos y metas desde la perspectiva de nuestra Asociación, enfocándose en niñas, niños y adolescentes:" },
+    { type: "heading", text: "ODS 1 · Fin de la pobreza", level: 3 },
+    { type: "paragraph", text: "Meta 1.5: Fomentar la resiliencia de los pobres y las personas que se encuentran en situaciones vulnerables y reducir su exposición y vulnerabilidad a los fenómenos extremos relacionados con el clima y a otros desastres económicos, sociales y ambientales." },
+    { type: "heading", text: "ODS 2 · Hambre cero", level: 3 },
+    { type: "paragraph", text: "Metas 2.1 y 2.2: Promover el acceso de todas las personas, en particular los pobres y las personas en situaciones vulnerables, incluidos los lactantes, a una alimentación sana, nutritiva y suficiente durante todo el año. Coadyuvar para evitar todas las formas de malnutrición de los niños menores de 5 años, y abordar las necesidades de nutrición de las adolescentes." },
+    { type: "heading", text: "ODS 3 · Salud y bienestar", level: 3 },
+    { type: "paragraph", text: "Metas 3.4 y 3.5: Ser partícipes en la reducción de la mortalidad por enfermedades no transmisibles mediante la prevención y el tratamiento, promocionando la salud mental y el bienestar. Promover el acceso universal a los servicios de salud sexual y reproductiva, incluidos los de planificación de la familia, información y educación, y la integración de la salud reproductiva en las estrategias y los proyectos educativos." },
+    { type: "heading", text: "ODS 4 · Educación de calidad", level: 3 },
+    { type: "paragraph", text: "Metas 4.1, 4.4 y 4.7: Ser coadyuvantes para que todas las niñas, niños y adolescentes terminen la enseñanza primaria y secundaria, con el apoyo de los insumos escolares requeridos. Promover las competencias adecuadas en las y los adolescentes para acceder al empleo, el trabajo decente y el emprendimiento. Promover conocimientos teóricos y prácticos necesarios para alcanzar el desarrollo sostenible, entre otras cosas, mediante la educación para el desarrollo sostenible y los estilos de vida sostenibles, los derechos humanos, la igualdad de género, la promoción de una cultura de paz y no violencia, la ciudadanía mundial y la valoración de la diversidad cultural y la contribución de la cultura al desarrollo sostenible." },
+    { type: "paragraph", text: "De forma secundaria, apoyamos los siguientes ODS, principalmente en el ámbito educativo, asistencial y de desarrollo social." },
+    { type: "link", label: "Informe regional sobre desarrollo social (CEPAL)", href: "https://repositorio.cepal.org/server/api/core/bitstreams/cb30a4de-7d87-4e79-8e7a-ad5279038718/content" },
+    { type: "link", label: "ODS: metas y material de consulta", href: "https://drive.google.com/file/d/1bDW2_hxhyqRAMZDjWhPUuyngDeH2BnYb/view" },
+  ],
+};
+
+const privacidad: LegalPage = {
+  slug: "politica-de-privacidad",
+  title: "Política de privacidad",
+  summary: "Aviso de privacidad y política para el tratamiento de datos personales y datos personales sensibles.",
+  sourceUrl: "https://escultista.org/politica-de-privacidad/",
+  lastReviewed: "6 de febrero de 2025",
+  blocks: [
+    { type: "lead", text: "En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y con el fin de ASEGURAR LA PROTECCIÓN Y PRIVACIDAD DE LOS DATOS PERSONALES, ASÍ COMO REGULAR EL ACCESO, RECTIFICACIÓN, CANCELACIÓN Y OPOSICIÓN DEL MANEJO DE ESTOS, con fundamento en lo establecido en los artículos 16 Constitucional, 1, 2 y demás aplicables a la Ley Federal de Protección de Datos Personales en posesión de particulares, LA ASOCIACIÓN establece el siguiente:" },
+    { type: "heading", text: "Aviso de privacidad" },
+    { type: "paragraph", text: "La Comunidad Crítica de Escultismo Popular, A. C., en adelante LA ASOCIACIÓN, informa que sus datos personales y datos personales sensibles se utilizarán para identificación, operación, administración y análogos, que sean necesarios para la prestación de los servicios educativos y administrativos en el Centro de Desarrollo Escultista ante LA ASOCIACIÓN en el que esté adscrito, así como para las actividades que organice LA ASOCIACIÓN de forma particular o con sus organizaciones afiliadas." },
+    { type: "list", items: [
+      "El ejercicio de los derechos de acceso, rectificación, cancelación, oposición, limitación de uso o la revocación del consentimiento podrá solicitarse por escrito al correo electrónico privacidad@escultista.org.",
+      "La Política de Privacidad y los cambios en el presente aviso se publican en la página: http://www.escultista.org/.",
+    ] },
+    { type: "heading", text: "Política de privacidad" },
+    { type: "paragraph", text: "Esta política tiene como fin asegurar la privacidad de los datos proporcionados por nuestros Beneficiarios, padres o tutores, ExBeneficiarios, egresados, Colaboradores, Asociados, proveedores y Comunidad en general de LA ASOCIACIÓN, con el fin de vincularse con los servicios educativos escultistas, mentorías, culturales, deportivos o administrativos proporcionados por el Centro de Desarrollo Escultista afiliado a LA ASOCIACIÓN. Al usar los servicios y/o productos brindados por LA ASOCIACIÓN, usted está de acuerdo con la recopilación, uso, transferencia y almacenamiento de su información personal y personal sensible, lo que significa que ha leído, entendido y aceptado los términos expuestos. En caso de no estar de acuerdo con ellos, el titular NO deberá proporcionar ninguna información personal y deberá hacer constar por escrito dicha situación." },
+    { type: "heading", text: "Finalidad de la información" },
+    { type: "paragraph", text: "LA ASOCIACIÓN, quien funge como responsable de los datos personales y datos personales sensibles, puede recabar para sus procesos académicos, administrativos y/o de operación sus datos personales, entre los que incluye identificación personal como son nombre, domicilio, teléfono, edad, datos de familiares, de salud, físicos y biométricos." },
+    { type: "heading", text: "Tratamiento general de los datos recabados" },
+    { type: "list", ordered: true, items: [
+      "Prestación de servicios educativos escultistas, asistenciales y de desarrollo social; dichos servicios podrán variar dependiendo la Comunidad Educativa en que esté inscrito el Beneficiario o Colaborador.",
+      "Promoción de servicios relacionados con LA ASOCIACIÓN.",
+      "Procesos de Gestión Educativa.",
+      "Procesos de Intercambio y movilidad.",
+      "Procesos de Gestión Administrativa.",
+      "Procesos de Gestión de Mentoría.",
+      "Procesos de Gestión de Asistencia y Desarrollo Social.",
+      "Procesos de credencialización de Beneficiarios, Educadores, así como Asociados y Colaboradores.",
+      "Programas, procesos, encuentros y actividades de participación y representación educativa.",
+      "Seguimiento y atención de Beneficiarios y Colaboradores.",
+      "Realizar intercambios nacionales o extranjeros.",
+      "Atención y servicios que brinda LA ASOCIACIÓN.",
+      "Contratación, evaluación y desarrollo de personal.",
+      "Registro de proveedores y sus derivados.",
+      "Registro de acceso, asistencia y préstamo de material.",
+      "Procurar la seguridad y la identificación en las instalaciones con las cámaras de vigilancia.",
+      "Procesos relacionados a encuestas y evaluaciones de servicios o productos.",
+      "Brindar y realizar actividades educativas escultistas, culturales y/o deportivas dentro y fuera del Centro de Desarrollo Escultista.",
+      "Recolección y publicación de fotos en medios impresos (folletos, gacetas, revistas, periódicos, etc.) y electrónicos (sitios web, redes sociales, etc.) de eventos educativos escultistas, mentoría, culturales, deportivos, administrativos y especiales.",
+      "Elaboración de encuestas, estadísticas e informes para uso exclusivo de LA ASOCIACIÓN.",
+      "Elaboración de estadísticas e informes requeridos por las autoridades en México y en el extranjero.",
+      "Acreditar con terceros exámenes y certificaciones que así lo requieran.",
+      "Proporcionar información a las Autoridades Federales y Locales.",
+      "Brindar la atención médica, de mentoría y psicológica requerida e integrar expediente clínico, para un tratamiento correcto y remitir los datos a médicos tratantes.",
+      "Validar datos para el caso de estudios socioeconómicos.",
+      "Compartir o transferir los datos con terceros dentro de las organizaciones a las cuales se encuentre afiliada LA ASOCIACIÓN.",
+    ] },
+    { type: "paragraph", text: "LA ASOCIACIÓN observa los principios de confidencialidad, licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad en la protección de datos personales. Para que LA ASOCIACIÓN obtenga sus datos personales, recaba el consentimiento previsto por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, salvo las excepciones previstas por la misma." },
+    { type: "paragraph", text: "Para la prestación de servicios educativos escultistas, de asistencia y desarrollo social y para los procesos de Gestión, LA ASOCIACIÓN integra tareas de gestión, admisiones y promoción de la oferta educativa, inscripciones, bajas y reinscripciones, procesos del ciclo anual, así como acompañamiento de educadores y de los tutores en el seguimiento de los currículos de los Beneficiarios y Colaboradores. Los procesos, tareas y actividades docentes para la información del desarrollo curricular dependerán del Educador Pedagógico Responsable. Los procesos académicos, de mentoría, asistenciales, de desarrollo social, administrativos o de operación de LA ASOCIACIÓN conllevan en algunos casos la relación y el necesario intercambio de información para la prestación del servicio prestado, entre otras." },
+    { type: "paragraph", text: "La gestión Administrativa, desde los Educadores Administrativos de Comunidad, Educadores Administrativos del Centro de Desarrollo Escultista, la Dirección Administrativa y, en sí, el Consejo Directivo, integran procesos y tareas de control interno, creación y resguardo de expedientes de Educadores, Beneficiarios, Colaboradores y Asociados y exintegrantes." },
+    { type: "paragraph", text: "Áreas Administrativas y de Apoyo" },
+    { type: "paragraph", text: "El uso de los datos financieros o patrimoniales requerirá el consentimiento expreso de su titular, salvo que tengan el propósito de cumplir obligaciones derivadas de una relación jurídica entre usted y LA ASOCIACIÓN, y las demás excepciones a que se refieren los artículos 10 y 37 de la Ley." },
+    { type: "paragraph", text: "Tratándose de datos personales sensibles, LA ASOCIACIÓN obtiene su consentimiento expreso y por escrito para su tratamiento, a través de su firma autógrafa, firma electrónica o cualquier mecanismo de autenticación que al efecto se establezca. Conforme a la Ley, no será necesario el consentimiento para el tratamiento de los datos personales cuando tenga el propósito de cumplir obligaciones derivadas de una relación jurídica entre el titular y el responsable." },
+    { type: "heading", text: "Limitación de uso y divulgación" },
+    { type: "paragraph", text: "El tratamiento de sus datos personales será el que resulte necesario, adecuado y relevante en relación con las finalidades previstas en esta Política de Privacidad. LA ASOCIACIÓN cumple los principios de protección de datos personales establecidos por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y adopta las medidas necesarias para su aplicación." },
+    { type: "paragraph", text: "Lo anterior aplica aun y cuando estos datos fueren tratados por un tercero, a solicitud de LA ASOCIACIÓN y con el fin de cubrir el servicio educativo escultista, de mentoría, asistencial, de desarrollo social o administrativo necesario, manteniendo la confidencialidad en todo momento. LA ASOCIACIÓN toma las medidas necesarias y suficientes para procurar que esta Política de Privacidad sea respetada, por él o por terceros con los que guarde alguna relación, para otorgar los servicios o productos establecidos con el titular." },
+    { type: "paragraph", text: "Todos los intercambios nacionales y extranjeros son iniciados y tramitados por los titulares de los datos directamente con su Centro de Desarrollo Escultista y entregan la documentación necesaria para los trámites del proceso bajo la responsabilidad del titular y los criterios de privacidad de LA ASOCIACIÓN para el intercambio." },
+    { type: "paragraph", text: "El sitio web contiene enlaces a otros sitios web de redes asociadas, filiales o terceros. Si usted accede a un hipervínculo de esos sitios de internet, tenga en cuenta que estos pueden tener sus propias políticas de privacidad y que LA ASOCIACIÓN no acepta ninguna responsabilidad por esas políticas; se recomienda que revise esas políticas antes de enviar cualquier información personal a esos sitios de internet. La inclusión de cualquier vínculo a otros sitios de internet no implica la aprobación o adhesión por parte de LA ASOCIACIÓN a esas páginas o su contenido." },
+    { type: "heading", text: "Derecho de los titulares de datos personales" },
+    { type: "paragraph", text: "Cualquier titular o, en su caso, su representante legal podrá ejercer los derechos (ARCO) de acceso, rectificación, cancelación y oposición, y LA ASOCIACIÓN proveerá los medios que le permitan un oportuno ejercicio de sus derechos. El ejercicio de los derechos de acceso, rectificación, cancelación, oposición, limitación de uso o la revocación del consentimiento podrá solicitarse por escrito al correo electrónico: privacidad@escultista.org." },
+    { type: "paragraph", text: "La revocación del consentimiento puede efectuarse en cualquier momento, sin que se atribuyan efectos retroactivos. Para iniciar el proceso de revocación, deberá indicar de forma precisa el consentimiento que desea revocar por escrito al correo electrónico: privacidad@escultista.org." },
+    { type: "paragraph", text: "La solicitud, por escrito y/o electrónica, de acceso, rectificación, cancelación u oposición deberá contener y acompañar lo siguiente:" },
+    { type: "list", ordered: true, style: "upper-roman", items: [
+      "El nombre del titular y domicilio u otro medio para comunicarle la respuesta a su solicitud.",
+      "Los documentos que acrediten la identidad o, en su caso, la representación legal del titular.",
+      "La descripción clara y precisa de los datos personales respecto de los que se busca ejercer alguno de los derechos antes mencionados.",
+      "Cualquier otro elemento o documento que facilite la localización de los datos personales.",
+      "Para el caso de las solicitudes de rectificación, el titular deberá indicar las modificaciones a realizarse y aportar la documentación que sustente su petición. LA ASOCIACIÓN comunicará al titular en veinte días hábiles, contados desde la fecha en que se recibió la solicitud de acceso, rectificación, cancelación u oposición, la determinación adoptada a efecto de que, si resulta procedente, se haga efectiva la misma dentro de los quince días siguientes a la fecha en que se comunica la respuesta. Tratándose de solicitudes de acceso a datos personales, procederá la entrega, previa acreditación de la identidad del solicitante o representante legal, según corresponda. Los plazos antes referidos podrán ser ampliados una sola vez por un periodo igual, siempre y cuando así lo justifiquen las circunstancias del caso.",
+    ] },
+    { type: "paragraph", text: "La obligación de acceso a la información se dará por cumplida cuando se pongan a disposición del titular los datos personales; o bien, mediante la expedición de copias simples, documentos electrónicos o cualquier otro medio que LA ASOCIACIÓN provea al titular. En el caso de que el titular solicite el acceso a los datos a una persona que presume es el responsable y esta resulta no serlo, bastará con que así se le indique al titular por cualquiera de los medios impresos (carta de no procedencia) o electrónicos (correo electrónico, medios ópticos, etc.) para tener por cumplida la solicitud." },
+    { type: "heading", text: "Causas de negación para el acceso a datos personales" },
+    { type: "list", items: [
+      "LA ASOCIACIÓN podrá negar el acceso a los datos personales, la rectificación, cancelación o concesión de la oposición al tratamiento de estos, en los siguientes supuestos:",
+      "Cuando el solicitante no sea el titular de los datos personales, o el representante legal no esté debidamente acreditado para ello.",
+      "Cuando en su base de datos no se encuentren los datos personales del solicitante.",
+      "Cuando se lesionen los derechos de un tercero.",
+      "Cuando exista un impedimento legal, o la resolución de una autoridad competente que restrinja el acceso a los datos personales o que no permita la rectificación, cancelación u oposición de estos.",
+      "Cuando la rectificación, cancelación u oposición haya sido previamente realizada.",
+      "LA ASOCIACIÓN limitará el uso de los datos personales y datos personales sensibles a petición expresa del titular, y no estará obligada a cancelar los datos personales cuando:",
+      "Se refiera a las partes de un contrato privado, social o administrativo, y sean necesarios para su desarrollo y cumplimiento.",
+      "Deban ser tratados por disposición legal.",
+      "Obstaculice actuaciones judiciales o administrativas vinculadas a obligaciones fiscales, la investigación y persecución de delitos, o la actualización de sanciones administrativas.",
+      "Sean necesarios para proteger los intereses jurídicamente tutelados del titular.",
+      "Sean necesarios para realizar una acción en función del interés público.",
+      "Sean necesarios para cumplir con una obligación legalmente adquirida por el titular.",
+      "Sean objeto de tratamiento para la prevención o el diagnóstico médico o la gestión de servicios de salud; siempre que dicho tratamiento se realice por un profesional de la salud sujeto a un deber de secreto.",
+    ] },
+    { type: "paragraph", text: "El cambio de la presente Política de Privacidad podrá efectuarse por LA ASOCIACIÓN en cualquier momento y estará disponible en http://www.escultista.org/." },
+    { type: "paragraph", text: "Si el titular proporciona sus datos personales significa que ha leído, entendido y aceptado los términos antes expuestos." },
+  ],
+};
+
+const transparencia: LegalPage = {
+  slug: "transparencia",
+  title: "Transparencia",
+  summary: "Informes institucionales, declaraciones de transparencia y documentos públicos de la asociación.",
+  sourceUrl: "https://escultista.org/transparencia/",
+  lastReviewed: "28 de enero de 2026",
+  blocks: [
+    { type: "lead", text: "En esta sección se ponen a disposición los informes y documentos públicos de transparencia de la Comunidad Crítica de Escultismo Popular, A. C." },
+    { type: "heading", text: "Informes" },
+    { type: "paragraph", text: "Consulta los informes institucionales publicados en la página de origen." },
+    { type: "link", label: "Informe institucional 1", href: "https://drive.google.com/file/d/10dPJdJTVq9rueG6dFVKogX7dqqGJjdpT/preview?rm=minimal" },
+    { type: "link", label: "Informe institucional 2", href: "https://drive.google.com/file/d/1ckzUgVJvts1VDV5eMgIaJkLgFypo8-Oq/preview?rm=minimal" },
+    { type: "link", label: "Informe institucional 3", href: "https://drive.google.com/file/d/16n6YrqwYDaiRDPzw0J_5_A7nB7tuxawx/preview?rm=minimal" },
+    { type: "heading", text: "Declaración de transparencia" },
+    { type: "paragraph", text: "Acuses de declaración informativa de transparencia y documentación fiscal disponible para consulta:" },
+    { type: "link", label: "2021 ACUSE DEC INFORMATIVA DE TRANSPARENCIA.pdf", href: "https://drive.google.com/file/d/1IR9OUtIB4oizXN9qxRAtcBNNlznZJpKX/preview?rm=minimal" },
+    { type: "link", label: "2021-2 ACUSE DEC INFORMATIVA DE TRANSPARENCIA.pdf", href: "https://drive.google.com/file/d/1-w3w0wEG9jPg50bFpnLIm8isLnHRqmlq/preview?rm=minimal" },
+    { type: "link", label: "2022 ACUSE DEC INFORMATIVA DE TRANSPARENCIA.pdf", href: "https://drive.google.com/file/d/1_q7HBi0Ugu8eTsvYMMHQT9WQwpNtZuFO/preview?rm=minimal" },
+    { type: "link", label: "2023 ACUSE DEC INFORMATIVA DE TRANSPARENCIA.pdf", href: "https://drive.google.com/file/d/1582mGnYZMRdhyBC89h63nSmqT3VCOXsK/preview?rm=minimal" },
+    { type: "link", label: "2024 ACUSE DEC INFORMATIVA DE TRANSPARENCIA.pdf", href: "https://drive.google.com/file/d/1w0RTYfF52y64iL9Afm0nHoMoLAcPlWpc/preview?rm=minimal" },
+    { type: "link", label: "CCE210225FV4.5.2021.pdf", href: "https://drive.google.com/file/d/1tY2DdK28T7gnJ3GlahMfKI7HLdoyVIjm/preview?rm=minimal" },
+    { type: "link", label: "CCE210225FV4.5.2022.pdf", href: "https://drive.google.com/file/d/11gDI-vsSmUQ00LcCR397z1xMoPtotbNF/preview?rm=minimal" },
+    { type: "link", label: "CCE210225FV4.5.2023.pdf", href: "https://drive.google.com/file/d/1JMt4NWcMEaXA1Yb6GDimruui7JvwYzn_/preview?rm=minimal" },
+    { type: "link", label: "CCE210225FV4. 2024.pdf", href: "https://drive.google.com/file/d/1XNnONZ4L2FWTN4XKGVqN_57jWzyvmalp/preview?rm=minimal" },
+    { type: "heading", text: "Diario Oficial de la Federación · Anexo 14" },
+    { type: "link", label: "Descarga Anexo 14 en el Diario Oficial de la Federación →", href: "https://www.dof.gob.mx/nota_detalle.php?codigo=5778060&fecha=09/01/2026#gsc.tab=0" },
+  ],
+};
+
+export const legalPages = [donataria, privacidad, transparencia] as const;
+
+export function getLegalPage(slug: string) {
+  return legalPages.find((page) => page.slug === slug);
+}

@@ -85,6 +85,28 @@ export const storeProducts: StoreProduct[] = [
     ],
   },
   {
+    id: "la-perspectiva-de-baden-powell",
+    name: "La perspectiva de Baden-Powell",
+    category: "Materiales",
+    description: "Una selección de notas y comentarios que Baden-Powell publicó durante treinta años en The Scouter bajo el título “The Outlook”. Un registro de sus palabras, principios y métodos fundamentales del escultismo.",
+    availability: "Disponible",
+    tone: "accent",
+    image: "/images/store/la-perspectiva-de-baden-powell.jpg",
+    imageAlt: "Portada del libro La perspectiva de Baden-Powell",
+    additionalImages: [
+      {
+        src: "/images/store/la-perspectiva-de-baden-powell-reverso.jpg",
+        alt: "Contraportada del libro La perspectiva de Baden-Powell",
+      },
+    ],
+    details: [
+      { label: "Autor", value: "Robert Baden-Powell" },
+      { label: "Formato", value: "Publicación impresa" },
+      { label: "Tema", value: "Pensamiento y método scout" },
+      { label: "Edición", value: "Edición especial para el Tercer Jamboree Mundial de la Federación Mundial de Scouts Independientes" },
+    ],
+  },
+  {
     id: "panolleta-institucional",
     name: "Pañoleta institucional",
     category: "Identidad",
