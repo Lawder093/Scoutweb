@@ -1,5 +1,6 @@
 import type { CDECommunity, CDECommunityKind, CDECommunityPageData, CDECommunityPhoto, CDEData } from "./types";
 import { communityFramework } from "./community-framework";
+import { getCDEPhotoReel } from "./photo-reels";
 
 const communityPhotoReels: Record<CDECommunityKind, CDECommunityPhoto[]> = {
   Ronda: [
@@ -48,7 +49,7 @@ export function getCommunityPage(cde: CDEData, community: CDECommunity): CDEComm
     focusAreas: customPage?.focusAreas ?? framework.focusAreas,
     curriculum: customPage?.curriculum ?? framework.curriculum,
     knowledgeFoundation: customPage?.knowledgeFoundation ?? framework.knowledgeFoundation,
-    photoReel: community.photoReel ?? customPage?.photoReel ?? communityPhotoReels[community.kind],
+    photoReel: community.photoReel ?? customPage?.photoReel ?? getCDEPhotoReel(cde.slug, community.kind) ?? communityPhotoReels[community.kind],
     activities: activities.map((activity) => ({
       ...activity,
       id: `${cde.slug}-${community.id}-${activity.id}`,
