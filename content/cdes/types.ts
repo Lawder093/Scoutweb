@@ -71,6 +71,20 @@ export type CDEKnowledgeFoundationItem = {
   text: string;
 };
 
+export type CDEUniformBadge = {
+  id: string;
+  title: string;
+  image?: string;
+  alt?: string;
+};
+
+export type CDEUniformData = {
+  modelImage?: string;
+  modelAlt?: string;
+  leftBadges: CDEUniformBadge[];
+  rightBadges: CDEUniformBadge[];
+};
+
 export type CDECommunityPageData = {
   introduction: string;
   purpose: string;
@@ -81,6 +95,7 @@ export type CDECommunityPageData = {
   knowledgeFoundation: CDEKnowledgeFoundationItem[];
   activities: CDEActivity[];
   photoReel?: CDECommunityPhoto[];
+  uniform?: CDEUniformData;
 };
 
 export type CDEGalleryItem = {

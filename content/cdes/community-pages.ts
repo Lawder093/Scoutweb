@@ -1,6 +1,11 @@
-import type { CDECommunity, CDECommunityKind, CDECommunityPageData, CDECommunityPhoto, CDEData } from "./types";
+import type { CDECommunity, CDECommunityKind, CDECommunityPageData, CDECommunityPhoto, CDEData, CDEUniformData } from "./types";
 import { communityFramework } from "./community-framework";
 import { getCDEPhotoReel } from "./photo-reels";
+
+const uniformPlaceholder: CDEUniformData = {
+  leftBadges: ["01", "02", "03"].map((id) => ({ id: `left-${id}`, title: `Insignia izquierda ${id}` })),
+  rightBadges: ["01", "02", "03"].map((id) => ({ id: `right-${id}`, title: `Insignia derecha ${id}` })),
+};
 
 const communityPhotoReels: Record<CDECommunityKind, CDECommunityPhoto[]> = {
   Ronda: [
@@ -50,6 +55,7 @@ export function getCommunityPage(cde: CDEData, community: CDECommunity): CDEComm
     curriculum: customPage?.curriculum ?? framework.curriculum,
     knowledgeFoundation: customPage?.knowledgeFoundation ?? framework.knowledgeFoundation,
     photoReel: community.photoReel ?? customPage?.photoReel ?? getCDEPhotoReel(cde.slug, community.kind) ?? communityPhotoReels[community.kind],
+    uniform: customPage?.uniform ?? uniformPlaceholder,
     activities: activities.map((activity) => ({
       ...activity,
       id: `${cde.slug}-${community.id}-${activity.id}`,

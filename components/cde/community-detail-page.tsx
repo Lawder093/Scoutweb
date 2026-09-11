@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, BookOpen, Compass, Lightbulb } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BookOpen, Compass, Lightbulb, Shirt } from "lucide-react";
 import type { CDECommunity, CDEData } from "@/content/cdes/types";
 import { getCommunityPage } from "@/content/cdes/community-pages";
 import { SiteFooter } from "@/components/site-footer";
@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Reveal } from "@/components/reveal";
 import { ActivityCard } from "./activity-card";
 import { CommunityPhotoReel } from "./community-photo-reel";
+import { CommunityUniformSection } from "./community-uniform-section";
 import { SectionTitle } from "./section-title";
 
 export function CommunityDetailPage({ cde, community }: { cde: CDEData; community: CDECommunity }) {
@@ -41,6 +42,9 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
                 </a>
                 <a href="#curriculum" className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-sm font-bold text-white hover:border-accent hover:text-accent">
                   Currículum <BookOpen size={15} aria-hidden="true" />
+                </a>
+                <a href="#uniforme" className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-sm font-bold text-white hover:border-accent hover:text-accent">
+                  Uniforme <Shirt size={15} aria-hidden="true" />
                 </a>
                 <a href="#fundamento" className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2.5 text-sm font-bold text-white hover:border-accent hover:text-accent">
                   Fundamento <Lightbulb size={15} aria-hidden="true" />
@@ -127,6 +131,8 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
             </div>
           </div>
         </section>
+
+        <CommunityUniformSection communityName={community.name} uniform={page.uniform} />
 
         <section id="fundamento" data-glass-tone="dark" className="scroll-mt-36 bg-ink py-20 text-white sm:py-28">
           <div className="section-shell">
