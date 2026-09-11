@@ -45,7 +45,7 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
 
             return (
               <figure
-                key={`${photo.label}-${index}`}
+                key={`${photo.src}-${index}`}
                 className={`photo-reel__item ${sizeClasses[photo.size]}`}
                 aria-hidden={isDuplicate}
               >
@@ -58,9 +58,6 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
                   sizes="(max-width: 640px) 55vw, 360px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
-                <figcaption className="absolute bottom-4 left-4 right-4 text-xs font-extrabold uppercase tracking-[0.1em] text-white">
-                  {photo.label}
-                </figcaption>
               </figure>
             );
           })}
