@@ -30,7 +30,7 @@ export type CDECommunity = {
   image?: string;
   imageFit?: "cover" | "contain";
   photoReel?: CDECommunityPhoto[];
-  page?: CDECommunityPageData;
+  page?: Partial<CDECommunityPageData>;
 };
 
 export type CDEEducator = {

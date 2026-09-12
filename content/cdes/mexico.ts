@@ -16,7 +16,25 @@ export const mexico: CDEData = {
     text: "Ignacio Martínez González fue el primer Maestrescout de Tropa de los Scouts de México en Puebla y una figura fundadora de esa historia local. El nombre IMG mantiene visible ese vínculo con la memoria del escultismo poblano.",
   },
   communities: [
-    makeCommunity("Ronda", { description: "En IMG, la Ronda abre un espacio protegido de juego, lenguaje y cuidado para explorar el barrio a su propio ritmo." }),
+    makeCommunity("Ronda", {
+      description: "En IMG, la Ronda abre un espacio protegido de juego, lenguaje y cuidado para explorar el barrio a su propio ritmo.",
+      page: {
+        uniform: {
+          modelImage: "/images/cde-mexico-ronda-uniforme.jpg",
+          modelAlt: "Niño de la Ronda del CDE México con el uniforme completo",
+          leftBadges: [
+            { id: "left-01", title: "Insignia izquierda 01" },
+            { id: "left-02", title: "Insignia izquierda 02" },
+            { id: "left-03", title: "Insignia izquierda 03" },
+          ],
+          rightBadges: [
+            { id: "right-01", title: "Insignia derecha 01" },
+            { id: "right-02", title: "Insignia derecha 02" },
+            { id: "right-03", title: "Insignia derecha 03" },
+          ],
+        },
+      },
+    }),
     makeCommunity("Manada", { description: "En IMG, la Manada convierte la imaginación, las historias y las primeras decisiones compartidas en una forma de leer el entorno." }),
     makeCommunity("Tropa", { description: "En IMG, la Tropa investiga preguntas del territorio, aprende técnicas para cuidarse y organiza proyectos con otras personas." }),
     makeCommunity("Clan", { description: "En IMG, el Clan enlaza ciudadanía activa, servicio y proyecto de vida para devolver a la comunidad lo que aprende." }),
