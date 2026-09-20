@@ -87,6 +87,8 @@ export type CDEUniformData = {
 
 export type CDECommunityPageData = {
   introduction: string;
+  introductionImage?: string;
+  introductionImageAlt?: string;
   purpose: string;
   groupStructure?: string;
   progression?: string;

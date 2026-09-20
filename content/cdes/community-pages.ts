@@ -48,6 +48,8 @@ export function getCommunityPage(cde: CDEData, community: CDECommunity): CDEComm
 
   return {
     introduction: customPage?.introduction ?? framework.introduction,
+    introductionImage: customPage?.introductionImage,
+    introductionImageAlt: customPage?.introductionImageAlt,
     purpose: customPage?.purpose ?? framework.purpose,
     groupStructure: customPage?.groupStructure ?? framework.groupStructure,
     progression: customPage?.progression ?? framework.progression,

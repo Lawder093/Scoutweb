@@ -8,7 +8,7 @@ export const mexico: CDEData = {
   communityName: "CDE México · IMG",
   logoLabel: "IMG",
   description: "Un centro permanente en Puebla donde el juego, el arte, la vida al aire libre y la organización comunitaria se convierten en educación no formal.",
-  heroImage: "/images/cde-mexico-portada.jpeg",
+  heroImage: "/images/cde-mexico-cde-portada.png",
   welcome: "Bienvenides al CDE IMG, Aquí la aventura comienza cuando una pregunta del grupo se convierte en juego, encuentro y acción compartida.",
   origin: "El CDE IMG se enlaza con la memoria del primer grupo scout de Puebla y con una transformación pedagógica que busca que el escultismo sea una plataforma educativa para la comunidad, no una actividad aislada del territorio.",
   heritage: {
@@ -21,6 +21,8 @@ export const mexico: CDEData = {
       image: "/images/RondaMexico/cde-mexico-ronda-portada.png",
       imageFit: "contain",
       page: {
+        introductionImage: "/images/ManadaMexico/manada-introduccion-habilidades.png",
+        introductionImageAlt: "Scout de Manada aprendiendo habilidades para toda la vida",
         uniform: {
           modelImage: "/images/cde-mexico-ronda-uniforme.jpg",
           modelAlt: "Niño de la Ronda del CDE México con el uniforme completo",
@@ -39,6 +41,8 @@ export const mexico: CDEData = {
     }),
     makeCommunity("Manada", {
       description: "En IMG, la Manada convierte la imaginación, las historias y las primeras decisiones compartidas en una forma de leer el entorno.",
+      image: "/images/ManadaMexico/cde-mexico-manada-portada.png",
+      imageFit: "contain",
       page: {
         uniform: {
           modelImage: "/images/ManadaMexico/cde-mexico-manada-uniforme.jpg",
@@ -58,6 +62,8 @@ export const mexico: CDEData = {
     }),
     makeCommunity("Tropa", {
       description: "En IMG, la Tropa investiga preguntas del territorio, aprende técnicas para cuidarse y organiza proyectos con otras personas.",
+      image: "/images/TropaMexico/cde-mexico-tropa-portada.png",
+      imageFit: "contain",
       page: {
         uniform: {
           modelImage: "/images/TropaMexico/cde-mexico-tropa-uniforme-2.jpg",
@@ -75,7 +81,11 @@ export const mexico: CDEData = {
         },
       },
     }),
-    makeCommunity("Clan", { description: "En IMG, el Clan enlaza ciudadanía activa, servicio y proyecto de vida para devolver a la comunidad lo que aprende." }),
+    makeCommunity("Clan", {
+      description: "En IMG, el Clan enlaza ciudadanía activa, servicio y proyecto de vida para devolver a la comunidad lo que aprende.",
+      image: "/images/ClanMexico/cde-mexico-clan-portada.png",
+      imageFit: "contain",
+    }),
   ],
   history: [
     "En 1933 comenzaron en Puebla las primeras experiencias que dieron forma al escultismo local, con Alfonso Espino Silva e Ignacio Martínez González entre sus figuras fundadoras. Esa memoria explica por qué el CDE IMG se nombra también como El Primero de Puebla.",

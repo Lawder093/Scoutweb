@@ -73,6 +73,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
                 Un espacio para <span className="text-primary">aprender juntes.</span>
               </h2>
               <p className="mt-7 max-w-2xl text-base leading-8 text-ink/70">{page.introduction}</p>
+              {page.introductionImage ? <div className="relative mt-8 aspect-square overflow-hidden rounded-[1.5rem] border border-ink/10 bg-white"><Image src={page.introductionImage} alt={page.introductionImageAlt ?? `Imagen de introducción de ${community.name}`} fill className="object-contain" sizes="(max-width: 1024px) 90vw, 560px" /></div> : null}
               <div className="mt-8 border-t border-ink/10 pt-7">
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-secondary">Propósito educativo</p>
                 <p className="mt-3 text-base leading-7 text-ink/70">{page.purpose}</p>
