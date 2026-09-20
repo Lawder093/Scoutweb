@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { MoveLeft } from "lucide-react";
 import type { CDECommunityPhoto } from "@/content/cdes/types";
 
-const sizeClasses: Record<CDECommunityPhoto["size"], string> = {
-  small: "h-40 w-40 sm:h-48 sm:w-48",
-  medium: "h-52 w-56 sm:h-64 sm:w-72",
-  large: "h-56 w-72 sm:h-72 sm:w-96",
-  tall: "h-72 w-48 sm:h-96 sm:w-64",
+const mosaicClasses: Record<CDECommunityPhoto["size"], string> = {
+  small: "col-span-1 row-span-1",
+  medium: "col-span-2 row-span-1",
+  large: "col-span-2 row-span-2",
+  tall: "col-span-1 row-span-2",
 };
 
 type CommunityPhotoReelProps = {
@@ -19,8 +18,6 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
     return null;
   }
 
-  const loopPhotos = [...photos, ...photos];
-
   return (
     <section className="overflow-hidden bg-paper py-14 sm:py-20" aria-labelledby="momentos-comunidad-title">
       <div className="section-shell">
@@ -31,36 +28,26 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
               {communityName} <span className="text-primary">en movimiento.</span>
             </h2>
           </div>
-          <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">
-            <MoveLeft size={15} className="text-secondary" aria-hidden="true" />
-            Desplazamiento automático
-          </p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">Un mosaico de momentos compartidos</p>
         </div>
       </div>
 
-      <div className="photo-reel__viewport mt-10" aria-label={`Momentos de ${communityName}`} role="region">
-        <div className="photo-reel__track">
-          {loopPhotos.map((photo, index) => {
-            const isDuplicate = index >= photos.length;
-
-            return (
-              <figure
-                key={`${photo.src}-${index}`}
-                className={`photo-reel__item ${sizeClasses[photo.size]}`}
-                aria-hidden={isDuplicate}
-              >
-                <Image
-                  src={photo.src}
-                  alt={isDuplicate ? "" : photo.alt}
-                  fill
-                  loading={isDuplicate ? "lazy" : "eager"}
-                  className="object-cover transition duration-500 hover:scale-105"
-                  sizes="(max-width: 640px) 55vw, 360px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
-              </figure>
-            );
-          })}
+      <div className="section-shell mt-10">
+        <div className="photo-mosaic" aria-label={`Momentos de ${communityName}`} role="region">
+          {photos.map((photo, index) => (
+            <figure key={photo.src} className={`photo-mosaic__item ${mosaicClasses[photo.size]}`} aria-label={photo.label}>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                loading={index < 4 ? "eager" : "lazy"}
+                className="object-cover transition duration-500 hover:scale-105"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 280px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent" />
+              <figcaption className="absolute inset-x-4 bottom-4 text-xs font-extrabold text-white drop-shadow-sm sm:text-sm">{photo.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>
