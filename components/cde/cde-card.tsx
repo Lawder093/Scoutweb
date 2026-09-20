@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import type { CDEData } from "@/content/cdes/types";
 import { BrandMark } from "@/components/brand-mark";
@@ -12,7 +13,9 @@ export function CDECard({ cde, index }: CDECardProps) {
   return (
     <Link href={`/cde/${cde.slug}`} className="focus-ring group block h-full rounded-[1.75rem]">
       <article className="relative flex h-full min-h-[300px] flex-col overflow-hidden rounded-[1.75rem] border border-ink/10 bg-paper shadow-card transition duration-300 group-hover:-translate-y-1 group-hover:shadow-soft">
-        <div className="relative flex min-h-[132px] items-end justify-between overflow-hidden bg-ink p-6 text-white">
+        <div className="relative flex min-h-[184px] items-end justify-between overflow-hidden bg-ink p-6 text-white sm:min-h-[204px]">
+          <Image src={cde.heroImage} alt="" fill className="object-contain opacity-75" sizes="(max-width: 768px) 90vw, 30vw" aria-hidden="true" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(29,43,52,.92)_0%,rgba(29,43,52,.62)_50%,rgba(29,43,52,.45)_100%)]" aria-hidden="true" />
           <div className="absolute -right-10 -top-16 h-36 w-36 rounded-full border border-white/20" aria-hidden="true" />
           <div className="absolute -bottom-20 left-1/2 h-36 w-36 -translate-x-1/2 rounded-full border border-white/10" aria-hidden="true" />
           <div className="relative flex items-center gap-3">
