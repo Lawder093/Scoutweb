@@ -44,6 +44,14 @@ export function EducatorsSection({ cde }: { cde: CDEData }) {
           />
         </Reveal>
 
+        {cde.educators.length > 0 && (
+          <div className="mt-10 grid max-w-3xl gap-6 sm:grid-cols-2 sm:mt-12">
+            {cde.educators.map((educator) => (
+              <MemberCard key={educator.name} educator={educator} />
+            ))}
+          </div>
+        )}
+
         <Reveal delay={0.08}>
           <div className="mt-12 overflow-hidden rounded-[2rem] bg-secondary text-white shadow-soft sm:mt-14">
             <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
@@ -126,19 +134,7 @@ export function EducatorsSection({ cde }: { cde: CDEData }) {
           </div>
         </div>
 
-        {cde.educators.length > 0 ? (
-          <div className="mt-20 sm:mt-24">
-            <Reveal>
-              <div className="mb-9">
-                <p className="eyebrow text-primary">Personas educadoras</p>
-                <h3 className="display-title mt-4 text-4xl leading-none sm:text-5xl">Quienes sostienen<br /><span className="text-primary">el proceso.</span></h3>
-              </div>
-            </Reveal>
-            <div className="grid gap-5 md:grid-cols-3">
-              {cde.educators.map((educator, index) => <Reveal key={educator.name} delay={index * 0.08}><MemberCard educator={educator} /></Reveal>)}
-            </div>
-          </div>
-        ) : (
+        {cde.educators.length === 0 && (
           <Reveal delay={0.08}>
             <p className="mt-10 text-sm leading-6 text-ink/45">Los perfiles del equipo de {cde.country} se añadirán desde sus datos propios, sin cambiar esta plantilla.</p>
           </Reveal>

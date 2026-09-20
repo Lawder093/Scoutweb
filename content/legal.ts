@@ -199,7 +199,7 @@ const transparencia: LegalPage = {
     { type: "link", label: "CCE210225FV4.5.2023.pdf", href: "https://drive.google.com/file/d/1JMt4NWcMEaXA1Yb6GDimruui7JvwYzn_/preview?rm=minimal" },
     { type: "link", label: "CCE210225FV4. 2024.pdf", href: "https://drive.google.com/file/d/1XNnONZ4L2FWTN4XKGVqN_57jWzyvmalp/preview?rm=minimal" },
     { type: "heading", text: "Diario Oficial de la Federación · Anexo 14" },
-    { type: "link", label: "Descarga Anexo 14 en el Diario Oficial de la Federación →", href: "https://www.dof.gob.mx/nota_detalle.php?codigo=5778060&fecha=09/01/2026#gsc.tab=0" },
+    { type: "link", label: "Descarga Anexo 14 en el Diario Oficial de la Federación →", href: "https://dof.gob.mx/nota_detalle.php?codigo=5778060&fecha=09/01/2026#gsc.tab=0" },
   ],
 };
 

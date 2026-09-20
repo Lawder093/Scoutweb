@@ -36,9 +36,9 @@ export type CDECommunity = {
 export type CDEEducator = {
   name: string;
   role: string;
-  community: string;
-  bio: string;
-  interests: string[];
+  community?: string;
+  bio?: string;
+  interests?: string[];
   image: string;
 };
 

@@ -76,7 +76,18 @@ export const mexico: CDEData = {
     { year: "2021", title: "Nace la CCEP", text: "La Comunidad Crítica de Escultismo Popular se constituye como asociación civil y articula el trabajo educativo, cultural y comunitario." },
     { year: "Hoy", title: "IMG en movimiento", text: "El Primero de Puebla sostiene actividades permanentes y abre vínculos con comunidades y proyectos de Colombia y Argentina." },
   ],
-  educators: [],
+  educators: [
+    {
+      name: "Evelyn",
+      role: "Akela",
+      image: "/images/cde-mexico-educadora-evelyn.jpg",
+    },
+    {
+      name: "Esmeralda Rodriguez",
+      role: "Vieja Lechuza",
+      image: "/images/cde-mexico-educadora-esmeralda.jpg",
+    },
+  ],
   activities: [
     { id: "cde-img-programa", title: "Programa educativo del CDE IMG", date: "Práctica permanente", image: "/images/scouts-hero.png", summary: "Juego, arte, vida al aire libre y organización comunitaria para aprender desde Puebla.", content: "El programa articula las cuatro comunidades educativas y convierte las preguntas del grupo en experiencias de reflexión, acción y cuidado." },
     { id: "cde-img-formacion", title: "Canto colectivo y formación", date: "Línea de trabajo", image: "/images/scouts-circle.png", summary: "La música y la formación de acompañantes abren espacios para compartir saberes y fortalecer la comunidad.", content: "Las actividades de formación retoman la escucha, el diálogo y la creación colectiva como herramientas de educación no formal." },
