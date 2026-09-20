@@ -18,6 +18,8 @@ export const mexico: CDEData = {
   communities: [
     makeCommunity("Ronda", {
       description: "En IMG, la Ronda abre un espacio protegido de juego, lenguaje y cuidado para explorar el barrio a su propio ritmo.",
+      image: "/images/RondaMexico/cde-mexico-ronda-portada.png",
+      imageFit: "contain",
       page: {
         uniform: {
           modelImage: "/images/cde-mexico-ronda-uniforme.jpg",
