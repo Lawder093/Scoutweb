@@ -4,12 +4,12 @@ import { makeCommunity } from "./community-framework";
 export const mexico: CDEData = {
   slug: "mexico",
   country: "México",
-  region: "Centro de Desarrollo Escultista IMG · El Primero de Puebla",
+  region: "Centro de Desarrollo Escultista IMG · Grupo Primero de Puebla",
   communityName: "CDE México · IMG",
   logoLabel: "IMG",
   description: "Un centro permanente en Puebla donde el juego, el arte, la vida al aire libre y la organización comunitaria se convierten en educación no formal.",
-  heroImage: "/images/scouts-hero.png",
-  welcome: "Bienvenides al CDE IMG, El Primero de Puebla. Aquí la aventura comienza cuando una pregunta del grupo se convierte en juego, encuentro y acción compartida.",
+  heroImage: "/images/cde-mexico-portada.jpeg",
+  welcome: "Bienvenides al CDE IMG, Aquí la aventura comienza cuando una pregunta del grupo se convierte en juego, encuentro y acción compartida.",
   origin: "El CDE IMG se enlaza con la memoria del primer grupo scout de Puebla y con una transformación pedagógica que busca que el escultismo sea una plataforma educativa para la comunidad, no una actividad aislada del territorio.",
   heritage: {
     label: "Memoria de IMG",
@@ -35,12 +35,30 @@ export const mexico: CDEData = {
         },
       },
     }),
-    makeCommunity("Manada", { description: "En IMG, la Manada convierte la imaginación, las historias y las primeras decisiones compartidas en una forma de leer el entorno." }),
+    makeCommunity("Manada", {
+      description: "En IMG, la Manada convierte la imaginación, las historias y las primeras decisiones compartidas en una forma de leer el entorno.",
+      page: {
+        uniform: {
+          modelImage: "/images/ManadaMexico/cde-mexico-manada-uniforme.jpg",
+          modelAlt: "Integrante de la Manada del CDE México con el uniforme completo",
+          leftBadges: [
+            { id: "left-01", title: "Insignia izquierda 01" },
+            { id: "left-02", title: "Insignia izquierda 02" },
+            { id: "left-03", title: "Insignia izquierda 03" },
+          ],
+          rightBadges: [
+            { id: "right-01", title: "Insignia derecha 01" },
+            { id: "right-02", title: "Insignia derecha 02" },
+            { id: "right-03", title: "Insignia derecha 03" },
+          ],
+        },
+      },
+    }),
     makeCommunity("Tropa", {
       description: "En IMG, la Tropa investiga preguntas del territorio, aprende técnicas para cuidarse y organiza proyectos con otras personas.",
       page: {
         uniform: {
-          modelImage: "/images/cde-mexico-tropa-uniforme.jpg",
+          modelImage: "/images/TropaMexico/cde-mexico-tropa-uniforme-2.jpg",
           modelAlt: "Integrante de la Tropa del CDE México con el uniforme completo",
           leftBadges: [
             { id: "left-01", title: "Insignia izquierda 01" },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CommunityDetailPage } from "@/components/cde/community-detail-page";
 import { cdes, getCDE } from "@/content/cdes";
-import { absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -19,11 +19,12 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
     return { title: "Comunidad no encontrada", robots: { index: false, follow: false } };
   }
 
-  return {
+  return pageMetadata({
     title: `${community.name} · ${cde.communityName}`,
     description: community.description,
-    alternates: { canonical: absoluteUrl(`/cde/${cde.slug}/comunidades/${community.id}`) },
-  };
+    path: `/cde/${cde.slug}/comunidades/${community.id}`,
+    image: community.image ? { path: community.image, alt: community.name } : undefined,
+  });
 }
 
 export default async function CommunityPage({ params }: { params: Promise<{ country: string; community: string }> }) {

@@ -17,6 +17,7 @@ import {
 import { BrandMark } from "./brand-mark";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import {
   cdeContacts,
   contactChannels,
@@ -63,12 +64,12 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
                 Si quieres activar un proyecto, compartir una experiencia o simplemente saludar, aquí estamos. Este espacio se construye con muchas manos y distintos territorios.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">
+                <TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "primary_cta" }} href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">
                   Escríbenos <ArrowUpRight size={16} />
-                </a>
-                <a href={institutionalContact.whatsappUrl} target="_blank" rel="noreferrer" className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-extrabold text-white transition-colors hover:border-accent hover:text-accent">
+                </TrackedLink>
+                <TrackedLink eventName="click_whatsapp" eventParams={{ location: "sumate", source: "primary_cta" }} href={institutionalContact.whatsappUrl} target="_blank" rel="noreferrer" className="focus-ring inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-extrabold text-white transition-colors hover:border-accent hover:text-accent">
                   Abrir WhatsApp <MessageCircle size={16} />
-                </a>
+                </TrackedLink>
               </div>
             </div>
             <div className="relative min-h-[19rem] overflow-hidden bg-primary p-7 sm:p-10 lg:min-h-[28rem] lg:p-12">
@@ -96,7 +97,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
                   <ArrowUpRight className="text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" size={19} />
                 </div>
                 <h2 className="mt-10 text-xl font-extrabold">{channel.label}</h2>
-                {isInternal ? <Link href={channel.href} className="focus-ring mt-3 inline-flex items-center text-sm leading-6 text-ink/60 transition-colors hover:text-primary">{channel.value}</Link> : <a href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel={channel.href.startsWith("http") ? "noreferrer" : undefined} className="focus-ring mt-3 inline-flex items-center text-sm leading-6 text-ink/60 transition-colors hover:text-primary">{channel.value}</a>}
+                {isInternal ? <Link href={channel.href} className="focus-ring mt-3 inline-flex items-center text-sm leading-6 text-ink/60 transition-colors hover:text-primary">{channel.value}</Link> : <TrackedLink eventName={channel.kind === "phone" ? "click_whatsapp" : "contact_email_click"} eventParams={{ location: "sumate", source: "contact_channel" }} href={channel.href} target={channel.href.startsWith("http") ? "_blank" : undefined} rel={channel.href.startsWith("http") ? "noreferrer" : undefined} className="focus-ring mt-3 inline-flex items-center text-sm leading-6 text-ink/60 transition-colors hover:text-primary">{channel.value}</TrackedLink>}
               </Reveal>
             );
           })}
@@ -107,8 +108,8 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
             <SectionHeading eyebrow="Contacto institucional" title={<>Hacer red también es <span className="text-primary">encontrarnos.</span></>} description="Estos son los canales oficiales de la Comunidad Crítica de Escultismo Popular, A. C." />
             <div className="mt-9 space-y-5 border-t border-ink/10 pt-7">
               <a href="https://maps.app.goo.gl/Pnwm9gSv7P1fwJfN7" target="_blank" rel="noreferrer" className="focus-ring flex items-start gap-3 rounded-xl text-sm leading-6 text-ink/70 transition-colors hover:text-primary"><MapPin className="mt-0.5 shrink-0 text-primary" size={19} /><span>{institutionalContact.address}</span></a>
-              <a href={`mailto:${institutionalContact.email}`} className="focus-ring flex items-center gap-3 rounded-xl text-sm font-bold text-ink/75 transition-colors hover:text-primary"><Mail className="shrink-0 text-primary" size={19} />{institutionalContact.email}</a>
-              <a href={institutionalContact.whatsappUrl} target="_blank" rel="noreferrer" className="focus-ring flex items-center gap-3 rounded-xl text-sm font-bold text-ink/75 transition-colors hover:text-primary"><Phone className="shrink-0 text-primary" size={19} />{institutionalContact.phone}</a>
+              <TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "contact_details" }} href={`mailto:${institutionalContact.email}`} className="focus-ring flex items-center gap-3 rounded-xl text-sm font-bold text-ink/75 transition-colors hover:text-primary"><Mail className="shrink-0 text-primary" size={19} />{institutionalContact.email}</TrackedLink>
+              <TrackedLink eventName="click_whatsapp" eventParams={{ location: "sumate", source: "contact_details" }} href={institutionalContact.whatsappUrl} target="_blank" rel="noreferrer" className="focus-ring flex items-center gap-3 rounded-xl text-sm font-bold text-ink/75 transition-colors hover:text-primary"><Phone className="shrink-0 text-primary" size={19} />{institutionalContact.phone}</TrackedLink>
             </div>
             <div className="mt-9 flex flex-wrap gap-2 border-t border-ink/10 pt-6">
               {socialLinks.map((social) => {
@@ -155,8 +156,8 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
               <div className="mt-6 space-y-4 border-t border-ink/10 pt-6 text-sm leading-6 text-ink/70">
                 <a href={cde.mapUrl} target="_blank" rel="noreferrer" className="focus-ring flex items-start gap-2 rounded-lg transition-colors hover:text-primary"><MapPin className="mt-0.5 shrink-0 text-primary" size={17} /><span>{cde.address}</span></a>
                 <p className="flex items-center gap-2"><Building2 className="shrink-0 text-primary" size={17} /><span><strong className="text-ink">Responsable:</strong> {cde.responsible}</span></p>
-                {cde.email && <a href={`mailto:${cde.email}`} className="focus-ring flex items-center gap-2 rounded-lg transition-colors hover:text-primary"><Mail className="shrink-0 text-primary" size={17} />{cde.email}</a>}
-                {cde.phone && <a href={`tel:${cde.phone.replace(/[^+\d]/g, "")}`} className="focus-ring flex items-center gap-2 rounded-lg transition-colors hover:text-primary"><Phone className="shrink-0 text-primary" size={17} />{cde.phone}</a>}
+                {cde.email && <TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "cde_card" }} href={`mailto:${cde.email}`} className="focus-ring flex items-center gap-2 rounded-lg transition-colors hover:text-primary"><Mail className="shrink-0 text-primary" size={17} />{cde.email}</TrackedLink>}
+                {cde.phone && <TrackedLink eventName="contact_phone_click" eventParams={{ location: "sumate", source: "cde_card" }} href={`tel:${cde.phone.replace(/[^+\d]/g, "")}`} className="focus-ring flex items-center gap-2 rounded-lg transition-colors hover:text-primary"><Phone className="shrink-0 text-primary" size={17} />{cde.phone}</TrackedLink>}
               </div>
               <div className="mt-auto flex flex-wrap gap-2 pt-7">
                 <Link href={`/cde/${cde.slug}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2.5 text-xs font-extrabold text-white transition-transform hover:-translate-y-0.5">Ver CDE <ArrowUpRight size={14} /></Link>
@@ -171,7 +172,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
         </div>
 
         <Reveal delay={0.12} className="mt-16 rounded-[2rem] bg-primary p-7 text-white sm:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><div className="flex items-center gap-2 text-accent"><MessageCircle size={20} /><span className="text-xs font-extrabold uppercase tracking-[0.16em]">Para empezar</span></div><h2 className="display-title mt-5 max-w-2xl text-4xl leading-[0.95] sm:text-5xl">Cuéntanos qué quieres poner en movimiento.</h2></div><a href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Mandar un correo <ArrowUpRight size={16} /></a></div>
+          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><div className="flex items-center gap-2 text-accent"><MessageCircle size={20} /><span className="text-xs font-extrabold uppercase tracking-[0.16em]">Para empezar</span></div><h2 className="display-title mt-5 max-w-2xl text-4xl leading-[0.95] sm:text-5xl">Cuéntanos qué quieres poner en movimiento.</h2></div><TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "footer_cta" }} href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Mandar un correo <ArrowUpRight size={16} /></TrackedLink></div>
         </Reveal>
       </div>
     </section>

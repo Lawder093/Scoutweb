@@ -9,6 +9,7 @@ import { LibraryPreview } from "@/components/library-preview";
 import { BlogPreview } from "@/components/blog-preview";
 import { CTA } from "@/components/cta";
 import { SiteFooter } from "@/components/site-footer";
+import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
 import { getBlogPosts, getLibraryResources } from "@/lib/content/services";
 
 export const revalidate = 300;
@@ -18,6 +19,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <OrganizationJsonLd />
       <SiteHeader />
       <main>
         <Hero />

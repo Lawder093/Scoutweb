@@ -6,8 +6,9 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PdfReader } from "@/components/pdf-reader";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { getLibraryResourceBySlug } from "@/lib/content/services";
-import { absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -19,18 +20,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Recurso no encontrado", robots: { index: false, follow: false } };
   }
 
-  return {
+  return pageMetadata({
     title: resource.title,
     description: resource.description,
-    alternates: { canonical: absoluteUrl(`/biblioteca/${resource.slug}`) },
-    openGraph: {
-      type: "article",
-      url: absoluteUrl(`/biblioteca/${resource.slug}`),
-      title: resource.title,
-      description: resource.description,
-      images: resource.coverImageUrl ? [resource.coverImageUrl] : undefined,
-    },
-  };
+    path: `/biblioteca/${resource.slug}`,
+    type: "article",
+    publishedTime: resource.publishedAt,
+    image: resource.coverImageUrl ? { path: resource.coverImageUrl, alt: resource.title } : undefined,
+  });
 }
 
 export default async function LibraryResourcePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -58,7 +55,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
               <p className="mt-8 max-w-2xl text-lg leading-8 text-ink/70">{resource.description}</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 {resource.fileUrl ? <a href="#lector-pdf" className="focus-ring inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 text-sm font-bold text-white"><BookOpen size={16} /> Leer en línea</a> : null}
-                {resource.downloadUrl ? <a href={resource.downloadUrl} download className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white"><ArrowDownToLine size={16} /> Descargar recurso</a> : <span className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-sm font-bold text-ink/45"><ArrowDownToLine size={16} /> Archivo en preparación</span>}
+                {resource.downloadUrl ? <TrackedLink eventName="download_document" eventParams={{ location: "library_resource", source: "download_button" }} href={resource.downloadUrl} download className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white"><ArrowDownToLine size={16} /> Descargar recurso</TrackedLink> : <span className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3 text-sm font-bold text-ink/45"><ArrowDownToLine size={16} /> Archivo en preparación</span>}
               </div>
             </div>
           </div>

@@ -3,11 +3,13 @@ import { SiteHeader } from "@/components/site-header";
 import { BlogBrowser } from "@/components/blog-browser";
 import { SiteFooter } from "@/components/site-footer";
 import { getBlogPostSummaries } from "@/lib/content/services";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Blog",
+export const metadata = pageMetadata({
+  title: "Blog del movimiento",
   description: "El archivo completo de Escultista: historias, conversaciones, proyectos y aprendizajes del movimiento.",
-};
+  path: "/blog",
+});
 
 export const revalidate = 300;
 

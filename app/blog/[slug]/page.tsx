@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getBlogPostBySlug } from "@/lib/content/services";
-import { absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -18,20 +18,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Artículo no encontrado", robots: { index: false, follow: false } };
   }
 
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: absoluteUrl(`/blog/${post.slug}`) },
-    openGraph: {
-      type: "article",
-      url: absoluteUrl(`/blog/${post.slug}`),
-      title: post.title,
-      description: post.excerpt,
-      publishedTime: post.publishedAt,
-      images: post.coverImageUrl ? [post.coverImageUrl] : undefined,
-    },
-    twitter: { card: "summary_large_image", title: post.title, description: post.excerpt, images: post.coverImageUrl ? [post.coverImageUrl] : undefined },
-  };
+    path: `/blog/${post.slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    image: post.coverImageUrl ? { path: post.coverImageUrl, alt: post.title } : undefined,
+  });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

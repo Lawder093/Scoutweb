@@ -2,11 +2,13 @@ import { ArrowUpRight } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { StoreShowcase } from "@/components/store-showcase";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Tienda",
+export const metadata = pageMetadata({
+  title: "Tienda de la comunidad",
   description: "Catálogo físico de prendas, insignias y materiales de la Comunidad Crítica de Escultismo Popular.",
-};
+  path: "/tienda",
+});
 
 export default function TiendaPage() {
   return (

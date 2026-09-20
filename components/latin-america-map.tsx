@@ -56,9 +56,6 @@ export function LatinAmericaMap() {
         ))}
       </nav>
 
-      <p className="mt-3 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-ink/40">
-        Los marcadores indican los CDE activos actualmente
-      </p>
     </div>
   );
 }

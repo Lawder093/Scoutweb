@@ -2,11 +2,13 @@ import { SiteHeader } from "@/components/site-header";
 import { LibrarySection } from "@/components/library-section";
 import { SiteFooter } from "@/components/site-footer";
 import { getLibraryResources } from "@/lib/content/services";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Biblioteca",
+export const metadata = pageMetadata({
+  title: "Biblioteca abierta",
   description: "Recursos, juegos y herramientas libres para compartir y adaptar.",
-};
+  path: "/biblioteca",
+});
 
 export const revalidate = 300;
 

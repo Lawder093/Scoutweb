@@ -7,7 +7,7 @@ import { getStoreProduct, storeProducts } from "@/content/store/products";
 import { StoreProductVisual } from "@/components/store-product-visual";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { absoluteUrl } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
 export const revalidate = 300;
 
@@ -23,18 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     return { title: "Producto no encontrado", robots: { index: false, follow: false } };
   }
 
-  return {
+  return pageMetadata({
     title: `${product.name} · Tienda`,
     description: product.description,
-    alternates: { canonical: absoluteUrl(`/tienda/${product.id}`) },
-    openGraph: {
-      type: "website",
-      url: absoluteUrl(`/tienda/${product.id}`),
-      title: product.name,
-      description: product.description,
-      images: product.image ? [{ url: absoluteUrl(product.image), alt: product.imageAlt ?? product.name }] : undefined,
-    },
-  };
+    path: `/tienda/${product.id}`,
+    image: product.image ? { path: product.image, alt: product.imageAlt ?? product.name } : undefined,
+  });
 }
 
 export default async function StoreProductPage({ params }: { params: Promise<{ id: string }> }) {

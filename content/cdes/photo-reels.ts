@@ -27,6 +27,7 @@ const mexicoPhotoReels: Partial<Record<CDECommunityKind, CDECommunityPhoto[]>> =
     localPhoto({ folder: "RondaMexico", community: "Ronda", file: "IMG_2445.jpeg", label: "Compartir la aventura", size: "large" }),
     localPhoto({ folder: "RondaMexico", community: "Ronda", file: "IMG_2495.jpeg", label: "Cuidar el entorno", size: "tall" }),
     localPhoto({ folder: "RondaMexico", community: "Ronda", file: "IMG_3616.jpeg", label: "Seguir la ruta", size: "tall" }),
+    localPhoto({ folder: "RondaMexico", community: "Ronda", file: "ronda-nuevo-carrete-01.jpg", label: "Jugar entre árboles", size: "large" }),
   ],
   Manada: [
     localPhoto({ folder: "ManadaMexico", community: "Manada", file: "IMG_0432.JPG", label: "Imaginar en grupo", size: "large" }),
