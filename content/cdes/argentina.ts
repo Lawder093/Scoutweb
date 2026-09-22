@@ -9,7 +9,7 @@ export const argentina: CDEData = {
   logoLabel: "CDE ARG",
   description: "Un espacio para recuperar el juego, la memoria y la acción colectiva como herramientas de transformación desde Argentina.",
   heroImage: "/images/scouts-hero.png",
-  welcome: "Bienvenides al Centro de Desarrollo Escultista de Argentina. Aquí la alegría no es una pausa de la lucha: es una manera de organizarnos.",
+  welcome: "Bienvenidos al Centro de Desarrollo Escultista de Argentina. Aquí la alegría no es una pausa de la lucha: es una manera de organizarnos.",
   origin: "El CDE Argentina se vincula con experiencias como San Lucas, en Bahía Blanca, y con una comunidad que busca sostener la imaginación, el juego, la memoria y el deseo de construir con otras personas.",
   communities: [
     makeCommunity("Manada", { description: "La Manada argentina hace del juego, las historias y la exploración una entrada sensible a la vida en comunidad." }),
@@ -41,7 +41,7 @@ export const argentina: CDEData = {
   gallery: [
     { src: "/images/scouts-circle.png", alt: "Grupo en círculo", label: "Abrir la palabra" },
     { src: "/images/scouts-hero.png", alt: "Grupo en camino", label: "Poner el cuerpo" },
-    { src: "/images/scouts-circle.png", alt: "Taller colaborativo", label: "Inventar juntes" },
+    { src: "/images/scouts-circle.png", alt: "Taller colaborativo", label: "Inventar juntos" },
     { src: "/images/scouts-hero.png", alt: "Personas compartiendo un sendero", label: "Hacer memoria" },
   ],
   feed: [

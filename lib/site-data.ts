@@ -1,6 +1,6 @@
 export const methodCards = [
   { number: "01", title: "Promesa", description: "Un compromiso cotidiano con el cuidado, la justicia y la transformación de nuestra realidad." },
-  { number: "02", title: "Aprender haciendo", description: "El conocimiento aparece cuando preguntamos, probamos, fallamos y volvemos a intentarlo juntes." },
+  { number: "02", title: "Aprender haciendo", description: "El conocimiento aparece cuando preguntamos, probamos, fallamos y volvemos a intentarlo juntos." },
   { number: "03", title: "Comunidades educativas", description: "Cada persona enseña y aprende; el grupo se convierte en una red viva de saberes compartidos." },
   { number: "04", title: "Vida al aire libre", description: "El territorio es aula, casa y compañero: aprendemos a habitarlo con respeto y responsabilidad." },
   { number: "05", title: "Acompañamiento adulto", description: "Acompañar es abrir posibilidades, escuchar con atención y cuidar procesos sin ocupar el centro." },

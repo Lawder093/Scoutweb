@@ -25,7 +25,7 @@ const sharedFocusAreas = [
   "Carácter",
   "Salud",
   "Habilidades y creatividad",
-  "Conciencia hacia las demás personas",
+  "Conciencia hacia los demás",
   "Arte y cultura",
   "Espiritualidad",
 ];
@@ -76,7 +76,7 @@ export const communityFramework: Record<CDECommunityKind, CommunityFramework> = 
       { title: "Decidir con otras personas", text: "Los pequeños grupos ofrecen una práctica concreta de escucha, responsabilidad y cuidado de lo común, adecuada al nivel de madurez de la Manada." },
     ],
     activities: [
-      { id: "manada-consejo-roca", title: "Consejo de Roca", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "La Manada revisa lo vivido, escucha a sus Seisenas y decide una parte de la próxima aventura.", content: "El Consejo de Roca convierte la conversación en programa: qué queremos investigar, qué materiales necesitamos y cómo cuidaremos a las demás personas." },
+      { id: "manada-consejo-roca", title: "Consejo de Roca", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "La Manada revisa lo vivido, escucha a sus Seisenas y decide una parte de la próxima aventura.", content: "El Consejo de Roca convierte la conversación en programa: qué queremos investigar, qué materiales necesitamos y cómo cuidaremos a los demás." },
       { id: "manada-caceria-sentidos", title: "Cacería de sentidos", date: "Práctica del programa", image: "/images/scouts-hero.png", summary: "Un recorrido de observación para descubrir sonidos, texturas, historias y señales del territorio.", content: "La actividad combina juego, orientación y conversación para que la exploración no sea consumo del paisaje, sino una forma de relacionarnos con él." },
       { id: "manada-accion-cuidado", title: "Acción de cuidado con la comunidad", date: "Práctica del programa", image: "/images/scouts-circle.png", summary: "Una tarea sencilla y compartida que responde a una necesidad identificada por la propia Manada.", content: "La acción puede ser cultural, ambiental o solidaria; se diseña con apoyo de las familias y se evalúa preguntando a quién benefició y qué aprendimos." },
     ],
@@ -87,7 +87,7 @@ export const communityFramework: Record<CDECommunityKind, CommunityFramework> = 
     groupStructure: "Patrullas, Consejo de Patrulla y Corte de Honor",
     description: "Una comunidad de patrullas, técnicas y proyectos para leer el territorio y tomar la palabra en colectivo.",
     introduction: "La Tropa es el espacio de las adolescencias que investigan, se organizan y ponen el cuerpo en proyectos comunes. Las técnicas escultistas —campismo, orientación, primeros auxilios, cocina o nudos— tienen sentido cuando ayudan a resolver problemas, cuidar a otras personas y ampliar la autonomía del grupo.",
-    purpose: "Acompañar procesos de participación juvenil donde las y los adolescentes puedan formular preguntas, distribuir responsabilidades, deliberar y actuar sobre situaciones que les afectan.",
+    purpose: "Acompañar procesos de participación juvenil donde los adolescentes puedan formular preguntas, distribuir responsabilidades, deliberar y actuar sobre situaciones que les afectan.",
     progression: "La progresión recorre Tercera, Segunda y Primera Clase; cada etapa articula habilidades, carácter, participación y servicio, no sólo pruebas técnicas.",
     focusAreas: sharedFocusAreas,
     curriculum: [
@@ -122,7 +122,7 @@ export const communityFramework: Record<CDECommunityKind, CommunityFramework> = 
     ],
     knowledgeFoundation: [
       { title: "Interés que se comparte", text: "Investigar una pregunta también es construir una oportunidad para que otras personas aprendan y aporten." },
-      { title: "Participación juvenil", text: "Las y los jóvenes son sujetos de su proceso: proponen, deciden, actúan y revisan lo que el grupo va construyendo." },
+      { title: "Participación juvenil", text: "Los jóvenes son protagonistas de su proceso: proponen, deciden, actúan y revisan lo que el grupo va construyendo." },
       { title: "Aprendizaje situado", text: "Los saberes se relacionan con la vida cotidiana, la cultura y los territorios que cada comunidad habita." },
     ],
     activities: [

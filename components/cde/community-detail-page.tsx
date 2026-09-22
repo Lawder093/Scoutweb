@@ -70,7 +70,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
             <Reveal className="rounded-[2rem] bg-mist p-7 sm:p-10">
               <span className="eyebrow text-secondary">La comunidad</span>
               <h2 className="display-title mt-5 text-4xl leading-[0.95] sm:text-5xl">
-                Un espacio para <span className="text-primary">aprender juntes.</span>
+                Un espacio para <span className="text-primary">aprender juntos.</span>
               </h2>
               <p className="mt-7 max-w-2xl text-base leading-8 text-ink/70">{page.introduction}</p>
               {page.introductionImage ? <div className="relative mt-8 aspect-square overflow-hidden rounded-[1.5rem] border border-ink/10 bg-white"><Image src={page.introductionImage} alt={page.introductionImageAlt ?? `Imagen de introducción de ${community.name}`} fill className="object-contain" sizes="(max-width: 1024px) 90vw, 560px" /></div> : null}

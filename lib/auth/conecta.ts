@@ -18,8 +18,8 @@ export type ConectaUser = Pick<
 > & { photo_url: string | null };
 
 function getSessionSecret(): string {
-  const secret = process.env.CONECTA_SESSION_SECRET ?? process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!secret) throw new Error("Falta configurar CONECTA_SESSION_SECRET en el servidor.");
+  const secret = process.env.CONECTA_SESSION_SECRET;
+  if (!secret || secret.length < 32) throw new Error("Falta configurar una CONECTA_SESSION_SECRET de al menos 32 caracteres.");
   return secret;
 }
 
@@ -116,5 +116,5 @@ export async function getConectaUser(): Promise<ConectaUser | null> {
 }
 
 export function getConectaOtpMode(): "prototype" | "whatsapp" {
-  return process.env.CONECTA_OTP_MODE === "whatsapp" ? "whatsapp" : "prototype";
+  return process.env.NODE_ENV !== "production" && process.env.CONECTA_OTP_MODE === "prototype" ? "prototype" : "whatsapp";
 }

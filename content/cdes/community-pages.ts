@@ -15,7 +15,7 @@ const communityPhotoReels: Record<CDECommunityKind, CDECommunityPhoto[]> = {
     { src: "/images/scouts-circle.png", alt: "Grupo aprendiendo en comunidad", label: "Cuidarnos", size: "small" },
   ],
   Manada: [
-    { src: "/images/inicio-cover.jpg", alt: "Comunidad scout compartiendo una actividad", label: "Hacer juntes", size: "large" },
+    { src: "/images/inicio-cover.jpg", alt: "Comunidad scout compartiendo una actividad", label: "Hacer juntos", size: "large" },
     { src: "/images/scouts-circle.png", alt: "Personas reunidas en círculo", label: "Escuchar", size: "small" },
     { src: "/images/scouts-hero.png", alt: "Grupo explorando al aire libre", label: "Descubrir", size: "tall" },
     { src: "/images/inicio-cover.jpg", alt: "Grupo scout en movimiento", label: "Jugar", size: "medium" },
@@ -24,7 +24,7 @@ const communityPhotoReels: Record<CDECommunityKind, CDECommunityPhoto[]> = {
     { src: "/images/scouts-hero.png", alt: "Tropa caminando por el territorio", label: "Preparar la ruta", size: "large" },
     { src: "/images/inicio-cover.jpg", alt: "Comunidad scout reunida", label: "Leer el territorio", size: "tall" },
     { src: "/images/scouts-circle.png", alt: "Grupo compartiendo una actividad", label: "Compartir la tarea", size: "small" },
-    { src: "/images/scouts-hero.png", alt: "Personas scouts en movimiento", label: "Caminar juntes", size: "medium" },
+    { src: "/images/scouts-hero.png", alt: "Personas scouts en movimiento", label: "Caminar juntos", size: "medium" },
     { src: "/images/inicio-cover.jpg", alt: "Comunidad en acción", label: "Cerrar el día", size: "small" },
   ],
   Iris: [

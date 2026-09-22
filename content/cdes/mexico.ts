@@ -9,7 +9,7 @@ export const mexico: CDEData = {
   logoLabel: "IMG",
   description: "Un centro permanente en Puebla donde el juego, el arte, la vida al aire libre y la organización comunitaria se convierten en educación no formal.",
   heroImage: "/images/cde-mexico-cde-grupo.jpeg",
-  welcome: "Bienvenides al CDE IMG, Aquí la aventura comienza cuando una pregunta del grupo se convierte en juego, encuentro y acción compartida.",
+  welcome: "Bienvenidos al CDE IMG. Aquí la aventura comienza cuando una pregunta del grupo se convierte en juego, encuentro y acción compartida.",
   origin: "El CDE IMG se enlaza con la memoria del primer grupo scout de Puebla y con una transformación pedagógica que busca que el escultismo sea una plataforma educativa para la comunidad, no una actividad aislada del territorio.",
   heritage: {
     label: "Memoria de IMG",
@@ -124,7 +124,7 @@ export const mexico: CDEData = {
   ],
   gallery: [
     { src: "/images/scouts-hero.png", alt: "Grupo caminando por la montaña", label: "Salir al territorio" },
-    { src: "/images/scouts-circle.png", alt: "Grupo reunido alrededor de un mapa", label: "Aprender juntes" },
+    { src: "/images/scouts-circle.png", alt: "Grupo reunido alrededor de un mapa", label: "Aprender juntos" },
     { src: "/images/scouts-hero.png", alt: "Personas scouts en un sendero", label: "Hacer comunidad" },
     { src: "/images/scouts-circle.png", alt: "Facilitación al aire libre", label: "Cuidar el proceso" },
   ],

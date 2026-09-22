@@ -43,15 +43,15 @@ export const colombia: CDEData = {
       image: `${merakiAsset}/meraki-manada.png`,
       imageFit: "contain",
       page: {
-        introduction: "La Manada Argonautas da la bienvenida a niñas y niños de 6 a 10 años. Como parte de una tripulación y junto a héroes y heroínas de la mitología griega, cada Lobato y Lobata se embarca en el Argos para surcar los mares en busca de aventuras.",
-        purpose: "Acompañar a cada Lobato y Lobata para que esté Siempre Mejor: ayudar a las demás personas, aceptar nuevos retos y disfrutar la experiencia de aprender en comunidad.",
+        introduction: "La Manada Argonautas da la bienvenida a niños de 6 a 10 años. Como parte de una tripulación y junto a los héroes de la mitología griega, cada scout se embarca en el Argos para surcar los mares en busca de aventuras.",
+        purpose: "Acompañar a cada scout para que esté Siempre Mejor: ayudar a los demás, aceptar nuevos retos y disfrutar la experiencia de aprender en comunidad.",
         groupStructure: "Tripulación del Argos, Viejos Lobos y espacios de consejo",
         progression: "El Libro de la Selva, la investidura de los Misterios Eleusinos y una ruta del Programa de Jóvenes que reconoce los avances de cada integrante.",
         focusAreas: ["Juego y aventura", "Libro de la Selva", "Cuidado", "Siempre Mejor", "Exploración"],
         curriculum: [
           { title: "El viaje del Argos", description: "El marco de los Argonautas convierte la exploración y la mitología en una invitación a imaginar, colaborar y asumir pequeños desafíos.", topics: ["Aventura", "Imaginación", "Equipo"] },
           { title: "El Libro de la Selva", description: "Mowgli, la selva del Seeonee y la compañía de los animales ofrecen un lenguaje simbólico para conversar sobre cuidado, amistad y pertenencia.", topics: ["Marco simbólico", "Relato", "Cuidado"] },
-          { title: "Siempre Mejor", description: "Cada experiencia busca que niñas y niños se reten, ayuden a las demás personas y encuentren alegría en lo que pueden aprender y compartir.", topics: ["Autonomía", "Servicio", "Juego"] },
+          { title: "Siempre Mejor", description: "Cada experiencia busca que los niños se reten, ayuden a los demás y encuentren alegría en lo que pueden aprender y compartir.", topics: ["Autonomía", "Servicio", "Juego"] },
         ],
         knowledgeFoundation: [
           { title: "El juego como lenguaje", text: "El juego permite representar el mundo, ensayar decisiones y expresar lo que se siente sin separar la imaginación de la experiencia educativa." },
@@ -74,8 +74,8 @@ export const colombia: CDEData = {
       image: `${merakiAsset}/meraki-tropa.png`,
       imageFit: "contain",
       page: {
-        introduction: "La Tropa Artemisa recibe a quienes tienen entre 10 y 14 años y sienten el impulso de descubrir el mundo, construir amistades y dominar habilidades para afrontar nuevos desafíos. Al vincularse a una Patrulla, cada Scout encuentra compañeras y compañeros listos para la aventura.",
-        purpose: "Vivir el lema Siempre Listas como una práctica concreta: ayudar a las demás personas, convertir los obstáculos en oportunidades de crecimiento y terminar lo que se empieza sin rendirse ante la dificultad.",
+        introduction: "La Tropa Artemisa recibe a quienes tienen entre 10 y 14 años y sienten el impulso de descubrir el mundo, construir amistades y dominar habilidades para afrontar nuevos desafíos. Al vincularse a una Patrulla, cada Scout encuentra compañeros listos para la aventura.",
+        purpose: "Vivir el lema Siempre Listas como una práctica concreta: ayudar a los demás, convertir los obstáculos en oportunidades de crecimiento y terminar lo que se empieza sin rendirse ante la dificultad.",
         groupStructure: "Patrullas Águilas, Fénix y Panteras; Corte de Honor",
         progression: "El Plan de adelanto de Tropa articula habilidades, responsabilidades, participación en la Patrulla y decisiones tomadas en la vida común.",
         focusAreas: ["Patrulla", "Siempre Listas", "Campismo", "Autogobierno", "Servicio"],
@@ -117,7 +117,7 @@ export const colombia: CDEData = {
         ],
         knowledgeFoundation: [
           { title: "Interés que se comparte", text: "Una especialidad no es sólo un distintivo: es una manera de profundizar una pregunta y poner lo aprendido al servicio de otras personas." },
-          { title: "Participación juvenil protagónica", text: "Las decisiones sobre el programa parten de las búsquedas de las y los jóvenes, con acompañamiento adulto que cuida sin sustituir su voz." },
+          { title: "Participación juvenil protagónica", text: "Las decisiones sobre el programa parten de las búsquedas de los jóvenes, con acompañamiento adulto que cuida sin sustituir su voz." },
           { title: "Aprendizaje reconocido", text: "HEFESTO y LiMa se integran como rutas para hacer visible el proceso, conectar saberes y reconocer avances sin reducirlos a una competencia." },
         ],
         activities: [

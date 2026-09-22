@@ -236,10 +236,34 @@ button {
   100% { box-shadow: 0 0 0 0 rgba(131, 24, 23, 0); }
 }
 
+.photo-mosaic__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.photo-mosaic__track {
+  --photo-mosaic-gap: 0.75rem;
+  display: flex;
+  gap: var(--photo-mosaic-gap);
+  width: max-content;
+  animation: community-photo-mosaic 48s linear infinite;
+  will-change: transform;
+}
+
+.photo-mosaic__viewport:hover .photo-mosaic__track,
+.photo-mosaic__viewport:focus-within .photo-mosaic__track {
+  animation-play-state: paused;
+}
+
+.photo-mosaic__slide {
+  flex: 0 0 100%;
+  width: 100%;
+}
+
 .photo-mosaic {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 8.5rem;
+  grid-template-rows: repeat(3, 8.5rem);
   gap: 0.75rem;
 }
 
@@ -252,10 +276,25 @@ button {
 }
 
 @media (min-width: 640px) {
+  .photo-mosaic__track {
+    --photo-mosaic-gap: 1rem;
+  }
+
   .photo-mosaic {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-auto-rows: 9rem;
+    grid-template-rows: repeat(2, 9rem);
     gap: 1rem;
+  }
+}
+
+@keyframes community-photo-mosaic {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - var(--photo-mosaic-gap) / 2)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-mosaic__track {
+    animation: none;
   }
 }
 
