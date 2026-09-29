@@ -13,6 +13,8 @@ const navigation = [
   { label: "Blog", href: "/blog" },
   { label: "Conecta", href: "/conecta" },
   { label: "Tienda", href: "/tienda" },
+  { label: "Contacto", href: "/contacto" },
+  { label: "Donación", href: "/donacion" },
   { label: "Transparencia", href: "/legal/transparencia" },
 ];
 
@@ -197,7 +199,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 scroll={false}
-                className={`focus-ring whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${navBaseClass} ${isActive(item.href) ? navActiveClass : ""}`}
+                className={`focus-ring whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${item.href === "/donacion" ? (isDarkGlass ? "bg-accent text-ink hover:bg-accent/90" : "bg-primary text-white hover:bg-primary/90") : `${navBaseClass} ${isActive(item.href) ? navActiveClass : ""}`}`}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => handleNavigation(item.href)}
               >

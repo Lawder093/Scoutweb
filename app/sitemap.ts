@@ -26,6 +26,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...posts.map((post) => ({ url: absoluteUrl(`/blog/${post.slug}`), lastModified: post.publishedAt, changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: absoluteUrl("/tienda"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...storeProducts.map((product) => ({ url: absoluteUrl(`/tienda/${product.id}`), lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 })),
+    { url: absoluteUrl("/contacto"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: absoluteUrl("/donacion"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/sumate"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: absoluteUrl("/legal/donataria-donaciones"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: absoluteUrl("/legal/politica-de-privacidad"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
