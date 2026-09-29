@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { DonationFloatingButton } from "@/components/donation-floating-button";
 import { defaultOgImage, absoluteUrl, siteDescription, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body className="paper-grain"><GoogleAnalytics />{children}</body>
+      <body className="paper-grain"><GoogleAnalytics />{children}<DonationFloatingButton /></body>
     </html>
   );
 }
