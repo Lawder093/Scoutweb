@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpenText, CalendarPlus, UsersRound } from "lucide-react";
+import { BookOpenText, CalendarPlus, Instagram, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -8,6 +8,7 @@ const tabs = [
   { href: "/admin/blog", label: "Escribir en blog", icon: BookOpenText },
   { href: "/admin/conecta", label: "Usuarios de Conecta", icon: UsersRound },
   { href: "/admin/actividades", label: "Publicar evento", icon: CalendarPlus },
+  { href: "/admin/instagram", label: "Instagram de los CDE", icon: Instagram },
 ];
 
 export function AdminTabs() {

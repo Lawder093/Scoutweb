@@ -329,6 +329,30 @@ export type Database = {
         };
         Relationships: [];
       };
+      cde_instagram_links: {
+        Row: {
+          cde_slug: string;
+          instagram_url: string;
+          is_published: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          cde_slug: string;
+          instagram_url: string;
+          is_published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          cde_slug?: string;
+          instagram_url?: string;
+          is_published?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

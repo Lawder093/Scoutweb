@@ -1,9 +1,53 @@
-import { ArrowUpRight, Globe2, UsersRound } from "lucide-react";
+import { ArrowUpRight, Instagram } from "lucide-react";
+import { cdes } from "@/content/cdes";
+import type { CDEInstagramLink } from "@/lib/content/services";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
-export function Partners() {
+const cdeOrder = ["mexico", "colombia", "argentina"] as const;
+
+export function Partners({ links }: { links: CDEInstagramLink[] }) {
+  const linksByCDE = new Map(links.map((link) => [link.cdeSlug, link.instagramUrl]));
+
   return (
-    <section className="bg-mist py-24 sm:py-32"><div className="section-shell grid grid-cols-1 min-w-0 items-center gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-24"><Reveal><SectionHeading eyebrow="Más allá de la frontera" title={<>Vínculos <span className="text-secondary">Internacionales</span></>} description="La educación popular también se fortalece cuando cruza idiomas, territorios y maneras de estar en comunidad." /></Reveal><Reveal delay={0.12}><div className="min-w-0 rounded-[2.2rem] bg-paper p-7 shadow-card sm:p-10"><div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between"><div className="flex min-w-0 items-center gap-4"><div className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-primary text-center text-sm font-black leading-none text-white">FPG<br /><span className="text-[8px] font-bold tracking-[0.12em] text-accent">LOGO</span></div><div className="min-w-0"><h3 className="break-words text-2xl font-extrabold leading-tight">Freier Pfadfinderbund<br />St. Georg</h3><p className="mt-1 text-xs font-bold uppercase tracking-[0.13em] text-ink/45">Organización hermana</p></div></div><ArrowUpRight className="shrink-0 text-primary" size={22} /></div><p className="mt-8 max-w-2xl text-base leading-7 text-ink/65">El FPG comparte con nuestro proyecto la confianza en el escultismo como herramienta de autonomía, responsabilidad y participación. Este vínculo abre conversaciones y aprendizajes entre experiencias educativas distintas.</p><div className="mt-8 grid gap-4 border-t border-ink/10 pt-6 sm:grid-cols-2"><div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-accent"><Globe2 size={19} /></span><div><p className="text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">Presencia</p><p className="mt-1 font-bold">Alemania · España</p></div></div><div className="flex items-center gap-3"><span className="grid h-10 w-10 place-items-center rounded-xl bg-secondary text-white"><UsersRound size={19} /></span><div><p className="text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">Relación</p><p className="mt-1 font-bold">Aprendizaje compartido</p></div></div></div></div></Reveal></div></section>
+    <section className="bg-mist py-24 sm:py-32">
+      <div className="section-shell">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Desde nuestros CDE"
+            title={<>Publicaciones <span className="text-secondary">en Instagram</span></>}
+            description="Conoce lo que está pasando en México, Colombia y Argentina. El equipo de cada CDE puede actualizar su publicación destacada desde el panel de administración."
+          />
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {cdeOrder.map((slug, index) => {
+            const cde = cdes[slug];
+            const instagramUrl = linksByCDE.get(slug);
+            return (
+              <Reveal key={slug} delay={0.08 + index * 0.06}>
+                <article className="flex h-full min-w-0 flex-col rounded-[2rem] bg-paper p-7 shadow-card sm:p-8">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-white">
+                      <Instagram size={22} aria-hidden="true" />
+                    </span>
+                    <span className="rounded-full bg-accent/25 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.14em] text-ink/65">CDE</span>
+                  </div>
+                  <p className="mt-7 text-xs font-extrabold uppercase tracking-[0.14em] text-ink/45">{cde.country}</p>
+                  <h3 className="mt-2 break-words text-2xl font-extrabold leading-tight">{cde.communityName}</h3>
+                  <p className="mt-4 flex-1 text-sm leading-6 text-ink/60">{instagramUrl ? "Mira la publicación más reciente de este Centro de Desarrollo Escultista." : "Pronto compartiremos una publicación de este Centro de Desarrollo Escultista."}</p>
+                  {instagramUrl ? (
+                    <a href={instagramUrl} target="_blank" rel="noreferrer" className="focus-ring mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-0.5">
+                      Ver publicación <ArrowUpRight size={16} aria-hidden="true" />
+                    </a>
+                  ) : (
+                    <span className="mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-ink/15 px-4 py-3 text-sm font-bold text-ink/45">En preparación</span>
+                  )}
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

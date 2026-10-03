@@ -6,11 +6,17 @@ import { fallbackBlogPostSummaries } from "./fallback-summaries";
 import { fallbackLibraryResources } from "./fallback-library";
 import { findPublishedBlogPost, listPublishedBlogPostSummaries, type BlogPostRow, type BlogPostSummaryRow } from "./repositories/blog";
 import { listPublishedCDEActivities, type CDEActivityRow } from "./repositories/cde-activities";
+import { listPublishedCDEInstagramLinks } from "./repositories/cde-instagram";
 import { findPublicLibraryResource, listPublicLibraryResources, type LibraryResourceRow } from "./repositories/library";
 import { resolvePublicAssetUrl, resolvePublicDownloadUrl } from "./storage";
 import { sanitizeHtml } from "./sanitize";
 import type { BlogPost, BlogPostSummary, ContentTone, LibraryResource } from "./types";
 import type { CDEActivity } from "@/content/cdes/types";
+
+export type CDEInstagramLink = {
+  cdeSlug: "mexico" | "colombia" | "argentina";
+  instagramUrl: string;
+};
 
 const tones: ContentTone[] = ["primary", "secondary", "accent", "mist", "ink", "accent"];
 const useSupabase = process.env.CONTENT_SOURCE !== "local" && Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
@@ -112,6 +118,20 @@ export async function getCDEActivities(cdeSlug: string, fallback: CDEActivity[],
   } catch (error) {
     logFallback("Actividades del CDE no disponibles; se utilizará el contenido local", error);
     return fallback;
+  }
+}
+
+export async function getCDEInstagramLinks(): Promise<CDEInstagramLink[]> {
+  if (!useSupabase) return [];
+  try {
+    const client = createSupabasePublicServerClient();
+    const rows = await listPublishedCDEInstagramLinks(client);
+    return rows
+      .filter((row): row is typeof row & { cde_slug: CDEInstagramLink["cdeSlug"] } => row.cde_slug === "mexico" || row.cde_slug === "colombia" || row.cde_slug === "argentina")
+      .map((row) => ({ cdeSlug: row.cde_slug, instagramUrl: row.instagram_url }));
+  } catch (error) {
+    logFallback("Enlaces de Instagram no disponibles; se mostrará el estado local", error);
+    return [];
   }
 }
 

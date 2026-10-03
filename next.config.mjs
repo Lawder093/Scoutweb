@@ -52,6 +52,15 @@ const securityHeaders = [
 const nextConfig = {
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/donataria-donaciones",
+        destination: "/donacion",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },
