@@ -353,6 +353,45 @@ export type Database = {
         };
         Relationships: [];
       };
+      admin_users: {
+        Row: {
+          id: string;
+          email: string;
+          display_name: string;
+          can_manage_blog: boolean;
+          can_manage_conecta: boolean;
+          can_manage_activities: boolean;
+          can_manage_instagram: boolean;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          email: string;
+          display_name?: string;
+          can_manage_blog?: boolean;
+          can_manage_conecta?: boolean;
+          can_manage_activities?: boolean;
+          can_manage_instagram?: boolean;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          email?: string;
+          display_name?: string;
+          can_manage_blog?: boolean;
+          can_manage_conecta?: boolean;
+          can_manage_activities?: boolean;
+          can_manage_instagram?: boolean;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

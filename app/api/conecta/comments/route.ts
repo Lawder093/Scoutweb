@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getConectaUser } from "@/lib/auth/conecta";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para moderar comentarios." }, { status: 403 });
 
   try {

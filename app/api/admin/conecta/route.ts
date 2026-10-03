@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import { CONECTA_ASSETS_BUCKET, removeConectaAsset, resolveConectaAssetUrl } from "@/lib/content/conecta-storage";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { cdes, getCDE } from "@/content/cdes";
@@ -72,7 +72,7 @@ async function publicUser(user: {
 }
 
 export async function GET() {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para consultar usuarios." }, { status: 403 });
 
   try {
@@ -90,7 +90,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para crear usuarios." }, { status: 403 });
 
   let uploadedPath: string | null = null;
@@ -137,7 +137,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para editar usuarios." }, { status: 403 });
 
   try {
@@ -155,7 +155,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para eliminar usuarios." }, { status: 403 });
 
   try {

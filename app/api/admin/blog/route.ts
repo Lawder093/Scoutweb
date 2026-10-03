@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import type { TablesUpdate } from "@/lib/supabase/database.types";
 
 export const dynamic = "force-dynamic";
@@ -43,7 +43,7 @@ function safeUrl(value: unknown): string | null {
 }
 
 export async function GET() {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("blog");
   if (!user) return NextResponse.json({ message: "No tienes permisos para consultar entradas." }, { status: 403 });
 
   try {
@@ -58,7 +58,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("blog");
   if (!user) return NextResponse.json({ message: "No tienes permisos para publicar contenido." }, { status: 403 });
 
   try {
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("blog");
   if (!user) return NextResponse.json({ message: "No tienes permisos para editar entradas." }, { status: 403 });
 
   try {
@@ -156,7 +156,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("blog");
   if (!user) return NextResponse.json({ message: "No tienes permisos para eliminar entradas." }, { status: 403 });
 
   try {

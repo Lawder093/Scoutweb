@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import { cdes, getCDE } from "@/content/cdes";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -27,7 +27,7 @@ function isInstagramPublication(value: string): boolean {
 }
 
 export async function GET() {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("instagram");
   if (!user) return NextResponse.json({ message: "No tienes permisos para consultar estos enlaces." }, { status: 403 });
 
   try {
@@ -42,7 +42,7 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("instagram");
   if (!user) return NextResponse.json({ message: "No tienes permisos para editar estos enlaces." }, { status: 403 });
 
   try {

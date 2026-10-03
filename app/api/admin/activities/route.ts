@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import { cdes, getCDE } from "@/content/cdes";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { CONTENT_ASSETS_BUCKET } from "@/lib/content/storage";
@@ -51,7 +51,7 @@ async function removeImage(supabase: ReturnType<typeof createSupabaseAdminClient
 }
 
 export async function GET() {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("activities");
   if (!user) return NextResponse.json({ message: "No tienes permisos para consultar actividades." }, { status: 403 });
 
   try {
@@ -69,7 +69,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("activities");
   if (!user) return NextResponse.json({ message: "No tienes permisos para publicar actividades." }, { status: 403 });
 
   let uploadedPath: string | null = null;
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
 }
 
 export async function PATCH(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("activities");
   if (!user) return NextResponse.json({ message: "No tienes permisos para editar actividades." }, { status: 403 });
 
   let uploadedPath: string | null = null;
@@ -174,7 +174,7 @@ export async function PATCH(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const user = await getContentAdmin();
+  const user = await getContentPermission("activities");
   if (!user) return NextResponse.json({ message: "No tienes permisos para eliminar actividades." }, { status: 403 });
 
   try {

@@ -104,6 +104,8 @@ Después de aplicar las migraciones editoriales existentes, ejecuta también `su
 
 El panel se protege con la cuenta editorial de Supabase y `CONTENT_ADMIN_EMAILS`. Los usuarios de Conecta son registros independientes: no tienen acceso al dashboard editorial. En este primer prototipo solicitan un código temporal; el envío real por WhatsApp queda como siguiente integración.
 
+La migración `supabase/migrations/20261003120000_create_admin_users.sql` agrega `/admin/usuarios`, visible sólo para el propietario configurado en `CONTENT_ADMIN_EMAILS`. Desde ahí se pueden invitar cuentas de Supabase y asignar permisos separados para Blog, Conecta, Actividades e Instagram.
+
 ## Validación
 
 ```bash

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 import { CONECTA_ASSETS_BUCKET, removeConectaAsset } from "@/lib/content/conecta-storage";
 import { listConectaPosts } from "@/lib/content/repositories/conecta";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -53,7 +53,7 @@ async function uploadPostImage(supabase: ReturnType<typeof createSupabaseAdminCl
 }
 
 export async function GET() {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para consultar publicaciones." }, { status: 403 });
 
   try {
@@ -65,7 +65,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para publicar en Conecta." }, { status: 403 });
 
   let uploadedPath: string | null = null;
@@ -108,7 +108,7 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const admin = await getContentAdmin();
+  const admin = await getContentPermission("conecta");
   if (!admin) return NextResponse.json({ message: "No tienes permisos para eliminar publicaciones." }, { status: 403 });
 
   try {

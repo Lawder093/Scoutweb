@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getConectaUser } from "@/lib/auth/conecta";
 import { listConectaPosts } from "@/lib/content/repositories/conecta";
-import { getContentAdmin } from "@/lib/auth/admin";
+import { getContentPermission } from "@/lib/auth/admin";
 
 export const metadata: Metadata = {
   title: "Conecta",
@@ -22,6 +22,6 @@ export default async function ConectaPage() {
 }
 
 async function ConectaPageContent({ user }: { user: NonNullable<Awaited<ReturnType<typeof getConectaUser>>> }) {
-  const [posts, admin] = await Promise.all([listConectaPosts(), getContentAdmin()]);
+  const [posts, admin] = await Promise.all([listConectaPosts(), getContentPermission("conecta")]);
   return <ConectaFeed initialPosts={posts} user={user} canModerate={Boolean(admin)} />;
 }
