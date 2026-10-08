@@ -11,7 +11,8 @@ const navigation = [
   { label: "CDE", href: "/cde" },
   { label: "Biblioteca", href: "/biblioteca" },
   { label: "Blog", href: "/blog" },
-  { label: "Conecta", href: "/conecta" },
+  // Conecta se habilitará nuevamente cuando el espacio esté funcional.
+  // { label: "Conecta", href: "/conecta" },
   { label: "Tienda", href: "/tienda" },
   { label: "Contacto", href: "/contacto" },
   { label: "Transparencia", href: "/legal/transparencia" },

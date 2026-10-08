@@ -3,6 +3,7 @@ import { ArrowUpRight, HeartHandshake, Mail, MessageCircle, ShieldCheck } from "
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TrackedLink } from "@/components/analytics/tracked-link";
+import { ActivityMosaicCarousel } from "@/components/donation/activity-mosaic-carousel";
 import { institutionalContact } from "@/content/contact";
 import { pageMetadata } from "@/lib/seo";
 
@@ -58,6 +59,8 @@ export default function DonacionPage() {
               <a href="/legal/donataria-donaciones" className="focus-ring mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary">Ver información legal <ArrowUpRight size={16} /></a>
             </div>
           </div>
+
+          <ActivityMosaicCarousel />
         </section>
       </main>
       <SiteFooter />

@@ -82,7 +82,7 @@ export const cdeContacts: CDEContact[] = [
     address: "Privada A Pte. de La 16 de Sept. 3906-Interior 4, Gabriel Pastor 1ra Secc, 72420 Heroica Puebla de Zaragoza, Pue.",
     mapUrl: "https://maps.app.goo.gl/Pnwm9gSv7P1fwJfN7",
     website: "https://escultista.org/centro-de-desarrollo-escultista-primero-de-puebla/",
-    email: "joseruben@escultista.org",
+    email: "gip@escultista.org",
     phone: "+52 222 923 1415",
     responsible: "José Rubén Hernández Rossainz",
     social: [

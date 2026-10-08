@@ -7,7 +7,8 @@ const sections = [
   { id: "comunidad", label: "Comunidades" },
   { id: "educadores", label: "Educadores" },
   { id: "actividades", label: "Actividades" },
-  { id: "conecta", label: "Conecta" },
+  // Conecta se habilitará nuevamente cuando el espacio esté funcional.
+  // { id: "conecta", label: "Conecta" },
 ];
 
 export function CDENavigation() {
