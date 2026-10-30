@@ -94,6 +94,7 @@ export async function POST(request: Request) {
     const permissions = permissionsFromPayload(body.permissions);
     if (!email || !email.includes("@")) return NextResponse.json({ message: "Escribe un correo válido." }, { status: 400 });
     if (!hasPermission(permissions)) return NextResponse.json({ message: "Selecciona al menos un permiso." }, { status: 400 });
+    if (isContentAdminEmail(email)) return NextResponse.json({ message: "Ese correo ya es el propietario configurado." }, { status: 400 });
 
     const supabase = createSupabaseAdminClient();
     const { data: listedUsers, error: listError } = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
@@ -108,8 +109,6 @@ export async function POST(request: Request) {
       message = "Invitación enviada y permisos guardados.";
     }
     if (!authUser?.id) return NextResponse.json({ message: "No se pudo identificar al usuario." }, { status: 500 });
-    if (isContentAdminEmail(email)) return NextResponse.json({ message: "Ese correo ya es el propietario configurado." }, { status: 400 });
-
     const { error } = await supabase.from("admin_users").upsert(rowValues(authUser.id, email, displayName, permissions, true), { onConflict: "id" });
     if (error) throw error;
     return NextResponse.json({ message }, { status: 201 });

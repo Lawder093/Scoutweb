@@ -1,5 +1,5 @@
--- Dashboard users and per-section permissions. The owner remains the email
--- configured in CONTENT_ADMIN_EMAILS and is always a full administrator.
+-- Dashboard users and per-section permissions. The owner is the fixed
+-- lestath@escultista.org account and is always a full administrator.
 create table public.admin_users (
   id uuid primary key references auth.users(id) on delete cascade,
   email text not null unique,

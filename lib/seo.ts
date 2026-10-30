@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 export const siteName = "Escultismo Crítico Popular";
 export const siteDescription = "Una propuesta de educación no formal basada en la pedagogía crítica, el escultismo y las educaciones populares.";
-// Production must provide NEXT_PUBLIC_SITE_URL. The local fallback prevents the
-// app from publishing an unverified domain in development or preview builds.
-export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000");
+// Production can override this with NEXT_PUBLIC_SITE_URL, but metadata must
+// never fall back to localhost where search engines or social crawlers could
+// index it.
+export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.escultista.org");
 
 export const defaultOgImage = {
   path: "/images/scouts-hero.png",

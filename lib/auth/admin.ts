@@ -25,15 +25,12 @@ type AdminRow = {
   is_active: boolean;
 };
 
-function configuredAdminEmails(): string[] {
-  return (process.env.CONTENT_ADMIN_EMAILS ?? "")
-    .split(",")
-    .map((email) => email.trim().toLowerCase())
-    .filter(Boolean);
-}
+// There is one owner account for the whole dashboard. Additional accounts are
+// always limited to the permissions stored in public.admin_users.
+const CONTENT_OWNER_EMAIL = "lestath@escultista.org";
 
 export function isContentAdminEmail(email: string | null | undefined): boolean {
-  return Boolean(email && configuredAdminEmails().includes(email.toLowerCase()));
+  return Boolean(email && email.trim().toLowerCase() === CONTENT_OWNER_EMAIL);
 }
 
 export async function getCurrentUser(): Promise<User | null> {

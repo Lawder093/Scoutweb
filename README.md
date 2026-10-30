@@ -26,10 +26,9 @@ Para el primer prototipo de Conecta agrega también `CONECTA_SESSION_SECRET` con
 
 ## Acceso editorial y blog
 
-1. Crea la cuenta editorial en Supabase Authentication → Users.
-2. Configura `CONTENT_ADMIN_EMAILS` con el correo autorizado, separado por comas.
-3. Configura `CONTENT_SOURCE=supabase` para que las publicaciones guardadas sean visibles en el blog público.
-4. Entra a `/login` y, después de iniciar sesión, abre `/admin/blog`.
+1. Crea en Supabase Authentication → Users la cuenta `lestath@escultista.org`.
+2. Configura `CONTENT_SOURCE=supabase` para que las publicaciones guardadas sean visibles en el blog público.
+3. Entra a `/login` y, después de iniciar sesión, abre `/admin/blog`.
 
 El formulario guarda borradores o publicaciones en `public.blog_posts`. El contenido escrito se convierte a HTML seguro en el servidor; no se permite insertar HTML arbitrario desde el formulario.
 
@@ -102,9 +101,9 @@ Los seis recursos ficticios de la semilla inicial se ocultan al completar la imp
 
 Después de aplicar las migraciones editoriales existentes, ejecuta también `supabase/migrations/20260826120000_create_admin_and_cde_activities.sql` y después `supabase/migrations/20260906120000_create_conecta_prototype.sql` desde el SQL Editor. La segunda amplía `conecta_users` para el pre-registro telefónico, crea `conecta_posts` y `conecta_comments`, y crea el bucket privado `conecta-private`; ambas tablas permanecen protegidas por RLS y sólo las consultas server-side con la clave secreta acceden al feed. Las imágenes se sirven con URLs firmadas, no con enlaces públicos.
 
-El panel se protege con la cuenta editorial de Supabase y `CONTENT_ADMIN_EMAILS`. Los usuarios de Conecta son registros independientes: no tienen acceso al dashboard editorial. En este primer prototipo solicitan un código temporal; el envío real por WhatsApp queda como siguiente integración.
+El panel se protege con la cuenta editorial `lestath@escultista.org`. Esa cuenta es la única propietaria, tiene acceso total y administra usuarios. Los usuarios de Conecta son registros independientes: no tienen acceso al dashboard editorial. En este primer prototipo solicitan un código temporal; el envío real por WhatsApp queda como siguiente integración.
 
-La migración `supabase/migrations/20261003120000_create_admin_users.sql` agrega `/admin/usuarios`, visible sólo para el propietario configurado en `CONTENT_ADMIN_EMAILS`. Desde ahí se pueden invitar cuentas de Supabase y asignar permisos separados para Blog, Conecta, Actividades e Instagram.
+La migración `supabase/migrations/20261003120000_create_admin_users.sql` agrega `/admin/usuarios`, visible sólo para `lestath@escultista.org`. Desde ahí se pueden invitar cuentas de Supabase y asignar permisos separados para Blog, Conecta, Actividades e Instagram.
 
 ## Validación
 
