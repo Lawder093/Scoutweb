@@ -17,8 +17,8 @@ const config: Config = {
         mist: "var(--color-mist)",
       },
       boxShadow: {
-        soft: "0 18px 50px rgba(29, 43, 52, 0.10)",
-        card: "0 8px 30px rgba(29, 43, 52, 0.08)",
+        soft: "0 18px 50px rgba(29, 43, 52, 0.14), 0 4px 14px rgba(29, 43, 52, 0.06)",
+        card: "0 8px 30px rgba(29, 43, 52, 0.11), 0 2px 8px rgba(29, 43, 52, 0.05)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

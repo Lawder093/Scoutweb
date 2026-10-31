@@ -9,7 +9,6 @@ import { usePathname } from "next/navigation";
 const navigation = [
   { label: "Inicio", href: "/" },
   { label: "CDE", href: "/cde" },
-  { label: "Biblioteca", href: "/biblioteca" },
   { label: "Blog", href: "/blog" },
   // Conecta se habilitará nuevamente cuando el espacio esté funcional.
   // { label: "Conecta", href: "/conecta" },

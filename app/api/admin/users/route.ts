@@ -13,6 +13,10 @@ function textValue(value: unknown, maxLength: number): string {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
+function passwordValue(value: unknown): string {
+  return typeof value === "string" ? value : "";
+}
+
 function isUuid(value: string): boolean {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
@@ -88,11 +92,14 @@ export async function POST(request: Request) {
   if (!owner) return NextResponse.json({ message: "Sólo el propietario puede crear usuarios." }, { status: 403 });
 
   try {
-    const body = await request.json() as { email?: unknown; displayName?: unknown; permissions?: unknown };
+    const body = await request.json() as { email?: unknown; displayName?: unknown; password?: unknown; permissions?: unknown };
     const email = textValue(body.email, 254).toLowerCase();
     const displayName = textValue(body.displayName, 120);
+    const password = passwordValue(body.password);
     const permissions = permissionsFromPayload(body.permissions);
     if (!email || !email.includes("@")) return NextResponse.json({ message: "Escribe un correo válido." }, { status: 400 });
+    if (password.length < 8) return NextResponse.json({ message: "La contraseña debe tener al menos 8 caracteres." }, { status: 400 });
+    if (password.length > 72) return NextResponse.json({ message: "La contraseña no puede tener más de 72 caracteres." }, { status: 400 });
     if (!hasPermission(permissions)) return NextResponse.json({ message: "Selecciona al menos un permiso." }, { status: 400 });
     if (isContentAdminEmail(email)) return NextResponse.json({ message: "Ese correo ya es el propietario configurado." }, { status: 400 });
 
@@ -100,13 +107,16 @@ export async function POST(request: Request) {
     const { data: listedUsers, error: listError } = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
     if (listError) throw listError;
     let authUser: User | null = listedUsers.users.find((user) => user.email?.toLowerCase() === email) ?? null;
-    let message = "Usuario agregado al panel.";
+    let message = "Usuario creado con contraseña asignada.";
     if (!authUser) {
-      const redirectTo = `${new URL(request.url).origin}/auth/callback?next=/auth/set-password`;
-      const { data, error } = await supabase.auth.admin.inviteUserByEmail(email, { redirectTo, data: { display_name: displayName } });
+      const { data, error } = await supabase.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { display_name: displayName } });
       if (error) throw error;
       authUser = data.user;
-      message = "Invitación enviada y permisos guardados.";
+    } else {
+      const { data, error } = await supabase.auth.admin.updateUserById(authUser.id, { password, email_confirm: true, user_metadata: { ...authUser.user_metadata, display_name: displayName } });
+      if (error) throw error;
+      authUser = data.user;
+      message = "Contraseña actualizada y permisos guardados.";
     }
     if (!authUser?.id) return NextResponse.json({ message: "No se pudo identificar al usuario." }, { status: 500 });
     const { error } = await supabase.from("admin_users").upsert(rowValues(authUser.id, email, displayName, permissions, true), { onConflict: "id" });

@@ -4,7 +4,7 @@ import type { CDEEducator } from "@/content/cdes/types";
 
 export function MemberCard({ educator }: { educator: CDEEducator }) {
   return (
-    <article aria-label={`${educator.name}, ${educator.role}`} className="h-full overflow-hidden rounded-[1.7rem] border border-ink/10 bg-paper shadow-card">
+    <article aria-label={`${educator.name}, ${educator.role}`} className="h-full overflow-hidden rounded-[1.7rem] border border-ink/10 bg-paper shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
       <div className="relative aspect-[4/5] overflow-hidden bg-mist">
         <Image
           src={educator.image}

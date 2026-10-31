@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { trackEvent } from "@/lib/analytics";
 
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim();
+const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
 const privatePathPrefixes = ["/admin", "/login", "/conecta", "/perfil", "/configuracion"];
 
 function isPrivatePath(pathname: string | null) {
@@ -14,17 +15,19 @@ function isPrivatePath(pathname: string | null) {
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
-  const enabled = Boolean(measurementId && /^G-[A-Z0-9]+$/i.test(measurementId));
+  const analyticsEnabled = Boolean(measurementId && /^G-[A-Z0-9]+$/i.test(measurementId));
+  const adsEnabled = Boolean(googleAdsId && /^AW-[A-Z0-9-]+$/i.test(googleAdsId));
   const privatePath = isPrivatePath(pathname);
 
   useEffect(() => {
-    if (!enabled || privatePath || !pathname) return;
+    if (!analyticsEnabled || privatePath || !pathname) return;
     trackEvent("page_view", { page_path: pathname, page_title: document.title });
-  }, [enabled, pathname, privatePath]);
+  }, [analyticsEnabled, pathname, privatePath]);
 
-  if (!enabled || privatePath || !pathname || !measurementId) return null;
+  if ((!analyticsEnabled && !adsEnabled) || privatePath || !pathname) return null;
 
-  const measurementIdLiteral = JSON.stringify(measurementId);
+  const measurementIdLiteral = measurementId ? JSON.stringify(measurementId) : "null";
+  const googleAdsIdLiteral = googleAdsId ? JSON.stringify(googleAdsId) : "null";
 
   return (
     <>
@@ -32,9 +35,10 @@ export function GoogleAnalytics() {
         {`window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function(){ window.dataLayer.push(Array.from(arguments)); };
 window.gtag('js', new Date());
-window.gtag('config', ${measurementIdLiteral}, { send_page_view: false });`}
+${analyticsEnabled ? `window.gtag('config', ${measurementIdLiteral}, { send_page_view: false });` : ""}
+${adsEnabled ? `window.gtag('config', ${googleAdsIdLiteral}, { allow_ad_personalization_signals: false });` : ""}`}
       </Script>
-      <Script id="google-analytics-script" src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`} strategy="afterInteractive" />
+      <Script id="google-analytics-script" src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId ?? googleAdsId ?? "")}`} strategy="afterInteractive" />
     </>
   );
 }

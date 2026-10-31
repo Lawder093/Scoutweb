@@ -43,7 +43,7 @@ export default async function LibraryResourcePage({ params }: { params: Promise<
       <SiteHeader />
       <main className="pt-20 sm:pt-16">
         <article className="section-shell py-20 sm:py-28">
-          <Link href="/biblioteca" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} /> Volver a la biblioteca</Link>
+          <Link href="/biblioteca" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} /> Volver a recursos</Link>
           <div className="mt-12 grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
             <div className="relative aspect-[0.78/1] overflow-hidden rounded-[2rem] bg-primary p-8 text-white">
               {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-cover opacity-70" sizes="(max-width: 1024px) 90vw, 420px" /> : <BookOpen className="absolute bottom-8 right-8 opacity-20" size={120} strokeWidth={1} />}

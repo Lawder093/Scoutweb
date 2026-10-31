@@ -2,10 +2,28 @@ import type { Metadata } from "next";
 
 export const siteName = "Escultismo Crítico Popular";
 export const siteDescription = "Una propuesta de educación no formal basada en la pedagogía crítica, el escultismo y las educaciones populares.";
-// Production can override this with NEXT_PUBLIC_SITE_URL, but metadata must
-// never fall back to localhost where search engines or social crawlers could
-// index it.
-export const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.escultista.org");
+const productionSiteUrl = "https://www.escultista.org";
+
+function resolveSiteUrl(value: string | undefined): URL {
+  if (!value) return new URL(productionSiteUrl);
+
+  try {
+    const url = new URL(value);
+    const localHosts = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
+
+    if (url.protocol !== "https:" || localHosts.has(url.hostname) || url.hostname.endsWith(".local")) {
+      return new URL(productionSiteUrl);
+    }
+
+    return new URL(url.origin);
+  } catch {
+    return new URL(productionSiteUrl);
+  }
+}
+
+// Never publish localhost or an insecure origin in canonical, Open Graph,
+// robots, or sitemap URLs, even if a stale deployment variable remains set.
+export const siteUrl = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL?.trim());
 
 export const defaultOgImage = {
   path: "/images/scouts-hero.png",

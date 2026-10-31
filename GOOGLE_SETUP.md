@@ -16,6 +16,17 @@ NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=valor-de-verificacion
 
 `NEXT_PUBLIC_GA_MEASUREMENT_ID` es opcional. Si se deja vacío o no tiene el formato `G-XXXXXXXXXX`, Analytics no se carga y la aplicación continúa funcionando normalmente.
 
+Para medir contactos desde Google Ads, configura también estas variables opcionales en Vercel:
+
+```env
+NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXXX
+NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_EMAIL=XXXXXXXXXX
+NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_WHATSAPP=XXXXXXXXXX
+NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_PHONE=XXXXXXXXXX
+```
+
+Los valores de conversión son las etiquetas de cada acción en Google Ads. La aplicación las usa únicamente para registrar clics en correo, WhatsApp y teléfono; no envía diagnósticos, perfiles de menores ni datos de salud.
+
 `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` también es opcional. Su valor se obtiene de Search Console y se convierte automáticamente en la etiqueta de verificación del sitio.
 
 No pongas aquí claves secretas de Supabase ni tokens privados.

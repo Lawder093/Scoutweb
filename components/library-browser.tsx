@@ -57,7 +57,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
   return (
     <div id="recursos" className="mt-14 scroll-mt-32">
       <div className="rounded-[1.8rem] border border-ink/10 bg-paper p-5 shadow-card sm:p-6">
-        <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-secondary"><SlidersHorizontal size={15} /> Filtrar la biblioteca</div>
+        <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-secondary"><SlidersHorizontal size={15} /> Filtrar recursos</div>
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <label className="block text-sm font-bold text-ink">
             Buscar
@@ -75,8 +75,8 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
       <p className="mt-7 text-sm font-bold text-ink/60" aria-live="polite">{filteredResources.length} {filteredResources.length === 1 ? "recurso encontrado" : "recursos encontrados"}</p>
 
       {visibleResources.length > 0 ? (
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 sm:gap-5 md:grid-cols-3">
-          {visibleResources.map((resource, index) => <Reveal key={resource.id} delay={index * 0.05}><LibraryResourceCard resource={resource} /></Reveal>)}
+        <div className="mt-5">
+          <div className="space-y-4">{visibleResources.map((resource, index) => <Reveal key={resource.id} delay={index * 0.05}><LibraryResourceCard resource={resource} /></Reveal>)}</div>
         </div>
       ) : (
         <div className="mt-5 rounded-[1.8rem] border border-dashed border-ink/20 bg-paper px-6 py-14 text-center">
@@ -86,7 +86,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
         </div>
       )}
 
-      {pageCount > 1 && <nav className="mt-8 flex items-center justify-center gap-3" aria-label="Paginación de biblioteca"><button type="button" disabled={currentPage === 1} onClick={() => setPage((value) => Math.max(1, value - 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Anterior</button><span className="text-sm font-bold text-ink/60" aria-current="page">Página {currentPage} de {pageCount}</span><button type="button" disabled={currentPage === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Siguiente</button></nav>}
+      {pageCount > 1 && <nav className="mt-8 flex items-center justify-center gap-3" aria-label="Paginación de recursos"><button type="button" disabled={currentPage === 1} onClick={() => setPage((value) => Math.max(1, value - 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Anterior</button><span className="text-sm font-bold text-ink/60" aria-current="page">Página {currentPage} de {pageCount}</span><button type="button" disabled={currentPage === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Siguiente</button></nav>}
     </div>
   );
 }

@@ -3,6 +3,12 @@ export type AnalyticsParams = Record<string, AnalyticsValue | null | undefined>;
 
 const EVENT_NAME_PATTERN = /^[a-z][a-z0-9_]{0,39}$/;
 const PARAMETER_NAME_PATTERN = /^[a-z][a-z0-9_]{0,39}$/;
+const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID?.trim();
+const conversionLabels: Record<string, string | undefined> = {
+  contact_email_click: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_EMAIL?.trim(),
+  click_whatsapp: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_WHATSAPP?.trim(),
+  contact_phone_click: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_PHONE?.trim(),
+};
 
 declare global {
   interface Window {
@@ -19,4 +25,9 @@ export function trackEvent(name: string, params: AnalyticsParams = {}) {
   );
 
   window.gtag("event", name, safeParams);
+
+  const conversionLabel = conversionLabels[name];
+  if (googleAdsId && conversionLabel) {
+    window.gtag("event", "conversion", { send_to: `${googleAdsId}/${conversionLabel}` });
+  }
 }

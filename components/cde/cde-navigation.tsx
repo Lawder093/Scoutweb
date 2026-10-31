@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const sections = [
   { id: "nosotros", label: "Nosotros" },
@@ -11,8 +12,9 @@ const sections = [
   // { id: "conecta", label: "Conecta" },
 ];
 
-export function CDENavigation() {
+export function CDENavigation({ cdeSlug }: { cdeSlug: string }) {
   const [active, setActive] = useState("nosotros");
+  const showResources = cdeSlug === "mexico";
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -23,5 +25,5 @@ export function CDENavigation() {
     return () => observer.disconnect();
   }, []);
 
-  return <nav aria-label="Navegación del CDE" className="cde-navigation glass-nav sticky z-30 border-y"><div className="cde-navigation__scroller section-shell flex gap-1 overflow-x-auto py-3"><span className="mr-3 hidden shrink-0 items-center text-[10px] font-extrabold uppercase tracking-[0.15em] text-ink/40 sm:flex">CDE</span>{sections.map((section) => <a key={section.id} href={section.id === "conecta" ? "/conecta" : `#${section.id}`} aria-current={active === section.id ? "page" : undefined} className={"focus-ring relative shrink-0 snap-start rounded-full px-4 py-2 text-sm font-bold transition-colors " + (active === section.id ? "bg-primary text-white" : "text-ink/55 hover:bg-primary/10 hover:text-primary")}>{section.label}</a>)}</div></nav>;
+  return <nav aria-label="Navegación del CDE" className="cde-navigation glass-nav sticky z-30 border-y"><div className="cde-navigation__scroller section-shell flex gap-1 overflow-x-auto py-3"><span className="mr-3 hidden shrink-0 items-center text-[10px] font-extrabold uppercase tracking-[0.15em] text-ink/40 sm:flex">CDE</span>{sections.map((section) => <a key={section.id} href={section.id === "conecta" ? "/conecta" : `#${section.id}`} aria-current={active === section.id ? "page" : undefined} className={"focus-ring relative shrink-0 snap-start rounded-full px-4 py-2 text-sm font-bold transition-colors " + (active === section.id ? "bg-primary text-white" : "text-ink/55 hover:bg-primary/10 hover:text-primary")}>{section.label}</a>)}{showResources && <Link href="/biblioteca" className="focus-ring relative shrink-0 snap-start rounded-full px-4 py-2 text-sm font-bold text-ink/55 transition-colors hover:bg-primary/10 hover:text-primary">Recursos</Link>}</div></nav>;
 }

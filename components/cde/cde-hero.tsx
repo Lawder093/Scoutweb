@@ -12,11 +12,11 @@ export function CDEHero({ cde }: { cde: CDEData }) {
   return (
     <section data-glass-tone="dark" className="relative isolate overflow-hidden bg-ink text-white">
       <Image src={cde.heroImage} alt={`Comunidad ${cde.country}`} fill priority className="object-cover object-center" sizes="100vw" />
-      <div className="absolute inset-0 -z-0 bg-[linear-gradient(90deg,rgba(29,43,52,.94)_0%,rgba(29,43,52,.76)_48%,rgba(29,43,52,.32)_100%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/55 to-transparent" />
-      <div className="section-shell relative z-10 flex min-h-[100svh] items-end pb-16 pt-28 sm:min-h-[620px] sm:pb-24">
+      <div className="absolute inset-0 -z-0 bg-[linear-gradient(90deg,rgba(29,43,52,.86)_0%,rgba(29,43,52,.68)_48%,rgba(29,43,52,.28)_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/45 to-transparent" />
+      <div className="section-shell relative z-10 flex min-h-[640px] items-end pb-16 pt-28 sm:min-h-[620px] sm:pb-24">
         <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 22 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, ease: "easeOut" }}
           className="min-w-0 max-w-3xl"

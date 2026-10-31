@@ -59,6 +59,26 @@ const nextConfig = {
         destination: "/donacion",
         permanent: true,
       },
+      {
+        source: "/centro-de-desarrollo-escultista-primero-de-puebla",
+        destination: "/cde/mexico",
+        permanent: true,
+      },
+      {
+        source: "/documentos",
+        destination: "/biblioteca",
+        permanent: true,
+      },
+      {
+        source: "/politica-de-privacidad",
+        destination: "/legal/politica-de-privacidad",
+        permanent: true,
+      },
+      {
+        source: "/transparencia",
+        destination: "/legal/transparencia",
+        permanent: true,
+      },
     ];
   },
   async headers() {
