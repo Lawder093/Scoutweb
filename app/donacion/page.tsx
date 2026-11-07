@@ -7,6 +7,8 @@ import { ActivityMosaicCarousel } from "@/components/donation/activity-mosaic-ca
 import { institutionalContact } from "@/content/contact";
 import { pageMetadata } from "@/lib/seo";
 
+const paypalDonationUrl = "https://www.paypal.com/ncp/payment/GJQBV668ZBNJC";
+
 export const metadata: Metadata = pageMetadata({
   title: "Donación",
   description: "Apoya el trabajo educativo y comunitario de la Comunidad Crítica de Escultismo Popular.",
@@ -61,6 +63,25 @@ export default function DonacionPage() {
           </div>
 
           <ActivityMosaicCarousel />
+
+          <section className="mx-auto mt-5 max-w-[1180px] rounded-[2.25rem] border border-ink/10 bg-white p-7 shadow-card sm:p-10" aria-labelledby="paypal-donation-title">
+            <div className="grid gap-8 lg:grid-cols-[1.15fr_.85fr] lg:items-center">
+              <div>
+                <div className="flex items-center gap-3 text-primary"><HeartHandshake size={21} aria-hidden="true" /><span className="eyebrow">Donación en línea</span></div>
+                <h2 id="paypal-donation-title" className="display-title mt-6 max-w-3xl text-4xl leading-none sm:text-5xl">Apoya este trabajo directamente con PayPal.</h2>
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-ink/65 sm:text-base">Después de conocer nuestras actividades y la memoria de la comunidad, puedes hacer tu aportación desde el formulario seguro de PayPal. El importe y los datos del pago se revisan directamente en PayPal.</p>
+              </div>
+
+              <div className="rounded-[1.75rem] bg-accent p-6 sm:p-8">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-2xl font-black tracking-[-0.04em] text-ink">PayPal</span>
+                  <ShieldCheck size={24} className="text-ink" aria-hidden="true" />
+                </div>
+                <p className="mt-5 text-sm leading-6 text-ink/70">Pago procesado en la página oficial de PayPal.</p>
+                <TrackedLink eventName="donation_paypal_click" eventParams={{ location: "donacion", source: "paypal_card" }} href={paypalDonationUrl} target="_blank" rel="noreferrer" className="focus-ring mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">Donar con PayPal <ArrowUpRight size={16} /></TrackedLink>
+              </div>
+            </div>
+          </section>
         </section>
       </main>
       <SiteFooter />
