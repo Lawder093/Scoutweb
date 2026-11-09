@@ -17,16 +17,18 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
   if (!compact) {
     return (
       <article className="group flex flex-col gap-5 rounded-[1.6rem] border border-ink/10 bg-paper p-4 shadow-card transition-shadow hover:shadow-soft sm:flex-row sm:items-center sm:p-5">
-        <div className={`relative h-24 w-full shrink-0 overflow-hidden rounded-[1.15rem] ${toneClasses[resource.tone]} sm:h-28 sm:w-40`}>
-          {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-cover" sizes="(max-width: 640px) 100vw, 160px" /> : <div className="absolute -right-6 -top-8 h-28 w-28 rounded-full border-[18px] border-current opacity-15" aria-hidden="true" />}
-          <span className="absolute bottom-3 left-3 text-2xl font-black opacity-75">{String(resource.displayOrder).padStart(2, "0")}</span>
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="break-words text-[10px] font-extrabold uppercase tracking-[0.13em] text-ink/50">{resource.creator}</p>
-          <h3 className="display-title mt-2 break-words text-2xl leading-[0.95] text-ink sm:text-3xl">{resource.title}</h3>
-          <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60">{resource.description}</p>
-          {resource.categories.length > 0 && <p className="mt-3 text-xs font-bold text-ink/45">{resource.categories.join(" · ")}</p>}
-        </div>
+        <Link href={readerUrl} aria-label={`Abrir vista previa de ${resource.title}`} className="focus-ring flex min-w-0 flex-1 flex-col gap-5 rounded-xl sm:flex-row sm:items-center">
+          <div className={`relative h-24 w-full shrink-0 overflow-hidden rounded-[1.15rem] ${toneClasses[resource.tone]} sm:h-28 sm:w-40`}>
+            {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-cover" sizes="(max-width: 640px) 100vw, 160px" /> : <div className="absolute -right-6 -top-8 h-28 w-28 rounded-full border-[18px] border-current opacity-15" aria-hidden="true" />}
+            <span className="absolute bottom-3 left-3 text-2xl font-black opacity-75">{String(resource.displayOrder).padStart(2, "0")}</span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="break-words text-[10px] font-extrabold uppercase tracking-[0.13em] text-ink/50">{resource.creator}</p>
+            <h3 className="display-title mt-2 break-words text-2xl leading-[0.95] text-ink sm:text-3xl">{resource.title}</h3>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/60">{resource.description}</p>
+            {resource.categories.length > 0 && <p className="mt-3 text-xs font-bold text-ink/45">{resource.categories.join(" · ")}</p>}
+          </div>
+        </Link>
         <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-stretch">
           <Link href={readerUrl} className="focus-ring inline-flex items-center justify-center gap-1 rounded-full bg-primary px-4 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.1em] text-white transition-colors hover:bg-secondary">
             Leer <ArrowUpRight size={13} />
