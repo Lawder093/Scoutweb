@@ -284,6 +284,77 @@ export type Database = {
           }
         ];
       };
+      conecta_postcards: {
+        Row: {
+          id: string;
+          author_id: string;
+          author_name: string;
+          country_code: string;
+          country_name: string;
+          group_name: string;
+          group_logo_path: string | null;
+          cover_image_path: string;
+          message: string;
+          status: string;
+          submitted_at: string;
+          approved_at: string | null;
+          published_at: string | null;
+          expires_at: string | null;
+          reviewed_by: string | null;
+          rejection_reason: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          author_id: string;
+          author_name: string;
+          country_code: string;
+          country_name: string;
+          group_name: string;
+          group_logo_path?: string | null;
+          cover_image_path: string;
+          message: string;
+          status?: string;
+          submitted_at?: string;
+          approved_at?: string | null;
+          published_at?: string | null;
+          expires_at?: string | null;
+          reviewed_by?: string | null;
+          rejection_reason?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          author_id?: string;
+          author_name?: string;
+          country_code?: string;
+          country_name?: string;
+          group_name?: string;
+          group_logo_path?: string | null;
+          cover_image_path?: string;
+          message?: string;
+          status?: string;
+          submitted_at?: string;
+          approved_at?: string | null;
+          published_at?: string | null;
+          expires_at?: string | null;
+          reviewed_by?: string | null;
+          rejection_reason?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "conecta_postcards_author_id_fkey";
+            columns: ["author_id"];
+            isOneToOne: false;
+            referencedRelation: "conecta_users";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       cde_activities: {
         Row: {
           id: string;

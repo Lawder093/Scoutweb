@@ -29,22 +29,6 @@ export default function DonacionPage() {
         </section>
 
         <section className="px-4 py-12 sm:px-6 sm:py-20">
-          <div className="mx-auto grid max-w-[980px] gap-5 lg:grid-cols-[1.1fr_.9fr]">
-            <div className="rounded-[2.25rem] bg-secondary p-7 text-white shadow-soft sm:p-10">
-              <div className="flex items-center gap-3 text-accent"><HeartHandshake size={21} aria-hidden="true" /><span className="eyebrow text-accent">Donación electrónica</span></div>
-              <h2 className="display-title mt-7 text-4xl leading-none sm:text-5xl">Haz tu aportación por transferencia.</h2>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-white/70">Escríbenos para recibir los datos de transferencia actualizados, confirmar la recepción de tu aportación y solicitar la información fiscal que corresponda.</p>
-              <TrackedLink eventName="contact_email_click" eventParams={{ location: "donacion", source: "primary_cta" }} href={`mailto:${institutionalContact.email}?subject=Quiero%20donar`} className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Solicitar datos para donar <ArrowUpRight size={16} /></TrackedLink>
-            </div>
-
-            <div className="rounded-[2.25rem] bg-accent p-7 shadow-card sm:p-10">
-              <div className="flex items-center gap-3 text-ink"><HeartHandshake size={21} aria-hidden="true" /><span className="eyebrow text-ink">También puedes ayudar</span></div>
-              <h2 className="display-title mt-7 text-4xl leading-none">Apadrina un proceso.</h2>
-              <p className="mt-6 text-sm leading-7 text-ink/70">Las personas físicas y morales también pueden donar en dinero o en especie a nuestras causas y proyectos.</p>
-              <TrackedLink eventName="click_whatsapp" eventParams={{ location: "donacion", source: "secondary_cta" }} href={institutionalContact.whatsappUrl} target="_blank" rel="noreferrer" className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">Hablar por WhatsApp <MessageCircle size={16} /></TrackedLink>
-            </div>
-          </div>
-
           <div className="mx-auto mt-5 grid max-w-[980px] gap-5 md:grid-cols-2">
             <div className="rounded-[2rem] border border-ink/10 bg-white p-7 shadow-card sm:p-9">
               <div className="flex items-center gap-3 text-primary"><Mail size={20} aria-hidden="true" /><span className="eyebrow">Contacto</span></div>

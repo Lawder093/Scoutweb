@@ -4,6 +4,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/lib/supabase/database.types";
 
 export const CONECTA_ASSETS_BUCKET = "conecta-private";
+export const POSTCARD_ASSETS_BUCKET = "conecta-postcards";
 export const CONECTA_ASSET_URL_TTL = 60 * 60 * 24;
 
 export async function resolveConectaAssetUrl(
@@ -23,5 +24,20 @@ export async function removeConectaAsset(
 ): Promise<void> {
   if (assetPath && !assetPath.startsWith("http") && !assetPath.startsWith("/")) {
     await client.storage.from(CONECTA_ASSETS_BUCKET).remove([assetPath]);
+  }
+}
+
+export function resolvePostcardPublicUrl(client: SupabaseClient<Database>, assetPath: string | null): string | null {
+  if (!assetPath) return null;
+  if (assetPath.startsWith("/") || assetPath.startsWith("http://") || assetPath.startsWith("https://")) return assetPath;
+  return client.storage.from(POSTCARD_ASSETS_BUCKET).getPublicUrl(assetPath).data.publicUrl;
+}
+
+export async function removePostcardAsset(
+  client: SupabaseClient<Database>,
+  assetPath: string | null,
+): Promise<void> {
+  if (assetPath && !assetPath.startsWith("http") && !assetPath.startsWith("/")) {
+    await client.storage.from(POSTCARD_ASSETS_BUCKET).remove([assetPath]);
   }
 }

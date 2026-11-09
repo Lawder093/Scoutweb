@@ -22,7 +22,7 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 
 `SUPABASE_SECRET_KEY` solo debe existir en entornos de servidor y nunca debe utilizarse en componentes cliente ni subirse al repositorio.
 
-Para el primer prototipo de Conecta agrega también `CONECTA_SESSION_SECRET` con una cadena aleatoria larga y `CONECTA_OTP_MODE=prototype`. El modo prototipo muestra el código de un solo uso en la pantalla para poder probar el flujo antes de conectar Meta WhatsApp Business. No cambies a `whatsapp` hasta contar con esa integración.
+Para Conecta agrega también `CONECTA_SESSION_SECRET` con una cadena aleatoria larga. Los autores entran con el teléfono y la contraseña que asigna un administrador. Las postales se moderan antes de publicarse; para recibir el aviso por correo configura `RESEND_API_KEY` y `POSTCARD_FROM_EMAIL`. El destinatario por defecto es `lestath@escultista.org`.
 
 ## Acceso editorial y blog
 
@@ -92,8 +92,9 @@ Los seis recursos ficticios de la semilla inicial se ocultan al completar la imp
 - `/biblioteca/[slug]` muestra el detalle y el enlace de descarga cuando existe un archivo.
 - `/admin` redirige al panel administrativo.
 - `/admin/blog` permite crear, editar, publicar, despublicar y eliminar entradas.
-- `/conecta` es el feed privado global: sólo entran scouts pre-registrados y su sesión dura un día.
-- `/admin/conecta` permite pre-registrar scouts con teléfono, foto, CDE y comunidad, publicar una foto con texto y eliminar comentarios.
+- `/conecta` es el portal privado de autores: sólo entran scouts registrados con teléfono y contraseña, y su sesión dura un día.
+- `/admin/conecta` permite asignar accesos, país, grupo y logo; también moderar postales antes de publicarlas.
+- La página de inicio muestra las postales aprobadas durante 72 horas; cada registro conserva país, grupo, autor y mensaje para el archivo histórico.
 - `/admin/actividades` permite publicar una actividad en un CDE específico y cargar su imagen al bucket `content-assets`.
 - `/cde/[country]` utiliza los datos estáticos escalables de `content/cdes` y muestra las actividades publicadas para ese CDE desde Supabase, con fallback local.
 

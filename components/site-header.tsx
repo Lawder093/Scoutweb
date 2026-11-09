@@ -10,7 +10,6 @@ const navigation = [
   { label: "Inicio", href: "/" },
   { label: "CDE", href: "/cde" },
   { label: "Blog", href: "/blog" },
-  { label: "Conecta", href: "/conecta" },
   { label: "Tienda", href: "/tienda" },
   { label: "Contacto", href: "/contacto" },
   { label: "Transparencia", href: "/legal/transparencia" },
@@ -133,7 +132,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     const closeMenuOnDesktop = () => {
-      if (window.innerWidth >= 1280) setIsOpen(false);
+      if (window.innerWidth >= 768) setIsOpen(false);
     };
 
     window.addEventListener("resize", closeMenuOnDesktop);
@@ -180,18 +179,18 @@ export function SiteHeader() {
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-50" data-glass-tone={glassTone}>
-      {isOpen && <button type="button" aria-label="Cerrar menú" className="fixed inset-0 z-40 bg-ink/45 backdrop-blur-[2px] xl:hidden" onClick={() => setIsOpen(false)} />}
+      {isOpen && <button type="button" aria-label="Cerrar menú" className="fixed inset-0 z-40 bg-ink/45 backdrop-blur-[2px] md:hidden" onClick={() => setIsOpen(false)} />}
       <div
         className={`site-header__surface relative z-50 mx-auto max-w-[1240px] px-3 transition-[border-radius,background-color,box-shadow,border-color,color] duration-300 sm:px-5 ${isOpen ? "rounded-[1.75rem]" : "rounded-full"}`}
         data-tone={glassTone}
         data-state={isOpen ? "open" : "closed"}
       >
-        <div className="flex h-[62px] items-center justify-between">
-          <Link href="/" scroll={false} className="focus-ring flex shrink-0 items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
+        <div className="flex min-h-[62px] flex-wrap items-center justify-between gap-y-2 py-1 md:py-2 lg:min-h-[62px] lg:flex-nowrap lg:gap-y-0 lg:py-0">
+          <Link href="/" scroll={false} className="focus-ring order-1 flex shrink-0 items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
             <span className="site-header__logo block rounded-lg px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
           </Link>
 
-          <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegación principal">
+          <nav className="order-3 hidden items-center gap-1 md:mt-2 md:basis-full md:justify-center md:border-t md:pt-2 md:flex lg:order-2 lg:mt-0 lg:basis-auto lg:justify-start lg:border-t-0 lg:pt-0" aria-label="Navegación principal">
             {navigation.map((item) => (
               <Link
                 key={item.href}
@@ -206,8 +205,8 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Link href="/sumate" scroll={false} onClick={() => handleNavigation("/sumate")} className={`focus-ring hidden rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] transition-transform hover:-translate-y-0.5 xl:block ${isDarkGlass ? "bg-white text-ink" : "bg-ink text-white"}`}>
+          <div className="order-2 flex items-center gap-2 lg:order-3 lg:gap-3">
+            <Link href="/sumate" scroll={false} onClick={() => handleNavigation("/sumate")} className={`focus-ring hidden rounded-full px-3 py-2.5 text-[10px] font-bold uppercase tracking-[0.1em] transition-transform hover:-translate-y-0.5 md:block lg:px-5 lg:py-3 lg:text-xs lg:tracking-[0.12em] ${isDarkGlass ? "bg-white text-ink" : "bg-ink text-white"}`}>
               Súmate
             </Link>
             <Link
@@ -215,7 +214,7 @@ export function SiteHeader() {
               scroll={false}
               aria-label="Entrar al área editorial"
               onClick={() => handleNavigation(loginItem.href)}
-              className={`focus-ring hidden items-center gap-2 rounded-full border px-4 py-2.5 text-xs font-bold uppercase tracking-[0.1em] transition-colors xl:inline-flex ${isDarkGlass ? (isActive(loginItem.href) ? "border-accent bg-accent/20 text-accent" : "border-white/25 text-white/80 hover:border-accent hover:text-accent") : (isActive(loginItem.href) ? "border-primary bg-primary/10 text-primary" : "border-ink/15 text-ink/70 hover:border-primary/40 hover:text-primary")}`}
+              className={`focus-ring hidden items-center gap-2 rounded-full border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.08em] transition-colors md:inline-flex lg:px-4 lg:py-2.5 lg:text-xs lg:tracking-[0.1em] ${isDarkGlass ? (isActive(loginItem.href) ? "border-accent bg-accent/20 text-accent" : "border-white/25 text-white/80 hover:border-accent hover:text-accent") : (isActive(loginItem.href) ? "border-primary bg-primary/10 text-primary" : "border-ink/15 text-ink/70 hover:border-primary/40 hover:text-primary")}`}
             >
               <LogIn size={15} aria-hidden="true" />
               {loginItem.label}
@@ -225,7 +224,7 @@ export function SiteHeader() {
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"
               aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
-              className={`focus-ring grid h-10 w-10 place-items-center rounded-full border xl:hidden ${isDarkGlass ? "border-white/25 text-white" : "border-ink/10 text-ink"}`}
+              className={`focus-ring grid h-10 w-10 place-items-center rounded-full border md:hidden ${isDarkGlass ? "border-white/25 text-white" : "border-ink/10 text-ink"}`}
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X size={19} /> : <Menu size={19} />}
@@ -234,7 +233,7 @@ export function SiteHeader() {
         </div>
 
         {isOpen && (
-          <nav id="mobile-navigation" className={`max-h-[calc(100dvh-6rem)] overflow-y-auto border-t py-3 xl:hidden ${isDarkGlass ? "border-white/15" : "border-ink/10"}`} aria-label="Menú móvil">
+          <nav id="mobile-navigation" className={`max-h-[calc(100dvh-6rem)] overflow-y-auto border-t py-3 md:hidden ${isDarkGlass ? "border-white/15" : "border-ink/10"}`} aria-label="Menú móvil">
             {mobileNavigation.map((item) => (
               <Link
                 key={item.href}

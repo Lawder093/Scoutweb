@@ -4,6 +4,7 @@ import { getContentPermission } from "@/lib/auth/admin";
 import { CONECTA_ASSETS_BUCKET, removeConectaAsset, resolveConectaAssetUrl } from "@/lib/content/conecta-storage";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { cdes, getCDE } from "@/content/cdes";
+import { hashPassword } from "@/lib/auth/password";
 
 export const dynamic = "force-dynamic";
 
@@ -100,6 +101,7 @@ export async function POST(request: Request) {
     const phone = normalizePhone(textValue(form.get("phone"), 30));
     const cdeSlug = textValue(form.get("cdeSlug"), 80);
     const community = textValue(form.get("community"), 40);
+    const password = typeof form.get("password") === "string" ? String(form.get("password")) : "";
     const isActive = isActiveValue(form.get("isActive"));
     const file = getUploadFile(form.get("image"));
 
@@ -107,13 +109,15 @@ export async function POST(request: Request) {
     if (!isValidPhone(phone)) return NextResponse.json({ message: "Escribe un número válido con lada, de 8 a 15 dígitos." }, { status: 400 });
     if (!getCDE(cdeSlug) || !Object.hasOwn(cdes, cdeSlug)) return NextResponse.json({ message: "Selecciona un CDE válido." }, { status: 400 });
     if (!COMMUNITY_KINDS.has(community)) return NextResponse.json({ message: "Selecciona una comunidad válida." }, { status: 400 });
+    if (password.length < 8) return NextResponse.json({ message: "La contraseña debe tener al menos 8 caracteres." }, { status: 400 });
+    if (password.length > 72) return NextResponse.json({ message: "La contraseña no puede tener más de 72 caracteres." }, { status: 400 });
 
     const supabase = createSupabaseAdminClient();
     if (file) uploadedPath = await uploadProfileImage(supabase, name, file);
 
     const { data, error } = await supabase
       .from("conecta_users")
-      .insert({ name, phone, photo_path: uploadedPath, cde_slug: cdeSlug, community, password_hash: null, is_active: isActive })
+      .insert({ name, phone, photo_path: uploadedPath, cde_slug: cdeSlug, community, password_hash: await hashPassword(password), is_active: isActive })
       .select("id,name,phone,photo_path,cde_slug,community,is_active,created_at,updated_at")
       .single();
 
@@ -143,11 +147,17 @@ export async function PATCH(request: Request) {
   try {
     const body = await request.json() as Record<string, unknown>;
     const id = textValue(body.id, 80);
-    if (!id || typeof body.isActive !== "boolean") return NextResponse.json({ message: "Faltan datos para actualizar el usuario." }, { status: 400 });
+    const password = typeof body.password === "string" ? body.password : "";
+    if (!id || (typeof body.isActive !== "boolean" && !password)) return NextResponse.json({ message: "Faltan datos para actualizar el usuario." }, { status: 400 });
+    if (password && (password.length < 8 || password.length > 72)) return NextResponse.json({ message: "La contraseña debe tener entre 8 y 72 caracteres." }, { status: 400 });
     const supabase = createSupabaseAdminClient();
-    const { error } = await supabase.from("conecta_users").update({ is_active: body.isActive }).eq("id", id);
+    const update = {
+      ...(typeof body.isActive === "boolean" ? { is_active: body.isActive } : {}),
+      ...(password ? { password_hash: await hashPassword(password) } : {}),
+    };
+    const { error } = await supabase.from("conecta_users").update(update).eq("id", id);
     if (error) throw error;
-    return NextResponse.json({ message: body.isActive ? "Scout activado." : "Scout desactivado." });
+    return NextResponse.json({ message: password ? "Contraseña actualizada." : body.isActive ? "Scout activado." : "Scout desactivado." });
   } catch (error) {
     console.error("No se pudo actualizar el usuario de Conecta", error);
     return NextResponse.json({ message: "No se pudo actualizar el usuario." }, { status: 500 });

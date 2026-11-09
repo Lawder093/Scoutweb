@@ -133,21 +133,31 @@ export async function PATCH(request: Request) {
   if (!owner) return NextResponse.json({ message: "Sólo el propietario puede editar usuarios." }, { status: 403 });
 
   try {
-    const body = await request.json() as { id?: unknown; email?: unknown; displayName?: unknown; permissions?: unknown; isActive?: unknown };
+    const body = await request.json() as { id?: unknown; email?: unknown; displayName?: unknown; password?: unknown; permissions?: unknown; isActive?: unknown };
     const id = textValue(body.id, 80);
     const email = textValue(body.email, 254).toLowerCase();
     const displayName = textValue(body.displayName, 120);
+    const password = passwordValue(body.password);
     const permissions = permissionsFromPayload(body.permissions);
     if (!isUuid(id) || !email || !email.includes("@")) return NextResponse.json({ message: "Faltan datos válidos del usuario." }, { status: 400 });
+    if (password && password.length < 8) return NextResponse.json({ message: "La nueva contraseña debe tener al menos 8 caracteres." }, { status: 400 });
+    if (password.length > 72) return NextResponse.json({ message: "La nueva contraseña no puede tener más de 72 caracteres." }, { status: 400 });
     const supabase = createSupabaseAdminClient();
     const { data: authUser, error: authError } = await supabase.auth.admin.getUserById(id);
     if (authError) throw authError;
     const authEmail = authUser.user.email?.toLowerCase() ?? "";
     if (!authEmail || authEmail !== email) return NextResponse.json({ message: "El correo no coincide con la cuenta de autenticación." }, { status: 400 });
     if (isContentAdminEmail(authEmail)) return NextResponse.json({ message: "El propietario no puede modificarse desde este panel." }, { status: 400 });
+    if (password) {
+      const { error: passwordError } = await supabase.auth.admin.updateUserById(id, { password, email_confirm: true });
+      if (passwordError) throw passwordError;
+    }
     const { error } = await supabase.from("admin_users").upsert(rowValues(id, authEmail, displayName, permissions, body.isActive === true), { onConflict: "id" });
     if (error) throw error;
-    return NextResponse.json({ message: body.isActive === true ? "Permisos actualizados y usuario activo." : "Permisos guardados; el usuario está desactivado." });
+    const message = password
+      ? (body.isActive === true ? "Permisos y contraseña actualizados." : "Contraseña actualizada; el usuario está desactivado.")
+      : (body.isActive === true ? "Permisos actualizados y usuario activo." : "Permisos guardados; el usuario está desactivado.");
+    return NextResponse.json({ message });
   } catch (error) {
     console.error("No se pudo actualizar el usuario del panel", error);
     return NextResponse.json({ message: "No se pudo actualizar el usuario." }, { status: 500 });

@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { ConectaFeed } from "@/components/conecta/conecta-feed";
+import { ConectaAuthorPortal } from "@/components/conecta/conecta-author-portal";
 import { ConectaLogin } from "@/components/conecta/conecta-login";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { getConectaUser } from "@/lib/auth/conecta";
-import { listConectaPosts } from "@/lib/content/repositories/conecta";
-import { getContentPermission } from "@/lib/auth/admin";
 
 export const metadata: Metadata = {
   title: "Conecta",
@@ -22,6 +20,5 @@ export default async function ConectaPage() {
 }
 
 async function ConectaPageContent({ user }: { user: NonNullable<Awaited<ReturnType<typeof getConectaUser>>> }) {
-  const [posts, admin] = await Promise.all([listConectaPosts(), getContentPermission("conecta")]);
-  return <ConectaFeed initialPosts={posts} user={user} canModerate={Boolean(admin)} />;
+  return <ConectaAuthorPortal user={user} />;
 }

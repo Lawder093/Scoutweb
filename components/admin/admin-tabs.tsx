@@ -8,7 +8,7 @@ type AdminTabsPermissions = { blog: boolean; conecta: boolean; activities: boole
 
 const tabs = [
   { href: "/admin/blog", label: "Escribir en blog", icon: BookOpenText, permission: "blog" },
-  { href: "/admin/conecta", label: "Usuarios de Conecta", icon: UsersRound, permission: "conecta" },
+  { href: "/admin/conecta", label: "Postales de Conecta", icon: UsersRound, permission: "conecta" },
   { href: "/admin/actividades", label: "Publicar evento", icon: CalendarPlus, permission: "activities" },
   { href: "/admin/instagram", label: "Instagram de los CDE", icon: Instagram, permission: "instagram" },
   { href: "/admin/usuarios", label: "Usuarios del panel", icon: UsersRound, permission: "canManageUsers" },
