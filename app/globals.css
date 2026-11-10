@@ -179,21 +179,11 @@ button {
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--color-secondary);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  display: none;
 }
 
 .eyebrow::before {
-  width: 1.8rem;
-  height: 2px;
-  background: currentColor;
-  content: "";
+  display: none;
 }
 
 .display-title {
