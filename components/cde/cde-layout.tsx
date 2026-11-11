@@ -14,5 +14,5 @@ import { getCDEActivities } from "@/lib/content/services";
 export async function CDELayout({ cde }: { cde: CDEData }) {
   const activities = await getCDEActivities(cde.slug, cde.activities, cde.heroImage);
 
-  return <><SiteHeader /><main id="contenido-principal" tabIndex={-1} data-cde={cde.slug} className="min-h-screen bg-paper"><div className="section-shell pb-5 pt-28"><BackToHomeButton /></div><CDEHero cde={cde} /><CDENavigation cdeSlug={cde.slug} /><NosotrosSection cde={cde} /><CommunitiesSection cde={cde} /><EducatorsSection cde={cde} /><ActivitiesSection cde={cde} activities={activities} /><GallerySection cde={cde} />{/* Conecta se habilitará nuevamente cuando el espacio esté funcional. <CommunityFeedPreview /> */}</main><SiteFooter /></>;
+  return <><SiteHeader /><main id="contenido-principal" tabIndex={-1} data-cde={cde.slug} className="min-h-screen bg-paper"><div className="section-shell pb-5 pt-28 md:pt-44 xl:pt-28"><BackToHomeButton /></div><CDEHero cde={cde} /><CDENavigation cdeSlug={cde.slug} /><NosotrosSection cde={cde} /><CommunitiesSection cde={cde} /><EducatorsSection cde={cde} /><ActivitiesSection cde={cde} activities={activities} /><GallerySection cde={cde} />{/* Conecta se habilitará nuevamente cuando el espacio esté funcional. <CommunityFeedPreview /> */}</main><SiteFooter /></>;
 }

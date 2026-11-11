@@ -19,7 +19,7 @@ export function CommunityDetailPage({ cde, community }: { cde: CDEData; communit
     <>
       <SiteHeader />
       <main id="contenido-principal" tabIndex={-1} className="min-h-screen bg-paper">
-        <div className="section-shell pb-5 pt-28">
+        <div className="section-shell pb-5 pt-28 md:pt-44 xl:pt-28">
           <Link href={`/cde/${cde.slug}#comunidad`} className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary">
             <ArrowLeft size={16} aria-hidden="true" />
             Volver a {cde.communityName}

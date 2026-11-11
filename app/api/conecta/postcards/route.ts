@@ -60,7 +60,7 @@ export async function POST(request: Request) {
     uploadedPath = null;
 
     const notification = await notifyPostcardSubmission({ id: postcard.id, authorName: postcard.author_name, countryName: postcard.country_name, groupName: postcard.group_name, message: postcard.message });
-    return NextResponse.json({ message: notification.sent ? "Postal enviada. La administración recibió el aviso y la revisará pronto." : "Postal enviada para aprobación. El aviso por correo queda pendiente de configurar en el servidor." }, { status: 201 });
+    return NextResponse.json({ message: notification.sent ? "Postal enviada. Se envió el aviso por correo para su revisión." : "Postal enviada para aprobación. El aviso por correo no pudo enviarse; la administración puede revisarla desde su panel." }, { status: 201 });
   } catch (error) {
     if (uploadedPath) { try { await removePostcardAsset(createSupabaseAdminClient(), uploadedPath); } catch { /* limpieza de respaldo */ } }
     console.error("No se pudo enviar la postal de Conecta", error);
