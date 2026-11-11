@@ -9,7 +9,7 @@ const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: `${siteName} | Educación scout crítica y popular`,
+    default: `${siteName} | Educación, cultura y comunidad`,
     template: `%s · ${siteName}`,
   },
   description: siteDescription,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     locale: "es_MX",
     url: absoluteUrl("/"),
     siteName,
-    title: `${siteName} | Educación scout crítica y popular`,
+    title: `${siteName} | Educación, cultura y comunidad`,
     description: siteDescription,
     images: [{ url: absoluteUrl(defaultOgImage.path), width: defaultOgImage.width, height: defaultOgImage.height, alt: defaultOgImage.alt }],
   },

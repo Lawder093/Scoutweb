@@ -1,7 +1,6 @@
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { About } from "@/components/about";
-import { Method } from "@/components/method";
+import { FoundationOverview } from "@/components/foundation-overview";
 import { Map } from "@/components/map";
 import { Timeline } from "@/components/timeline";
 import { CoroEsperanza } from "@/components/coro-esperanza";
@@ -25,8 +24,7 @@ export default async function HomePage() {
       <main>
         <Hero />
         <CoroEsperanza />
-        <About />
-        <Method />
+        <FoundationOverview />
         <Map />
         <Timeline />
         <LibraryPreview resources={resources} />

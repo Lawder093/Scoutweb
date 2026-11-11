@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const siteName = "Escultismo Crítico Popular";
-export const siteDescription = "Una propuesta de educación no formal basada en la pedagogía crítica, el escultismo y las educaciones populares.";
+export const siteDescription = "La Comunidad Crítica de Escultismo Popular, A. C. impulsa educación, cultura, asistencia social y participación comunitaria para construir condiciones más justas y humanas.";
 const productionSiteUrl = "https://www.escultista.org";
 
 function resolveSiteUrl(value: string | undefined): URL {
