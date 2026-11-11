@@ -49,7 +49,7 @@ export function NosotrosSection({ cde }: { cde: CDEData }) {
 
           <Reveal delay={0.08} className="rounded-[2rem] border border-ink/10 bg-paper p-7 shadow-card sm:p-9">
             <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-primary">Línea del tiempo</p>
-            <h3 className="display-title mt-4 text-3xl leading-tight">Una historia que sigue<br /><span className="text-secondary">en movimiento.</span></h3>
+            <h3 className="display-title mt-4 text-3xl leading-tight">Una historia que sigue<br /><span className="text-secondary">en movimiento</span></h3>
             <div className="mt-8"><Timeline items={cde.timeline} /></div>
           </Reveal>
         </div>

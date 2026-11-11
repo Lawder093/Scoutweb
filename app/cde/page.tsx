@@ -13,7 +13,7 @@ export default function CdePage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-20 sm:pt-16"><CdeSection headingLevel="h1" /></main>
+      <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16"><CdeSection headingLevel="h1" /></main>
       <SiteFooter />
     </>
   );

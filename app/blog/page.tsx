@@ -19,10 +19,10 @@ export default async function BlogPage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-20 sm:pt-16">
+      <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16">
         <section className="section-shell py-20 sm:py-28">
           <span className="eyebrow">Blog del movimiento</span>
-          <h1 className="display-title mt-6 max-w-4xl break-words text-5xl leading-[0.88] sm:text-8xl">Historias que<br /><span className="text-primary">se organizan.</span></h1>
+          <h1 className="display-title mt-6 max-w-4xl break-words text-5xl leading-[0.88] sm:text-8xl">Historias que<br /><span className="text-primary">se organizan</span></h1>
           <a href="#historias" className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white">Leer historias <ArrowUpRight size={16} aria-hidden="true" /></a>
         </section>
         <BlogBrowser posts={posts} />

@@ -7,6 +7,8 @@ const ALLOWED_PROTOCOLS = /^(?:https?:|mailto:|tel:|\/|#)/i;
  */
 export function sanitizeHtml(value: string): string {
   return value
+    // The article template owns the H1; imported WordPress body headings start at H2.
+    .replace(/<(\/?)h1(?=[\s>])/gi, "<$1h2")
     .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
     .replace(/<\/?(?:iframe|object|embed|form|input|button|textarea|select|meta|link)[^>]*>/gi, "")

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { resolveConectaAssetUrl, resolvePostcardPublicUrl } from "@/lib/content/conecta-storage";
+import { resolveConectaAssetUrl, resolvePostcardAssetUrl } from "@/lib/content/conecta-storage";
 import type { PostcardView } from "@/lib/content/postcards-types";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
@@ -24,27 +24,33 @@ type PostcardRow = {
   rejection_reason: string | null;
 };
 
-async function toView(row: PostcardRow, supabase: ReturnType<typeof createSupabaseAdminClient>): Promise<PostcardView> {
+async function toView(row: PostcardRow, supabase: ReturnType<typeof createSupabaseAdminClient>, publicView = false): Promise<PostcardView> {
   return {
     ...row,
     group_logo_url: await resolveConectaAssetUrl(supabase, row.group_logo_path),
-    cover_image_url: resolvePostcardPublicUrl(supabase, row.cover_image_path),
+    cover_image_url: await resolvePostcardAssetUrl(supabase, row.cover_image_path, publicView && row.expires_at ? (new Date(row.expires_at).getTime() - Date.now()) / 1000 : 600),
   };
 }
 
 export async function listActivePostcards(): Promise<PostcardView[]> {
-  const supabase = createSupabaseAdminClient();
-  const { data, error } = await supabase
-    .from("conecta_postcards")
-    .select(POSTCARD_COLUMNS)
-    .eq("status", "approved")
-    .gt("expires_at", new Date().toISOString())
-    .order("published_at", { ascending: false });
-  if (error) {
-    console.warn("Las postales todavía no están disponibles; aplica la migración de Conecta antes de activarlas.", error.message);
+  try {
+    const supabase = createSupabaseAdminClient();
+    const { data, error } = await supabase
+      .from("conecta_postcards")
+      .select(POSTCARD_COLUMNS)
+      .eq("status", "approved")
+      .gt("expires_at", new Date().toISOString())
+      .order("published_at", { ascending: false });
+    if (error) {
+      console.warn("Las postales todavía no están disponibles; se mostrará el mensaje de bienvenida.");
+      return [];
+    }
+    return await Promise.all(((data ?? []) as PostcardRow[]).map((row) => toView(row, supabase, true)));
+  } catch {
+    // Conecta is optional: a missing setting or storage failure must not take down the homepage.
+    console.warn("No se pudieron cargar las postales; se mostrará el mensaje de bienvenida.");
     return [];
   }
-  return Promise.all(((data ?? []) as PostcardRow[]).map((row) => toView(row, supabase)));
 }
 
 export async function listPostcardsForReview(): Promise<PostcardView[]> {

@@ -105,7 +105,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
 
         <div className="mt-20 grid gap-5 lg:grid-cols-[1.1fr_.9fr] lg:items-start">
           <Reveal className="rounded-[2.2rem] bg-paper p-7 shadow-card sm:p-10">
-            <SectionHeading eyebrow="Contacto institucional" title={<>Hacer red también es <span className="text-primary">encontrarnos.</span></>} description="Estos son los canales oficiales de la Comunidad Crítica de Escultismo Popular, A. C." />
+            <SectionHeading eyebrow="Contacto institucional" title={<>Hacer red también es <span className="text-primary">encontrarnos</span></>} description="Estos son los canales oficiales de la Comunidad Crítica de Escultismo Popular, A. C." />
             <div className="mt-9 space-y-5 border-t border-ink/10 pt-7">
               <a href="https://maps.app.goo.gl/Pnwm9gSv7P1fwJfN7" target="_blank" rel="noreferrer" className="focus-ring flex items-start gap-3 rounded-xl text-sm leading-6 text-ink/70 transition-colors hover:text-primary"><MapPin className="mt-0.5 shrink-0 text-primary" size={19} /><span>{institutionalContact.address}</span></a>
               <TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "contact_details" }} href={`mailto:${institutionalContact.email}`} className="focus-ring flex items-center gap-3 rounded-xl text-sm font-bold text-ink/75 transition-colors hover:text-primary"><Mail className="shrink-0 text-primary" size={19} />{institutionalContact.email}</TrackedLink>
@@ -121,7 +121,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
 
           <Reveal delay={0.08} className="rounded-[2.2rem] bg-accent p-7 shadow-card sm:p-10">
             <div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-ink text-white"><Building2 size={20} /></span><span className="eyebrow text-ink">Equipo responsable</span></div>
-            <h2 className="display-title mt-7 text-3xl leading-none sm:text-4xl">Personas que cuidan el proceso.</h2>
+            <h2 className="display-title mt-7 text-3xl leading-none sm:text-4xl">Personas que cuidan el proceso</h2>
             <div className="mt-8 divide-y divide-ink/15">
               {representatives.map((person) => <div key={person.role} className="py-4 first:pt-0 last:pb-0"><p className="text-[10px] font-extrabold uppercase tracking-[0.15em] text-ink/55">{person.role}</p><p className="mt-1 font-extrabold text-ink">{person.name}</p></div>)}
             </div>
@@ -132,7 +132,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
           <div className="grid gap-9 lg:grid-cols-[.8fr_1.2fr]">
             <div>
               <div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-secondary text-white"><ShieldCheck size={20} /></span><span className="eyebrow">Transparencia</span></div>
-              <h2 className="display-title mt-7 text-3xl leading-none sm:text-4xl">Un proyecto con memoria y responsabilidad.</h2>
+              <h2 className="display-title mt-7 text-3xl leading-none sm:text-4xl">Un proyecto con memoria y responsabilidad</h2>
               <p className="mt-5 text-sm leading-7 text-ink/60">Consulta aquí los datos públicos de registro y el aviso legal que acompaña nuestra labor.</p>
             </div>
             <div>
@@ -147,7 +147,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
         </Reveal>
 
         <div id="centros" className="mt-24 scroll-mt-28">
-          <Reveal><SectionHeading eyebrow="Centros de Desarrollo Escultista" title={<>La red se encuentra en <span className="text-primary">varios territorios.</span></>} description="Cada CDE sostiene una experiencia propia y comparte los principios de la Comunidad Crítica de Escultismo Popular." /></Reveal>
+          <Reveal><SectionHeading eyebrow="Centros de Desarrollo Escultista" title={<>La red se encuentra en <span className="text-primary">varios territorios</span></>} description="Cada CDE sostiene una experiencia propia y comparte los principios de la Comunidad Crítica de Escultismo Popular." /></Reveal>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {cdeContacts.map((cde, index) => <Reveal key={cde.slug} delay={index * 0.08} className="flex h-full flex-col rounded-[2rem] border border-ink/10 bg-paper p-6 shadow-card transition-transform hover:-translate-y-1 sm:p-7">
               <div className="flex items-center justify-between gap-3"><span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.15em] text-primary">{cde.country}</span><Link href={`/cde/${cde.slug}`} className="focus-ring rounded-full p-2 text-primary transition-colors hover:bg-primary/10" aria-label={`Explorar CDE ${cde.country}`}><ArrowUpRight size={18} /></Link></div>
@@ -172,7 +172,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
         </div>
 
         <Reveal delay={0.12} className="mt-16 rounded-[2rem] bg-primary p-7 text-white sm:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><div className="flex items-center gap-2 text-accent"><MessageCircle size={20} /><span className="text-xs font-extrabold uppercase tracking-[0.16em]">Para empezar</span></div><h2 className="display-title mt-5 max-w-2xl text-4xl leading-[0.95] sm:text-5xl">Cuéntanos qué quieres poner en movimiento.</h2></div><TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "footer_cta" }} href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Mandar un correo <ArrowUpRight size={16} /></TrackedLink></div>
+          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><div className="flex items-center gap-2 text-accent"><MessageCircle size={20} /><span className="text-xs font-extrabold uppercase tracking-[0.16em]">Para empezar</span></div><h2 className="display-title mt-5 max-w-2xl text-4xl leading-[0.95] sm:text-5xl">Cuéntanos qué quieres poner en movimiento</h2></div><TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "footer_cta" }} href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Mandar un correo <ArrowUpRight size={16} /></TrackedLink></div>
         </Reveal>
       </div>
     </section>

@@ -12,5 +12,5 @@ export default async function AdminInstagramPage() {
   const user = await getContentPermission("instagram");
   if (!user) redirect("/login?next=/admin/instagram");
   const cdeOptions: AdminInstagramCDEOption[] = Object.values(cdes).map((cde) => ({ slug: cde.slug, label: cde.communityName, country: cde.country }));
-  return <AdminShell title="Instagram de los CDE." description="Actualiza la publicación que quieres destacar para cada Centro de Desarrollo Escultista."><InstagramManager cdeOptions={cdeOptions} /></AdminShell>;
+  return <AdminShell title="Instagram de los CDE" description="Actualiza la publicación que quieres destacar para cada Centro de Desarrollo Escultista."><InstagramManager cdeOptions={cdeOptions} /></AdminShell>;
 }

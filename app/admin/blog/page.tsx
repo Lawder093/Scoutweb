@@ -11,5 +11,5 @@ export default async function AdminBlogPage() {
   const user = await getContentPermission("blog");
   if (!user) redirect("/login?next=/admin/blog");
 
-  return <AdminShell title="Blog editorial." description="Escribe, revisa y publica historias, herramientas y conversaciones para compartirlas con la comunidad."><BlogManager /></AdminShell>;
+  return <AdminShell title="Blog editorial" description="Escribe, revisa y publica historias, herramientas y conversaciones para compartirlas con la comunidad."><BlogManager /></AdminShell>;
 }

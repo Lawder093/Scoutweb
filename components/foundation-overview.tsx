@@ -1,55 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, HeartHandshake, ShieldCheck } from "lucide-react";
-import { Reveal } from "./reveal";
-import { foundationMission, foundationVision, foundationWorkAreas } from "@/content/foundation";
+import { ArrowUpRight } from "lucide-react";
+
+const projects = [
+  { title: "Aprender y participar", text: "Experiencias educativas donde niños y jóvenes descubren sus capacidades, conviven y aprenden haciendo.", image: "/images/inicio-cover.jpg", alt: "Acompañamiento durante una actividad educativa", href: "/cde", link: "Conoce los espacios educativos" },
+  { title: "Compartir y acompañar", text: "Jornadas de colaboración, entrega de materiales y encuentros que fortalecen los vínculos con las comunidades.", image: "/images/conecta/actividades/actividad-09.jpg", alt: "Integrantes de la asociación y de la comunidad reunidos durante una jornada", href: "/donacion", link: "Mira las actividades comunitarias" },
+  { title: "Crear y expresarnos", text: "La música y el arte abren espacios de encuentro para las juventudes y nuevas formas de participar en comunidad.", image: "/images/coro-esperanza-paulo-freire.jpg", alt: "Jóvenes del Coro Esperanza con sus instrumentos", href: "#coro-esperanza", link: "Descubre el Coro Esperanza" },
+];
 
 export function FoundationOverview() {
   return (
-    <section id="asociacion" className="bg-mist py-24 sm:py-32">
+    <section id="asociacion" className="bg-mist py-16 sm:py-24">
       <div className="section-shell">
-        <div className="grid gap-12 lg:grid-cols-[1.08fr_.92fr] lg:items-start lg:gap-20">
-          <Reveal>
-            <h2 className="display-title max-w-3xl text-5xl leading-[0.92] sm:text-7xl">
-              Una asociación civil para <span className="text-primary">acompañar la vida.</span>
-            </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-ink/70">
-              La Comunidad Crítica de Escultismo Popular trabaja por el bienestar y el desarrollo de niñas, niños, adolescentes y comunidades. Nuestro trabajo combina educación, cultura, asistencia social y organización comunitaria.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/asociacion" className="focus-ring inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">
-                Conocer la asociación <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-              <Link href="/donacion" className="focus-ring inline-flex items-center gap-2 rounded-full border border-ink/15 px-5 py-3.5 text-sm font-extrabold text-ink transition-colors hover:border-primary hover:text-primary">
-                Apoyar el proyecto <HeartHandshake size={16} aria-hidden="true" />
-              </Link>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            <div className="rounded-[2rem] bg-primary p-7 text-white shadow-card sm:p-8">
-              <HeartHandshake className="text-accent" size={27} strokeWidth={1.7} aria-hidden="true" />
-              <h3 className="mt-7 text-2xl font-extrabold">Nuestra misión</h3>
-              <p className="mt-4 text-base leading-7 text-white/75">{foundationMission}</p>
-            </div>
-            <div className="rounded-[2rem] bg-white p-7 shadow-card sm:p-8">
-              <ShieldCheck className="text-primary" size={27} strokeWidth={1.7} aria-hidden="true" />
-              <h3 className="mt-7 text-2xl font-extrabold">Nuestra visión</h3>
-              <p className="mt-4 text-base leading-7 text-ink/65">{foundationVision}</p>
-            </div>
-          </Reveal>
+        <div className="grid gap-7 lg:grid-cols-[1fr_.9fr] lg:gap-20">
+          <h2 className="display-title max-w-2xl text-4xl leading-[1.03] sm:text-6xl">Estar cerca también <span className="text-primary">transforma</span></h2>
+          <div><p className="text-lg leading-8 text-ink/75">Somos una asociación civil que une educación, cultura y asistencia social. Trabajamos con las comunidades para responder a necesidades reales y abrir posibilidades de una vida más justa y humana.</p><Link href="/asociacion" className="focus-ring mt-5 inline-flex items-center gap-3 rounded-lg py-2 font-extrabold text-primary hover:text-ink">Nuestra misión y forma de trabajar <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
         </div>
-
-        <div className="mt-20 border-t border-ink/10 pt-10 sm:mt-24 sm:pt-14">
-          <h3 className="display-title max-w-2xl text-4xl leading-tight sm:text-5xl">Lo que hacemos para que una comunidad pueda <span className="text-secondary">crecer.</span></h3>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {foundationWorkAreas.map((area, index) => (
-              <Reveal key={area.title} delay={index * 0.04} className="rounded-[1.6rem] border border-ink/10 bg-white p-6 transition-transform hover:-translate-y-1 sm:p-7">
-                <span className="text-3xl font-black text-primary/25">{String(index + 1).padStart(2, "0")}</span>
-                <h4 className="mt-7 text-xl font-extrabold">{area.title}</h4>
-                <p className="mt-3 text-sm leading-7 text-ink/60">{area.description}</p>
-              </Reveal>
-            ))}
-          </div>
+        <div className="mt-12 grid gap-9 md:grid-cols-3 md:gap-6">
+          {projects.map((project) => (
+            <article key={project.title} className="flex min-w-0 flex-col">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white"><Image src={project.image} alt={project.alt} fill className="object-cover" sizes="(min-width: 768px) 33vw, 100vw" /></div>
+              <h3 className="mt-6 text-2xl font-extrabold tracking-tight">{project.title}</h3>
+              <p className="mb-5 mt-3 text-base leading-7 text-ink/70">{project.text}</p>
+              <Link href={project.href} className="focus-ring mt-auto inline-flex items-start gap-2 rounded-lg py-2 text-sm font-extrabold text-primary hover:text-ink">{project.link}<ArrowUpRight className="shrink-0" size={17} aria-hidden="true" /></Link>
+            </article>
+          ))}
         </div>
       </div>
     </section>

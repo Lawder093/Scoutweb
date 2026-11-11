@@ -13,6 +13,10 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  // This legacy endpoint is a local prototype, never a public login method.
+  if (getConectaOtpMode() !== "prototype") {
+    return NextResponse.json({ message: "El acceso por código no está disponible. Usa tu teléfono y contraseña." }, { status: 410 });
+  }
   try {
     const body = await request.json() as { phone?: unknown };
     const phone = normalizePhone(typeof body.phone === "string" ? body.phone : "");

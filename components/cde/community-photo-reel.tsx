@@ -36,7 +36,7 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
           <div>
             <span className="eyebrow text-secondary">Momentos de la comunidad</span>
             <h2 id="momentos-comunidad-title" className="display-title mt-4 text-4xl leading-[0.95] sm:text-5xl">
-              {communityName} <span className="text-primary">en movimiento.</span>
+              {communityName} <span className="text-primary">en movimiento</span>
             </h2>
           </div>
           <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">Carrusel de derecha a izquierda</p>

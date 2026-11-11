@@ -5,6 +5,7 @@ import { FormEvent, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, KeyRound, Mail } from "lucide-react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { safeNextPath } from "@/lib/auth/redirect";
 
 export function LoginForm() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const nextPath = searchParams.get("next")?.startsWith("/") ? searchParams.get("next")! : "/admin/blog";
+  const nextPath = safeNextPath(searchParams.get("next"));
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,7 +23,7 @@ export function LoginForm() {
 
     try {
       const supabase = createSupabaseBrowserClient();
-      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email: email.trim().toLowerCase(), password });
       if (signInError) throw signInError;
       router.replace(nextPath);
       router.refresh();

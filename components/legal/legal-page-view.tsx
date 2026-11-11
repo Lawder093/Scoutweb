@@ -55,7 +55,7 @@ function LegalBlockView({ block }: { block: LegalBlock }) {
 
 export function LegalPageView({ page }: { page: LegalPage }) {
   return (
-    <main className="min-h-screen bg-paper">
+    <main id="contenido-principal" tabIndex={-1} className="min-h-screen bg-paper">
       <section className="bg-ink px-4 pb-14 pt-32 text-white sm:px-6 sm:pb-20 sm:pt-40">
         <div className="mx-auto max-w-[980px]">
           <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-accent"><ShieldCheck size={16} /> Información institucional</div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { LogIn, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -88,9 +88,10 @@ function resetScrollPosition() {
 }
 
 export function SiteHeader() {
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [glassTone, setGlassTone] = useState<GlassTone>(pathname === "/" ? "dark" : "light");
+  const [glassTone, setGlassTone] = useState<GlassTone>("light");
 
   useEffect(() => {
     const previousScrollRestoration = window.history.scrollRestoration;
@@ -119,9 +120,24 @@ export function SiteHeader() {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    document.querySelector<HTMLAnchorElement>("#mobile-navigation a")?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+      }
+      if (event.key === "Tab") {
+        const links = Array.from(document.querySelectorAll<HTMLElement>(".site-header__surface a, .site-header__surface button"))
+          .filter((element) => element.getClientRects().length > 0);
+        const first = links[0];
+        const last = links[links.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault(); last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first?.focus();
+        }
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -186,12 +202,12 @@ export function SiteHeader() {
         data-tone={glassTone}
         data-state={isOpen ? "open" : "closed"}
       >
-        <div className="flex min-h-[62px] flex-wrap items-center justify-between gap-y-2 py-1 md:py-2 lg:min-h-[62px] lg:flex-nowrap lg:gap-y-0 lg:py-0">
+        <div className="flex min-h-[62px] flex-wrap items-center justify-between gap-y-2 py-1 md:py-2 xl:min-h-[62px] xl:flex-nowrap xl:gap-y-0 xl:py-0">
           <Link href="/" scroll={false} className="focus-ring order-1 flex shrink-0 items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
             <span className="site-header__logo block rounded-lg px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
           </Link>
 
-          <nav className="order-3 hidden items-center gap-1 md:mt-2 md:basis-full md:justify-center md:border-t md:pt-2 md:flex lg:order-2 lg:mt-0 lg:basis-auto lg:justify-start lg:border-t-0 lg:pt-0" aria-label="Navegación principal">
+          <nav className="order-3 hidden items-center gap-1 md:mt-2 md:basis-full md:justify-center md:border-t md:pt-2 md:flex xl:order-2 xl:mt-0 xl:basis-auto xl:justify-start xl:border-t-0 xl:pt-0" aria-label="Navegación principal">
             {navigation.map((item) => (
               <Link
                 key={item.href}
@@ -206,7 +222,7 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="order-2 flex items-center gap-2 lg:order-3 lg:gap-3">
+          <div className="order-2 flex items-center gap-2 xl:order-3 xl:gap-3">
             <Link href="/sumate" scroll={false} onClick={() => handleNavigation("/sumate")} className={`focus-ring hidden rounded-full px-3 py-2.5 text-[10px] font-bold uppercase tracking-[0.1em] transition-transform hover:-translate-y-0.5 md:block lg:px-5 lg:py-3 lg:text-xs lg:tracking-[0.12em] ${isDarkGlass ? "bg-white text-ink" : "bg-ink text-white"}`}>
               Súmate
             </Link>
@@ -221,6 +237,7 @@ export function SiteHeader() {
               {loginItem.label}
             </Link>
             <button
+              ref={menuButtonRef}
               type="button"
               aria-expanded={isOpen}
               aria-controls="mobile-navigation"

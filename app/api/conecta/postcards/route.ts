@@ -56,6 +56,9 @@ export async function POST(request: Request) {
     }).select("id,author_name,country_name,group_name,message").single();
     if (error) throw error;
 
+    // The row now owns this file. A later email failure must never delete it.
+    uploadedPath = null;
+
     const notification = await notifyPostcardSubmission({ id: postcard.id, authorName: postcard.author_name, countryName: postcard.country_name, groupName: postcard.group_name, message: postcard.message });
     return NextResponse.json({ message: notification.sent ? "Postal enviada. La administración recibió el aviso y la revisará pronto." : "Postal enviada para aprobación. El aviso por correo queda pendiente de configurar en el servidor." }, { status: 201 });
   } catch (error) {

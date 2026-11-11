@@ -1,6 +1,9 @@
 import { fileURLToPath } from "node:url";
+import { readFileSync } from "node:fs";
+import { legacyBlogRedirects } from "./lib/legacy-redirects.mjs";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
+const migratedBlogPosts = JSON.parse(readFileSync(new URL("./content/blog/posts-summary.json", import.meta.url), "utf8"));
 
 function getSupabaseHostname() {
   const value = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -23,6 +26,13 @@ const connectSources = [
   "https://region1.google-analytics.com",
   ...(supabaseHostname ? [`https://${supabaseHostname}`] : []),
 ];
+const frameSources = [
+  "'self'",
+  "https://drive.google.com",
+  "https://docs.google.com",
+  // Only public documents in our configured storage bucket may be embedded.
+  ...(supabaseHostname ? [`https://${supabaseHostname}/storage/v1/object/public/content-assets/`] : []),
+];
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -41,7 +51,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com`,
       `connect-src ${connectSources.join(" ")}`,
-      "frame-src 'self' https://drive.google.com https://docs.google.com",
+      `frame-src ${frameSources.join(" ")}`,
       ...(isDevelopment ? [] : ["upgrade-insecure-requests"]),
     ].join("; "),
   },
@@ -54,6 +64,9 @@ const nextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      ...legacyBlogRedirects(migratedBlogPosts),
+      { source: "/historia", destination: "/asociacion#historia", permanent: true },
+      { source: "/escultismo", destination: "/cde/mexico", permanent: true },
       {
         source: "/donataria-donaciones",
         destination: "/donacion",

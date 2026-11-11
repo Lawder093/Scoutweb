@@ -35,7 +35,7 @@ export function StoreShowcase() {
           <div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">
             <SectionHeading
               eyebrow="Catálogo físico"
-              title={<>Objetos que llevan la <span className="text-primary">ronda contigo.</span></>}
+              title={<>Objetos que llevan la <span className="text-primary">ronda contigo</span></>}
               description="Una muestra de los materiales y prendas que podemos compartir desde nuestros Centros de Desarrollo Escultista."
             />
             <Link href="/sumate" className="focus-ring inline-flex shrink-0 items-center gap-2 text-sm font-extrabold text-secondary transition-colors hover:text-primary">
@@ -48,7 +48,7 @@ export function StoreShowcase() {
           <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-primary">Importante</p>
-              <h2 className="display-title mt-3 text-3xl sm:text-4xl">No es una tienda en línea todavía.</h2>
+              <h2 className="display-title mt-3 text-3xl sm:text-4xl">No es una tienda en línea todavía</h2>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/65">Por ahora mostramos el catálogo físico. Para conocer existencias, tallas, modelos y formas de entrega, escríbenos.</p>
             </div>
             <Link href="/sumate" className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">

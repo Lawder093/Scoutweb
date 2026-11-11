@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} | Educación scout crítica y popular`,
+    title: `${siteName} | Educación, cultura y comunidad`,
     description: siteDescription,
     images: [absoluteUrl(defaultOgImage.path)],
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es">
-      <body className="paper-grain"><GoogleAnalytics />{children}<DonationFloatingButton /></body>
+      <body className="paper-grain"><a href="#contenido-principal" className="skip-link focus-ring">Saltar al contenido</a><GoogleAnalytics />{children}<DonationFloatingButton /></body>
     </html>
   );
 }

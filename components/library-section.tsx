@@ -7,7 +7,7 @@ export function LibrarySection({ resources }: { resources: LibraryResource[] }) 
   return (
     <section id="recursos" className="bg-mist py-24 sm:py-32">
       <div className="section-shell">
-        <Reveal><SectionHeading eyebrow="Recursos abiertos" title={<>Herramientas para <span className="text-primary">hacer.</span></>} description="Publicaciones, juegos y materiales para descargar, adaptar y compartir sin pedir permiso." /></Reveal>
+        <Reveal><SectionHeading eyebrow="Recursos abiertos" title={<>Herramientas para <span className="text-primary">hacer</span></>} description="Publicaciones, juegos y materiales para descargar, adaptar y compartir sin pedir permiso." /></Reveal>
         <LibraryBrowser resources={resources} />
       </div>
     </section>

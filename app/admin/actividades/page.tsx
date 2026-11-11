@@ -12,5 +12,5 @@ export default async function AdminActivitiesPage() {
   const user = await getContentPermission("activities");
   if (!user) redirect("/login?next=/admin/actividades");
   const cdeOptions: AdminCDEOption[] = Object.values(cdes).map((cde) => ({ slug: cde.slug, label: cde.communityName }));
-  return <AdminShell title="Actividades." description="Publica una noticia o evento en un solo CDE. La información llegará directamente a la sección Actividades de su página."><ActivityManager cdeOptions={cdeOptions} /></AdminShell>;
+  return <AdminShell title="Actividades" description="Publica una noticia o evento en un solo CDE. La información llegará directamente a la sección Actividades de su página."><ActivityManager cdeOptions={cdeOptions} /></AdminShell>;
 }

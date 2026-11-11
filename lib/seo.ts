@@ -26,10 +26,10 @@ function resolveSiteUrl(value: string | undefined): URL {
 export const siteUrl = resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL?.trim());
 
 export const defaultOgImage = {
-  path: "/images/scouts-hero.png",
-  width: 1672,
-  height: 941,
-  alt: "Scouts caminando en comunidad",
+  path: "/images/inicio-cover.jpg",
+  width: 1280,
+  height: 1069,
+  alt: "Acompañamiento durante una actividad comunitaria de la asociación",
 };
 
 type PageMetadataOptions = {

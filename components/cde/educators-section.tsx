@@ -58,7 +58,7 @@ export function EducatorsSection({ cde }: { cde: CDEData }) {
               <div className="p-7 sm:p-10 lg:p-12">
                 <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-accent">El equipo de {cde.communityName}</p>
                 <h3 className="mt-5 max-w-2xl text-3xl font-black leading-[0.98] tracking-[-0.04em] sm:text-5xl">
-                  Tu tiempo, tus saberes y tu forma de mirar también tienen un lugar aquí.
+                  Tu tiempo, tus saberes y tu forma de mirar también tienen un lugar aquí
                 </h3>
                 <p className="mt-5 max-w-xl text-base leading-7 text-white/75">
                   Puedes acompañar una comunidad, compartir una habilidad o colaborar en una actividad puntual. El rol se conversa de acuerdo con tus posibilidades y con el momento que vive cada CDE.
@@ -91,7 +91,7 @@ export function EducatorsSection({ cde }: { cde: CDEData }) {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="eyebrow text-primary">Formas de participar</p>
-                <h3 className="display-title mt-4 text-4xl leading-none sm:text-5xl">Hay más de una forma<br /><span className="text-primary">de estar.</span></h3>
+                <h3 className="display-title mt-4 text-4xl leading-none sm:text-5xl">Hay más de una forma<br /><span className="text-primary">de estar</span></h3>
               </div>
               <p className="max-w-sm text-sm leading-6 text-ink/55">La educación se sostiene con capacidades distintas, responsabilidades compartidas y ganas de aprender con otras personas.</p>
             </div>
@@ -117,7 +117,7 @@ export function EducatorsSection({ cde }: { cde: CDEData }) {
           <Reveal>
             <div className="max-w-2xl">
               <p className="eyebrow text-secondary">Un camino acompañado</p>
-              <h3 className="display-title mt-4 text-4xl leading-none sm:text-5xl">De la intención<br /><span className="text-secondary">a la práctica.</span></h3>
+              <h3 className="display-title mt-4 text-4xl leading-none sm:text-5xl">De la intención<br /><span className="text-secondary">a la práctica</span></h3>
               <p className="mt-5 text-base leading-7 text-ink/60">La incorporación de nuevas personas se diseña junto con cada CDE. Esta ruta permite conversar expectativas, reconocer saberes y cuidar el vínculo educativo.</p>
             </div>
           </Reveal>

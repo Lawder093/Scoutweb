@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import Image from "next/image";
+import { useReducedMotion } from "framer-motion";
 
 const activityImages = [
   { src: "/images/conecta/actividades/actividad-01.jpg", alt: "Actividad comunitaria con niñas y niños" },
@@ -37,14 +38,16 @@ export function ActivityMosaicCarousel() {
   }, []);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (isPaused || slides.length < 2) return undefined;
+    if (isPaused || isHovered || reduceMotion || slides.length < 2) return undefined;
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % slides.length);
     }, 5500);
     return () => window.clearInterval(timer);
-  }, [isPaused, slides.length]);
+  }, [isPaused, isHovered, reduceMotion, slides.length]);
 
   function goToSlide(index: number) {
     setActiveSlide((index + slides.length) % slides.length);
@@ -55,7 +58,7 @@ export function ActivityMosaicCarousel() {
       <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-2xl">
           <p className="eyebrow text-accent">Memoria comunitaria</p>
-          <h2 id="actividad-comunitaria-title" className="display-title mt-5 text-4xl leading-[0.95] sm:text-6xl">La comunidad se mueve cuando participamos.</h2>
+          <h2 id="actividad-comunitaria-title" className="display-title mt-5 text-4xl leading-[0.95] sm:text-6xl">La comunidad se mueve cuando participamos</h2>
           <p className="mt-5 max-w-xl text-sm leading-7 text-white/70 sm:text-base">Un álbum de encuentros, jornadas y acciones compartidas por la comunidad scout.</p>
         </div>
         <div className="flex items-center gap-2" aria-label="Controles del carrusel">
@@ -67,13 +70,13 @@ export function ActivityMosaicCarousel() {
         </div>
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-[1.6rem]" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-        <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${activeSlide * 100}%)` }} aria-live="polite">
+      <div className="mt-8 overflow-hidden rounded-[1.6rem]" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <div className="flex transition-transform duration-700 ease-out motion-reduce:transition-none" style={{ transform: `translateX(-${activeSlide * 100}%)` }} aria-live={isPaused || reduceMotion ? "polite" : "off"}>
           {slides.map((slide, slideIndex) => (
             <div key={`activity-slide-${slideIndex}`} className="grid min-h-[24rem] w-full shrink-0 auto-rows-[8rem] grid-cols-2 gap-2 bg-ink/10 p-2 sm:min-h-0 sm:aspect-[4/3] sm:auto-rows-auto sm:grid-cols-4 sm:grid-rows-2" aria-hidden={activeSlide !== slideIndex}>
               {slide.map((image, imageIndex) => (
                 <div key={image.src} className={`relative min-h-32 overflow-hidden rounded-xl bg-ink/20 sm:min-h-44 ${slide.length === 1 && imageIndex === 0 ? "col-span-2 row-span-3 sm:col-span-4 sm:row-span-2" : (mosaicClasses[imageIndex] ?? "col-span-1 row-span-1")}`}>
-                  <Image src={image.src} alt={image.alt} fill sizes="(min-width: 640px) 50vw, 100vw" priority={slideIndex === 0} className="object-cover transition-transform duration-700 hover:scale-105" />
+                  <Image src={image.src} alt={image.alt} fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-700 hover:scale-105 motion-reduce:transition-none" />
                 </div>
               ))}
             </div>

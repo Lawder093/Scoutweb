@@ -1,9 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Heart } from "lucide-react";
-import { Reveal } from "./reveal";
+import { ArrowUpRight } from "lucide-react";
 
 export function CTA() {
-  return (
-    <section id="sumate" data-glass-tone="dark" className="bg-primary px-4 py-20 text-white sm:px-6 sm:py-28"><Reveal className="mx-auto max-w-[1180px] text-center"><div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-ink"><Heart size={24} fill="currentColor" /></div><h2 className="display-title mx-auto mt-7 max-w-3xl text-5xl leading-[0.9] sm:text-7xl">Forma parte de esta comunidad educativa.</h2><p className="mx-auto mt-6 max-w-xl text-base leading-7 text-white/75 sm:text-lg">Hay muchas formas de sumarse: una pregunta, una experiencia, un taller o una caminata compartida.</p><Link href="/sumate" className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-extrabold text-primary transition-transform hover:-translate-y-1">Súmate a la comunidad <ArrowUpRight size={17} /></Link></Reveal></section>
-  );
+  return <section id="sumate" className="bg-mist py-16 sm:py-24"><div className="section-shell grid items-center gap-8 border-t border-ink/15 pt-12 lg:grid-cols-[1.2fr_.8fr]"><div><h2 className="display-title max-w-2xl text-4xl leading-[1.05] sm:text-6xl">Tu apoyo puede ser el comienzo <span className="text-primary">de algo más</span></h2><p className="mt-5 max-w-xl text-lg leading-8 text-ink/70">Aporta, comparte tu experiencia o propón una colaboración. Hablemos de cómo podemos trabajar juntos.</p></div><div className="flex flex-col gap-4 sm:flex-row lg:flex-col lg:items-start lg:pl-12"><Link href="/donacion" className="focus-ring inline-flex items-center justify-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-extrabold text-white hover:bg-ink">Hacer una aportación <ArrowUpRight size={18} aria-hidden="true" /></Link><Link href="/sumate" className="focus-ring inline-flex items-center justify-center gap-3 rounded-full border border-ink/25 px-7 py-4 text-sm font-extrabold hover:bg-white">Quiero colaborar <ArrowUpRight size={18} aria-hidden="true" /></Link></div></div></section>;
 }

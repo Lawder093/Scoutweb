@@ -10,5 +10,5 @@ export const dynamic = "force-dynamic";
 export default async function AdminUsersPage() {
   const owner = await getContentOwner();
   if (!owner) redirect("/login?next=/admin/usuarios");
-  return <AdminShell title="Usuarios del panel." description="Invita personas y decide exactamente qué secciones puede administrar cada una."><AdminUserManager /></AdminShell>;
+  return <AdminShell title="Usuarios del panel" description="Crea accesos con correo y contraseña, y decide qué secciones puede administrar cada persona."><AdminUserManager /></AdminShell>;
 }

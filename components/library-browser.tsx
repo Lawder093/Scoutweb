@@ -80,7 +80,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
         </div>
       ) : (
         <div className="mt-5 rounded-[1.8rem] border border-dashed border-ink/20 bg-paper px-6 py-14 text-center">
-          <h2 className="display-title text-3xl">No encontramos ese recurso.</h2>
+          <h2 className="display-title text-3xl">No encontramos ese recurso</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-ink/60">Prueba con otra palabra o limpia los filtros para explorar toda la colección.</p>
           <button type="button" onClick={() => { setQuery(""); setCategory("Todas"); setTag("Todas"); setPage(1); }} className="focus-ring mt-6 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white">Limpiar filtros</button>
         </div>

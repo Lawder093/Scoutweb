@@ -78,7 +78,7 @@ export function ConectaPostManager() {
     <div className="grid gap-7 xl:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
       <section className="rounded-[2rem] border border-ink/10 bg-paper p-6 shadow-soft sm:p-8">
         <span className="eyebrow text-secondary"><Send size={14} /> Publicación global</span>
-        <h2 className="display-title mt-4 text-4xl leading-none">Compartir en Conecta.</h2>
+        <h2 className="display-title mt-4 text-4xl leading-none">Compartir en Conecta</h2>
         <p className="mt-4 text-sm leading-6 text-ink/60">Cada entrada es visible para las cuentas activas de los tres CDE. Por ahora permite una fotografía, texto y un enlace opcional.</p>
         <form onSubmit={createPost} className="mt-8 space-y-5">
           <label className="block text-sm font-bold text-ink">Título<input required name="title" maxLength={180} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base outline-none sm:text-sm" placeholder="Un momento de la comunidad" /></label>
@@ -91,7 +91,7 @@ export function ConectaPostManager() {
       </section>
 
       <section className="rounded-[2rem] border border-ink/10 bg-paper p-6 shadow-soft sm:p-8">
-        <div className="flex flex-wrap items-end justify-between gap-4"><div><span className="eyebrow text-primary">Feed privado</span><h2 className="display-title mt-4 text-4xl leading-none">Publicaciones.</h2></div><span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-extrabold text-primary">{posts.length}</span></div>
+        <div className="flex flex-wrap items-end justify-between gap-4"><div><span className="eyebrow text-primary">Feed privado</span><h2 className="display-title mt-4 text-4xl leading-none">Publicaciones</h2></div><span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-extrabold text-primary">{posts.length}</span></div>
         {loading ? <div className="mt-8 flex items-center gap-2 text-sm text-ink/55"><LoaderCircle className="animate-spin" size={17} /> Cargando publicaciones…</div> : posts.length === 0 ? <div className="mt-8 rounded-2xl border border-dashed border-ink/20 p-8 text-sm text-ink/55">Todavía no hay publicaciones en Conecta.</div> : <div className="mt-8 space-y-4">{posts.map((post) => <article key={post.id} className="overflow-hidden rounded-2xl border border-ink/10"><div className="flex gap-4 p-4">{post.image_url && <img src={post.image_url} alt="" className="h-20 w-20 shrink-0 rounded-xl object-cover" />}<div className="min-w-0 flex-1"><div className="flex items-start justify-between gap-3"><div><h3 className="break-words font-extrabold text-ink">{post.title}</h3><p className="mt-1 text-xs text-ink/45">{dateLabel(post.published_at)}{post.location ? ` · ${post.location}` : ""}</p></div><button type="button" aria-label={`Eliminar ${post.title}`} onClick={() => void deletePost(post)} className="focus-ring shrink-0 rounded-full border border-primary/20 p-2 text-primary hover:bg-primary/10"><Trash2 size={15} /></button></div><p className="mt-3 line-clamp-3 text-sm leading-6 text-ink/60">{post.caption}</p><span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-secondary"><MessageCircle size={13} /> {post.comments?.length ?? 0} comentarios</span></div></div></article>)}</div>}
       </section>
     </div>

@@ -24,8 +24,9 @@ export async function PATCH(request: Request) {
     const update = action === "approve"
       ? { status: "approved", approved_at: new Date().toISOString(), published_at: new Date().toISOString(), expires_at: new Date(Date.now() + 72 * 60 * 60 * 1000).toISOString(), reviewed_by: admin.id, rejection_reason: null }
       : { status: "rejected", approved_at: null, published_at: null, expires_at: null, reviewed_by: admin.id, rejection_reason: typeof body.rejectionReason === "string" ? body.rejectionReason.trim().slice(0, 500) || "No aprobada por administración." : "No aprobada por administración." };
-    const { error } = await supabase.from("conecta_postcards").update(update).eq("id", id);
+    const { data, error } = await supabase.from("conecta_postcards").update(update).eq("id", id).eq("status", "pending").select("id").maybeSingle();
     if (error) throw error;
+    if (!data) return NextResponse.json({ message: "La postal ya fue revisada o no existe. Actualiza la lista." }, { status: 409 });
     return NextResponse.json({ message: action === "approve" ? "Postal aprobada y visible durante 72 horas." : "Postal rechazada." });
   } catch (error) { console.error("No se pudo moderar la postal", error); return NextResponse.json({ message: "No se pudo actualizar la postal." }, { status: 500 }); }
 }

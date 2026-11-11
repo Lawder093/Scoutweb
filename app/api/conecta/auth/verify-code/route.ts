@@ -4,6 +4,7 @@ import {
   isValidPhone,
   normalizePhone,
   createConectaSession,
+  getConectaOtpMode,
   verifyConectaCode,
 } from "@/lib/auth/conecta";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -11,6 +12,9 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (getConectaOtpMode() !== "prototype") {
+    return NextResponse.json({ message: "El acceso por código no está disponible. Usa tu teléfono y contraseña." }, { status: 410 });
+  }
   try {
     const body = await request.json() as { phone?: unknown; code?: unknown };
     const phone = normalizePhone(typeof body.phone === "string" ? body.phone : "");

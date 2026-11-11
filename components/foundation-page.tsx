@@ -1,143 +1,77 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, HeartHandshake, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, Check, HeartHandshake } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Reveal } from "@/components/reveal";
-import { Timeline } from "@/components/timeline";
 import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationVision, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
+
+const sectionLinks = [
+  { href: "#proposito", label: "Nuestro propósito" },
+  { href: "#trabajo", label: "Qué hacemos" },
+  { href: "#beneficiarios", label: "A quiénes acompañamos" },
+  { href: "#historia", label: "Nuestra historia" },
+  { href: "#transparencia", label: "Transparencia y apoyo" },
+];
 
 export function FoundationPage() {
   return (
     <>
       <SiteHeader />
-      <main className="pt-20 sm:pt-16">
-        <section data-glass-tone="dark" className="bg-ink py-20 text-white sm:py-28">
+      <main id="contenido-principal" tabIndex={-1}>
+        <section className="bg-mist pb-14 pt-32 md:pt-48 xl:pt-36">
           <div className="section-shell">
-            <Link href="/" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-white/70 transition-colors hover:text-accent">
-              <ArrowLeft size={16} aria-hidden="true" /> Volver al inicio
-            </Link>
-            <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_.85fr] lg:items-end lg:gap-20">
-              <Reveal>
-                <h1 className="display-title max-w-4xl text-6xl leading-[0.88] sm:text-8xl">La asociación que <span className="text-accent">acompaña.</span></h1>
-              </Reveal>
-              <Reveal delay={0.1}>
-                <p className="max-w-xl text-lg leading-8 text-white/70">La Comunidad Crítica de Escultismo Popular, A. C. es una organización sin fines de lucro que impulsa educación, cultura, asistencia social y participación comunitaria.</p>
-                <Link href="/contacto" className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3.5 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">Platicar con la asociación <ArrowUpRight size={16} aria-hidden="true" /></Link>
-              </Reveal>
+            <div className="grid items-end gap-7 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
+              <div><p className="text-sm font-bold leading-6 text-primary">Comunidad Crítica de Escultismo Popular, A. C.</p><h1 className="display-title mt-6 max-w-3xl text-5xl leading-[1.02] sm:text-7xl">Acompañar el presente, <span className="text-primary">abrir posibilidades</span></h1></div>
+              <p className="max-w-xl text-lg leading-8 text-ink/75">Somos una asociación civil sin fines de lucro. Impulsamos educación, cultura y asistencia social con una convicción: una vida más justa y humana se construye con las comunidades.</p>
             </div>
+            <figure className="mt-10">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-white sm:aspect-[2/1]"><Image src="/images/conecta/actividades/actividad-09.jpg" alt="Integrantes de la asociación y de la comunidad durante una jornada de apoyo" fill priority className="object-cover object-[center_60%]" sizes="(min-width: 1280px) 1180px, 100vw" /></div>
+              <figcaption className="mt-3 text-sm leading-6 text-ink/65">Una labor que toma forma en encuentros, colaboración y acompañamiento</figcaption>
+            </figure>
+            <nav aria-label="Contenido de la asociación" className="mt-9 flex flex-wrap gap-x-6 gap-y-3 border-t border-ink/15 pt-6">{sectionLinks.map((link) => <a key={link.href} href={link.href} className="focus-ring rounded py-2 text-sm font-bold text-primary underline-offset-4 hover:underline">{link.label}</a>)}</nav>
           </div>
         </section>
 
-        <section className="bg-mist py-20 sm:py-28">
-          <div className="section-shell grid gap-5 lg:grid-cols-2">
-            <Reveal className="rounded-[2rem] bg-primary p-8 text-white sm:p-10">
-              <HeartHandshake className="text-accent" size={28} aria-hidden="true" />
-              <h2 className="display-title mt-8 text-4xl sm:text-5xl">Nuestra misión</h2>
-              <p className="mt-6 text-lg leading-8 text-white/75">{foundationMission}</p>
-            </Reveal>
-            <Reveal delay={0.08} className="rounded-[2rem] bg-white p-8 shadow-card sm:p-10">
-              <ShieldCheck className="text-primary" size={28} aria-hidden="true" />
-              <h2 className="display-title mt-8 text-4xl sm:text-5xl">Nuestra visión</h2>
-              <p className="mt-6 text-lg leading-8 text-ink/65">{foundationVision}</p>
-            </Reveal>
+        <section id="proposito" className="bg-white py-16 sm:py-24">
+          <div className="section-shell grid gap-10 md:grid-cols-2 md:gap-16">
+            <div><h2 className="display-title text-4xl sm:text-5xl">Nuestra misión</h2><p className="mt-6 text-lg leading-8 text-ink/75">{foundationMission}</p></div>
+            <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0"><h2 className="display-title text-4xl text-primary sm:text-5xl">Lo que queremos construir</h2><p className="mt-6 text-lg leading-8 text-ink/75">{foundationVision}</p></div>
           </div>
         </section>
 
-        <section className="bg-ink py-20 text-white sm:py-24">
-          <div className="section-shell grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-16">
-            <Reveal>
-              <h2 className="display-title text-4xl sm:text-5xl">Compromisos de desarrollo sostenible.</h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-white/65">La información institucional anterior vincula el trabajo asistencial y educativo de la asociación con estos objetivos públicos.</p>
-            </Reveal>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {foundationODS.map((objective, index) => <Reveal key={objective} delay={index * 0.04} className="rounded-[1.25rem] border border-white/15 bg-white/5 p-5"><span className="text-xs font-black text-accent">0{index + 1}</span><p className="mt-5 text-sm font-extrabold leading-6 text-white/85">{objective}</p></Reveal>)}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-paper py-20 sm:py-28">
+        <section id="trabajo" className="bg-mist py-16 sm:py-24">
           <div className="section-shell">
-            <Reveal>
-              <h2 className="display-title max-w-3xl text-5xl leading-[0.92] sm:text-7xl">Una red de apoyo que se construye <span className="text-secondary">en el territorio.</span></h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/65">El trabajo de la asociación se concreta en proyectos y alianzas que responden a las necesidades de cada comunidad.</p>
-            </Reveal>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {foundationWorkAreas.map((area, index) => (
-                <Reveal key={area.title} delay={index * 0.04} className="rounded-[1.7rem] border border-ink/10 bg-mist p-6 sm:p-7">
-                  <span className="text-3xl font-black text-primary/25">{String(index + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-7 text-xl font-extrabold">{area.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-ink/60">{area.description}</p>
-                </Reveal>
-              ))}
-            </div>
+            <div className="grid gap-5 lg:grid-cols-2 lg:gap-16"><h2 className="display-title text-4xl leading-tight sm:text-6xl">Nuestro trabajo tiene <span className="text-primary">muchas formas</span></h2><p className="self-end text-lg leading-8 text-ink/75">Estas líneas orientan el proyecto de la asociación. Cada actividad parte del diálogo con las personas y de las necesidades de su entorno.</p></div>
+            <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">{foundationWorkAreas.map((area, index) => <article key={area.title} className="border-t border-ink/20 pt-5"><span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-5 text-xl font-extrabold">{area.title}</h3><p className="mt-3 text-base leading-7 text-ink/70">{area.description}</p></article>)}</div>
+            <div className="mt-12 flex flex-wrap gap-4"><Link href="/donacion" className="focus-ring inline-flex items-center gap-3 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white hover:bg-ink">Ver actividades y apoyar <ArrowUpRight size={18} aria-hidden="true" /></Link><Link href="/#coro-esperanza" className="focus-ring inline-flex items-center gap-3 rounded-full border border-ink/20 px-6 py-4 text-sm font-bold hover:bg-white">Conocer el Coro Esperanza <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
           </div>
         </section>
 
-        <section className="bg-mist py-20 sm:py-28">
-          <div className="section-shell grid gap-12 lg:grid-cols-[1fr_.78fr] lg:items-start lg:gap-20">
-            <Reveal>
-              <h2 className="display-title text-5xl leading-[0.92] sm:text-7xl">A quiénes <span className="text-primary">acompañamos.</span></h2>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/65">La asociación trabaja con personas y comunidades, no sólo para ellas. Cada proyecto parte de una necesidad concreta y busca fortalecer las capacidades, los vínculos y las decisiones de quienes participan.</p>
-              <div className="mt-10 grid gap-3 sm:grid-cols-2">
-                {foundationBeneficiaries.map((beneficiary, index) => (
-                  <Reveal key={beneficiary.title} delay={index * 0.04} className="rounded-[1.4rem] border border-ink/10 bg-white p-5 sm:p-6">
-                    <span className="text-xs font-black uppercase tracking-[0.14em] text-primary">0{index + 1}</span>
-                    <h3 className="mt-5 text-lg font-extrabold">{beneficiary.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-ink/60">{beneficiary.description}</p>
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.1} className="rounded-[2rem] bg-ink p-8 text-white sm:p-10">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-accent">Donaciones electrónicas</p>
-              <h2 className="display-title mt-7 text-4xl sm:text-5xl">Apoya un proceso.</h2>
-              <p className="mt-5 text-base leading-7 text-white/65">Los datos bancarios publicados por la asociación son:</p>
-              <dl className="mt-8 space-y-5 border-t border-white/15 pt-6">
-                <div><dt className="text-xs font-extrabold uppercase tracking-[0.14em] text-white/45">Cuenta</dt><dd className="mt-2 text-2xl font-black tracking-[0.08em] text-accent">{foundationBankDetails.account}</dd></div>
-                <div className="border-t border-white/15 pt-5"><dt className="text-xs font-extrabold uppercase tracking-[0.14em] text-white/45">CLABE</dt><dd className="mt-2 break-all text-xl font-black tracking-[0.08em] text-accent">{foundationBankDetails.clabe}</dd></div>
-              </dl>
-              <p className="mt-7 text-sm leading-6 text-white/55">Antes de realizar una transferencia, confirma los datos vigentes con la asociación.</p>
-              <Link href="/donacion" className="focus-ring mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3.5 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Ver opciones para donar <ArrowUpRight size={16} aria-hidden="true" /></Link>
-            </Reveal>
+        <section id="beneficiarios" className="bg-white py-16 sm:py-24">
+          <div className="section-shell grid gap-12 lg:grid-cols-[1fr_.85fr] lg:gap-20">
+            <div><h2 className="display-title text-4xl leading-tight sm:text-6xl">Las personas, <span className="text-primary">en el centro</span></h2><p className="mt-6 text-lg leading-8 text-ink/75">El trabajo asistencial se dirige a personas y comunidades en situación de vulnerabilidad. Buscamos acompañar sus procesos con respeto, escucha y participación.</p><ul className="mt-8 divide-y divide-ink/15">{foundationBeneficiaries.map((item) => <li key={item.title} className="py-5"><h3 className="text-lg font-extrabold">{item.title}</h3><p className="mt-2 text-base leading-7 text-ink/70">{item.description}</p></li>)}</ul></div>
+            <div><figure><div className="relative aspect-[4/3] overflow-hidden rounded-2xl"><Image src="/images/conecta/actividades/actividad-06.jpg" alt="Encuentro de un integrante de la asociación con familias de la comunidad" fill className="object-cover" sizes="(min-width: 1024px) 500px, 100vw" /></div><figcaption className="mt-3 text-sm leading-6 text-ink/60">El apoyo se construye con las personas que participan</figcaption></figure><div className="mt-8 rounded-2xl bg-mist p-6 sm:p-8"><h3 className="text-xl font-extrabold">Un compromiso con sus derechos</h3><ul className="mt-5 space-y-4">{foundationRights.map((right) => <li key={right} className="flex gap-3 text-sm leading-6 text-ink/75"><Check className="mt-1 shrink-0 text-primary" size={16} aria-hidden="true" />{right}</li>)}</ul></div></div>
           </div>
         </section>
 
-        <section className="bg-mist py-20 sm:py-28">
-          <div className="section-shell grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start lg:gap-20">
-            <Reveal>
-              <h2 className="display-title text-5xl leading-[0.92] sm:text-7xl">Derechos que <span className="text-primary">cuidamos.</span></h2>
-              <p className="mt-6 text-lg leading-8 text-ink/65">En nuestros espacios, el juego, el descanso, la cultura y la participación no son premios: son parte del bienestar y del desarrollo.</p>
-            </Reveal>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {foundationRights.map((right, index) => (
-                <Reveal key={right} delay={index * 0.05} className="rounded-[1.4rem] border border-ink/10 bg-white p-5 sm:p-6">
-                  <span className="text-xs font-black uppercase tracking-[0.14em] text-primary">0{index + 1}</span>
-                  <p className="mt-5 text-base font-extrabold leading-6">{right}</p>
-                </Reveal>
-              ))}
-            </div>
+        <section className="bg-primary py-16 text-white sm:py-20" data-glass-tone="dark">
+          <div className="section-shell"><h2 className="display-title text-4xl sm:text-5xl">Nuestra forma de trabajar</h2><div className="mt-9 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">{foundationValues.map((value) => <div key={value.title} className="border-t border-white/35 pt-5"><h3 className="text-xl font-bold text-accent">{value.title}</h3><p className="mt-3 text-base leading-7 text-white/85">{value.description}</p></div>)}</div></div>
+        </section>
+
+        <section id="historia" className="bg-mist py-16 sm:py-24">
+          <div className="section-shell grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+            <div><h2 className="display-title text-4xl leading-tight sm:text-6xl">Una historia que <span className="text-primary">sigue creciendo</span></h2><p className="mt-6 text-lg leading-8 text-ink/75">Nuestras raíces están en la educación escultista. Con el tiempo, el proyecto amplió su mirada hacia el trabajo cultural, asistencial y comunitario.</p><Link href="/cde" className="focus-ring mt-6 inline-flex items-center gap-2 rounded py-2 font-bold text-primary">Conocer los CDE <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+            <ol className="divide-y divide-ink/20 border-t border-ink/20">{foundationMilestones.map((item) => <li key={item.year} className="grid grid-cols-[4.5rem_1fr] gap-4 py-7 sm:grid-cols-[5.5rem_1fr]"><span className="text-2xl font-extrabold text-primary">{item.year}</span><div><h3 className="text-lg font-extrabold">{item.title}</h3><p className="mt-3 text-base leading-7 text-ink/70">{item.text}</p></div></li>)}</ol>
           </div>
         </section>
 
-        <section className="bg-paper py-20 sm:py-28">
-          <div className="section-shell grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
-            <Reveal>
-              <h2 className="display-title text-5xl leading-[0.92] sm:text-7xl">Lo que nos <span className="text-accent">orienta.</span></h2>
-              <div className="mt-10 grid gap-5 sm:grid-cols-2">
-                {foundationValues.map((value) => <div key={value.title} className="border-t border-ink/15 pt-5"><h3 className="text-xl font-extrabold">{value.title}</h3><p className="mt-2 text-sm leading-7 text-ink/60">{value.description}</p></div>)}
-              </div>
-            </Reveal>
-            <Reveal delay={0.1} className="rounded-[2rem] bg-ink p-8 text-white sm:p-10">
-              <h2 className="display-title text-4xl sm:text-5xl">Una historia que sigue abierta.</h2>
-              <div className="mt-8 space-y-6">
-                {foundationMilestones.map((item) => <div key={item.year} className="border-t border-white/15 pt-5"><p className="text-sm font-black text-accent">{item.year}</p><h3 className="mt-2 text-lg font-extrabold">{item.title}</h3><p className="mt-2 text-sm leading-7 text-white/60">{item.text}</p></div>)}
-              </div>
-            </Reveal>
+        <section id="transparencia" className="bg-white py-16 sm:py-24">
+          <div className="section-shell grid gap-10 lg:grid-cols-[1fr_.85fr] lg:gap-20">
+            <div><h2 className="display-title text-4xl leading-tight sm:text-6xl">Conocer para <span className="text-primary">confiar</span></h2><p className="mt-6 text-lg leading-8 text-ink/75">Consulta la información de la asociación y pregunta por los proyectos que te interesan. Una colaboración empieza con información clara.</p><div className="mt-8 divide-y divide-ink/15 border-y border-ink/15">{[{href:"/biblioteca",label:"Proyecto, estatutos y documentos"},{href:"/legal/transparencia",label:"Información institucional y transparencia"},{href:"/legal/donataria-donaciones",label:"Información sobre donaciones"},{href:"/contacto",label:"Contacto con la asociación"}].map((item) => <Link key={item.href} href={item.href} className="focus-ring flex items-center justify-between gap-3 rounded py-5 text-base font-bold text-primary hover:text-ink">{item.label}<ArrowUpRight className="shrink-0" size={18} aria-hidden="true" /></Link>)}</div></div>
+            <aside className="self-start rounded-2xl bg-mist p-7 sm:p-9" aria-labelledby="apoyar-title"><HeartHandshake size={28} className="text-primary" aria-hidden="true" /><h3 id="apoyar-title" className="display-title mt-5 text-4xl">Súmate a esta labor</h3><p className="mt-5 text-base leading-7 text-ink/75">Puedes hacer una aportación a través de PayPal o contactar a la asociación para coordinar otra forma de apoyo.</p><Link href="/donacion" className="focus-ring mt-6 inline-flex items-center gap-3 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white hover:bg-ink">Ir a donaciones <ArrowUpRight size={18} aria-hidden="true" /></Link><div className="mt-8 border-t border-ink/15 pt-6"><h4 className="text-base font-bold">Datos bancarios publicados</h4><dl className="mt-4 space-y-4"><div><dt className="text-sm text-ink/65">Cuenta</dt><dd className="mt-1 font-mono text-xl font-bold text-primary">{foundationBankDetails.account}</dd></div><div><dt className="text-sm text-ink/65">CLABE</dt><dd className="mt-1 break-all font-mono text-lg font-bold text-primary">{foundationBankDetails.clabe}</dd></div></dl><p className="mt-5 text-sm leading-6 text-ink/70">Confirma la vigencia y el titular de la cuenta con la asociación antes de transferir.</p></div></aside>
           </div>
+          <div className="section-shell mt-16 border-t border-ink/15 pt-8"><h3 className="text-xl font-extrabold">Compromisos de desarrollo sostenible</h3><ul className="mt-5 flex flex-wrap gap-3">{foundationODS.map((objective) => <li key={objective} className="rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold">{objective}</li>)}</ul><p className="mt-6 max-w-3xl text-sm leading-7 text-ink/65">La ficha de la organización en <a href="https://agenda2030.puebla.gob.mx/sociedad/comunidad-critica-de-escultismo-popular-a-c" target="_blank" rel="noreferrer" className="focus-ring rounded font-bold text-primary underline underline-offset-4">Agenda 2030 Puebla</a> recoge su misión, visión y líneas asistenciales. Su inclusión en el directorio es informativa y no implica un aval gubernamental.</p></div>
         </section>
-
-        <Timeline />
       </main>
       <SiteFooter />
     </>

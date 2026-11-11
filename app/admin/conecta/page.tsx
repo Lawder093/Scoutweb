@@ -11,5 +11,5 @@ export const dynamic = "force-dynamic";
 export default async function AdminConectaPage() {
   const user = await getContentPermission("conecta");
   if (!user) redirect("/login?next=/admin/conecta");
-  return <AdminShell title="Conecta." description="Asigna quién puede enviar postales, revisa los envíos y administra el archivo público de la comunidad scout."><ConectaUsersManager /><div className="mt-10"><ConectaPostcardsManager /></div></AdminShell>;
+  return <AdminShell title="Conecta" description="Asigna quién puede enviar postales, revisa los envíos y administra el archivo público de la comunidad scout."><ConectaUsersManager /><div className="mt-10"><ConectaPostcardsManager /></div></AdminShell>;
 }

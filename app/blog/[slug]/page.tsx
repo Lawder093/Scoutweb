@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <SiteHeader />
-      <main className="pt-20 sm:pt-16">
+      <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16">
         <article className="section-shell py-20 sm:py-28">
           <Link href="/blog" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} /> Volver al blog</Link>
           <div className="mt-12 max-w-4xl">

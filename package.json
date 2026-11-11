@@ -8,6 +8,8 @@
     "start": "next start",
     "typecheck": "tsc --noEmit --incremental false",
     "audit": "npm audit --omit=dev",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "qa:public": "node scripts/qa-public-site.mjs",
     "import:blog": "node --env-file=.env.local scripts/import-escultista-blog.mjs",
     "import:blog:local": "node --env-file=.env.local scripts/import-local-blog.mjs",
     "import:library": "node --env-file=.env.local scripts/import-escultista-library.mjs",

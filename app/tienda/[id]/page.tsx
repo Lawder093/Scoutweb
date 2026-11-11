@@ -48,7 +48,7 @@ export default async function StoreProductPage({ params }: { params: Promise<{ i
   return (
     <>
       <SiteHeader />
-      <main className="pt-20 sm:pt-16">
+      <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16">
         <article className="section-shell py-16 sm:py-24">
           <Link href="/tienda" className="focus-ring inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary"><ArrowLeft size={16} aria-hidden="true" /> Volver a la tienda</Link>
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16">
@@ -84,7 +84,7 @@ export default async function StoreProductPage({ params }: { params: Promise<{ i
           </div>
           <div className="mt-16 rounded-[2rem] border border-ink/10 bg-paper p-7 shadow-card sm:p-10">
             <p className="eyebrow text-primary">Información del producto</p>
-            <h2 className="display-title mt-4 max-w-2xl text-3xl sm:text-4xl">Un objeto para seguir construyendo comunidad.</h2>
+            <h2 className="display-title mt-4 max-w-2xl text-3xl sm:text-4xl">Un objeto para seguir construyendo comunidad</h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-ink/65">Este catálogo muestra los objetos físicos disponibles de la comunidad. Para confirmar existencias, formas de entrega o cualquier detalle, escríbenos desde la sección Súmate.</p>
           </div>
         </article>

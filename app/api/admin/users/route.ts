@@ -104,19 +104,18 @@ export async function POST(request: Request) {
     if (isContentAdminEmail(email)) return NextResponse.json({ message: "Ese correo ya es el propietario configurado." }, { status: 400 });
 
     const supabase = createSupabaseAdminClient();
+    const { error: schemaError } = await supabase.from("admin_users").select("id").limit(1);
+    if (schemaError) return NextResponse.json({ message: "Falta preparar la tabla de permisos de Supabase. No se creó ni modificó ninguna cuenta." }, { status: 503 });
     const { data: listedUsers, error: listError } = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
     if (listError) throw listError;
     let authUser: User | null = listedUsers.users.find((user) => user.email?.toLowerCase() === email) ?? null;
-    let message = "Usuario creado con contraseña asignada.";
+    const message = "Usuario creado con contraseña asignada.";
     if (!authUser) {
       const { data, error } = await supabase.auth.admin.createUser({ email, password, email_confirm: true, user_metadata: { display_name: displayName } });
       if (error) throw error;
       authUser = data.user;
     } else {
-      const { data, error } = await supabase.auth.admin.updateUserById(authUser.id, { password, email_confirm: true, user_metadata: { ...authUser.user_metadata, display_name: displayName } });
-      if (error) throw error;
-      authUser = data.user;
-      message = "Contraseña actualizada y permisos guardados.";
+      return NextResponse.json({ message: "Este correo ya tiene una cuenta. Modifica sus permisos o contraseña en la lista de usuarios; no se cambió su acceso." }, { status: 409 });
     }
     if (!authUser?.id) return NextResponse.json({ message: "No se pudo identificar al usuario." }, { status: 500 });
     const { error } = await supabase.from("admin_users").upsert(rowValues(authUser.id, email, displayName, permissions, true), { onConflict: "id" });

@@ -27,10 +27,14 @@ export async function removeConectaAsset(
   }
 }
 
-export function resolvePostcardPublicUrl(client: SupabaseClient<Database>, assetPath: string | null): string | null {
+export async function resolvePostcardAssetUrl(client: SupabaseClient<Database>, assetPath: string | null, expiresIn = 600): Promise<string | null> {
   if (!assetPath) return null;
-  if (assetPath.startsWith("/") || assetPath.startsWith("http://") || assetPath.startsWith("https://")) return assetPath;
-  return client.storage.from(POSTCARD_ASSETS_BUCKET).getPublicUrl(assetPath).data.publicUrl;
+  // Cover uploads use relative object keys. Do not bypass moderation with
+  // arbitrary external/public URLs. Short-lived links work with a private bucket.
+  if (assetPath.startsWith("/") || /^https?:/i.test(assetPath)) return null;
+  const ttl = Math.max(1, Math.min(600, Math.floor(expiresIn)));
+  const { data, error } = await client.storage.from(POSTCARD_ASSETS_BUCKET).createSignedUrl(assetPath, ttl);
+  return error ? null : data.signedUrl;
 }
 
 export async function removePostcardAsset(

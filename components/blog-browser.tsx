@@ -42,7 +42,7 @@ export function BlogBrowser({ posts }: { posts: BlogPostSummary[] }) {
 
   useEffect(() => {
     const target = loadMoreRef.current;
-    if (!target || !hasMorePosts) return;
+    if (!target || !hasMorePosts || !("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -55,7 +55,7 @@ export function BlogBrowser({ posts }: { posts: BlogPostSummary[] }) {
 
     observer.observe(target);
     return () => observer.disconnect();
-  }, [filteredPosts.length, hasMorePosts]);
+  }, [filteredPosts.length, hasMorePosts, visibleCount]);
 
   return (
     <section id="historias" className="bg-ink py-24 text-white sm:py-32">
@@ -73,8 +73,8 @@ export function BlogBrowser({ posts }: { posts: BlogPostSummary[] }) {
           <p className="text-sm font-bold text-white/65" aria-live="polite">Mostrando {visiblePosts.length} de {filteredPosts.length} {filteredPosts.length === 1 ? "historia" : "historias"}</p>
           {(query || category !== "Todas" || tag !== "Todas" || sort !== "recent") && <button type="button" onClick={clearFilters} className="focus-ring rounded-full border border-white/20 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.1em] text-accent transition-colors hover:bg-white/10">Limpiar filtros</button>}
         </div>
-        {visiblePosts.length > 0 ? <div className="mt-5 grid gap-5 lg:grid-cols-3">{visiblePosts.map((post, index) => <BlogPostCard key={post.id} post={post} index={index} />)}</div> : <div className="mt-5 rounded-[1.8rem] border border-dashed border-white/20 px-6 py-14 text-center"><h2 className="display-title text-3xl">No encontramos esa historia.</h2><p className="mx-auto mt-3 max-w-md text-sm leading-6 text-white/60">Prueba con otra palabra o limpia los filtros para volver a explorar el archivo.</p><button type="button" onClick={clearFilters} className="focus-ring mt-6 rounded-full bg-accent px-5 py-3 text-sm font-bold text-ink">Limpiar filtros</button></div>}
-        {hasMorePosts && <div ref={loadMoreRef} className="mt-10 flex min-h-12 items-center justify-center text-sm font-bold text-white/50" aria-live="polite">Cargando más historias…</div>}
+        {visiblePosts.length > 0 ? <div className="mt-5 grid gap-5 lg:grid-cols-3">{visiblePosts.map((post, index) => <BlogPostCard key={post.id} post={post} index={index} />)}</div> : <div className="mt-5 rounded-[1.8rem] border border-dashed border-white/20 px-6 py-14 text-center"><h2 className="display-title text-3xl">No encontramos esa historia</h2><p className="mx-auto mt-3 max-w-md text-sm leading-6 text-white/60">Prueba con otra palabra o limpia los filtros para volver a explorar el archivo.</p><button type="button" onClick={clearFilters} className="focus-ring mt-6 rounded-full bg-accent px-5 py-3 text-sm font-bold text-ink">Limpiar filtros</button></div>}
+        {hasMorePosts && <div ref={loadMoreRef} className="mt-10 flex min-h-12 items-center justify-center"><button type="button" onClick={() => setVisibleCount((current) => Math.min(current + LOAD_BATCH, filteredPosts.length))} className="focus-ring rounded-full border border-white/30 px-6 py-3 text-sm font-bold text-white hover:bg-white/10">Cargar más historias</button></div>}
       </div>
     </section>
   );
