@@ -79,3 +79,23 @@ test("homepage preserves requested order and excludes the removed Instagram sect
   assert.ok(home.includes("<PostcardSection"));
   assert.ok(!home.includes("InstagramSection"));
 });
+
+test("previous homepage presentation keeps current content without the removed captions", () => {
+  const hero = readFileSync("components/hero.tsx", "utf8");
+  const choir = readFileSync("components/coro-esperanza.tsx", "utf8");
+  for (const caption of [
+    "Asociación civil sin fines de lucro · Puebla, México",
+    "El acompañamiento empieza por estar presentes",
+    "Educación que abre oportunidades",
+    "Cultura que nos reúne",
+    "Solidaridad que se convierte en acción",
+    "Voces, guitarras y un espacio para encontrarnos",
+  ]) assert.ok(!(hero + choir).includes(caption), caption);
+  assert.ok(hero.includes("Acompañamos a niños, jóvenes y comunidades a través de la educación, la cultura y la solidaridad. Porque crecer también significa tener oportunidades, participar y contar con los demás."));
+  assert.ok(choir.includes("Beneficiando a las juventudes a través de la música, la expresión y el encuentro."));
+  assert.ok(choir.includes("El coro es un espacio para aprender a escucharnos, compartir lo que sentimos y construir confianza. Cada ensayo reúne voces distintas y nos recuerda que podemos crear algo juntos."));
+  assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#asociacion"'));
+  assert.ok(choir.includes('href="/contacto"'));
+  assert.ok(hero.includes('data-glass-tone="dark"') && hero.includes('sizes="100vw"'));
+  assert.ok(choir.includes("bg-secondary") && choir.includes("object-contain"));
+});
