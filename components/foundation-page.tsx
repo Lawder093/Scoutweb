@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Check, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, BookOpen, Check, HeartHandshake, HeartPulse, Leaf, LucideIcon, Music2, ShieldCheck } from "lucide-react";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationVision, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
@@ -12,6 +12,15 @@ const sectionLinks = [
   { href: "#historia", label: "Nuestra historia" },
   { href: "#transparencia", label: "Transparencia y apoyo" },
 ];
+
+const workAreaIcons: Record<string, LucideIcon> = {
+  "Educación y desarrollo": BookOpen,
+  "Asistencia social": HeartHandshake,
+  "Salud y bienestar": HeartPulse,
+  "Cultura y comunidad": Music2,
+  "Derechos y protección": ShieldCheck,
+  "Territorio y ambiente": Leaf,
+};
 
 export function FoundationPage() {
   return (
@@ -42,7 +51,7 @@ export function FoundationPage() {
         <section id="trabajo" className="bg-mist py-16 sm:py-24">
           <div className="section-shell">
             <div className="grid gap-5 lg:grid-cols-2 lg:gap-16"><h2 className="display-title text-4xl leading-tight sm:text-6xl">Nuestro trabajo tiene <span className="text-primary">muchas formas</span></h2><p className="self-end text-lg leading-8 text-ink/75">Estas líneas orientan el proyecto de la asociación. Cada actividad parte del diálogo con las personas y de las necesidades de su entorno.</p></div>
-            <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">{foundationWorkAreas.map((area, index) => <article key={area.title} className="border-t border-ink/20 pt-5"><span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span><h3 className="mt-5 text-xl font-extrabold">{area.title}</h3><p className="mt-3 text-base leading-7 text-ink/70">{area.description}</p></article>)}</div>
+            <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">{foundationWorkAreas.map((area, index) => { const Icon = workAreaIcons[area.title] ?? BookOpen; return <article key={area.title} className="border-t border-ink/20 pt-5"><div className="flex items-center justify-between gap-4"><span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span><span className="grid h-10 w-10 place-items-center rounded-full border border-primary/20 bg-white text-primary" aria-hidden="true"><Icon size={19} strokeWidth={1.8} /></span></div><h3 className="mt-5 text-xl font-extrabold">{area.title}</h3><p className="mt-3 text-base leading-7 text-ink/70">{area.description}</p></article>; })}</div>
             <div className="mt-12 flex flex-wrap gap-4"><Link href="/donacion" className="focus-ring inline-flex items-center gap-3 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white hover:bg-ink">Ver actividades y apoyar <ArrowUpRight size={18} aria-hidden="true" /></Link><Link href="/#coro-esperanza" className="focus-ring inline-flex items-center gap-3 rounded-full border border-ink/20 px-6 py-4 text-sm font-bold hover:bg-white">Conocer el Coro Esperanza <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
           </div>
         </section>

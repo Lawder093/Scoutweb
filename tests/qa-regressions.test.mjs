@@ -99,3 +99,13 @@ test("previous homepage presentation keeps current content without the removed c
   assert.ok(hero.includes('data-glass-tone="dark"') && hero.includes('sizes="100vw"'));
   assert.ok(choir.includes("bg-secondary") && choir.includes("object-contain"));
 });
+
+test("association work areas expose one semantic icon without changing their copy", () => {
+  const page = readFileSync("components/foundation-page.tsx", "utf8");
+  for (const icon of ["BookOpen", "HeartHandshake", "HeartPulse", "Music2", "ShieldCheck", "Leaf"]) {
+    assert.match(page, new RegExp(`\\b${icon}\\b`));
+  }
+  for (const title of ["Educación y desarrollo", "Asistencia social", "Salud y bienestar", "Cultura y comunidad", "Derechos y protección", "Territorio y ambiente"]) {
+    assert.match(page, new RegExp(title));
+  }
+});
