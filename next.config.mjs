@@ -65,6 +65,7 @@ const nextConfig = {
   async redirects() {
     return [
       ...legacyBlogRedirects(migratedBlogPosts),
+      { source: "/asociacion", destination: "/#proposito", permanent: true },
       { source: "/historia", destination: "/#historia", permanent: true },
       { source: "/escultismo", destination: "/cde/mexico", permanent: true },
       {

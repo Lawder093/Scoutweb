@@ -44,6 +44,7 @@ test("production CSP allows only our public PDF bucket and retains protections",
   assert.ok(!csp.includes("'unsafe-eval'"));
   assert.equal(headers.find((header) => header.key === "X-Frame-Options").value, "DENY");
   const redirects = await config.redirects();
+  assert.equal(redirects.find((entry) => entry.source === "/asociacion").destination, "/#proposito");
   assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/#historia");
   assert.equal(redirects.find((entry) => entry.source === "/escultismo").destination, "/cde/mexico");
   process.env.NEXT_PUBLIC_SUPABASE_URL = "http://localhost:54321";
