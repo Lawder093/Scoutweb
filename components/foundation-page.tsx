@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, Check, HeartHandshake, HeartPulse, Leaf, LucideIcon, Music2, ShieldCheck } from "lucide-react";
-import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationVision, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
+import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
 
 const sectionLinks = [
   { href: "#proposito", label: "Nuestro propósito" },
@@ -38,9 +38,8 @@ export function FoundationContent() {
         </section>
 
         <section id="proposito" className="bg-white py-16 sm:py-24">
-          <div className="section-shell grid gap-10 md:grid-cols-2 md:gap-16">
-            <div><h2 className="display-title text-4xl sm:text-5xl">Nuestra misión</h2><p className="mt-6 text-lg leading-8 text-ink/75">{foundationMission}</p></div>
-            <div className="border-t border-ink/15 pt-8 md:border-l md:border-t-0 md:pl-12 md:pt-0"><h2 className="display-title text-4xl text-primary sm:text-5xl">Lo que queremos construir</h2><p className="mt-6 text-lg leading-8 text-ink/75">{foundationVision}</p></div>
+          <div className="section-shell">
+            <div className="max-w-3xl"><h2 className="display-title text-4xl sm:text-5xl">Nuestra misión</h2><p className="mt-6 text-lg leading-8 text-ink/75">{foundationMission}</p></div>
           </div>
         </section>
 
