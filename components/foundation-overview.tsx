@@ -14,7 +14,7 @@ export function FoundationOverview() {
       <div className="section-shell">
         <div className="grid gap-7 lg:grid-cols-[1fr_.9fr] lg:gap-20">
           <h2 className="display-title max-w-2xl text-4xl leading-[1.03] sm:text-6xl">Estar cerca también <span className="text-primary">transforma</span></h2>
-          <div><p className="text-lg leading-8 text-ink/75">Somos una asociación civil que une educación, cultura y asistencia social. Trabajamos con las comunidades para responder a necesidades reales y abrir posibilidades de una vida más justa y humana.</p><Link href="/asociacion" className="focus-ring mt-5 inline-flex items-center gap-3 rounded-lg py-2 font-extrabold text-primary hover:text-ink">Nuestra misión y forma de trabajar <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+          <div><p className="text-lg leading-8 text-ink/75">Somos una asociación civil que une educación, cultura y asistencia social. Trabajamos con las comunidades para responder a necesidades reales y abrir posibilidades de una vida más justa y humana.</p><Link href="/#proposito" className="focus-ring mt-5 inline-flex items-center gap-3 rounded-lg py-2 font-extrabold text-primary hover:text-ink">Nuestra misión y forma de trabajar <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
         </div>
         <div className="mt-12 grid gap-9 md:grid-cols-3 md:gap-6">
           {projects.map((project) => (

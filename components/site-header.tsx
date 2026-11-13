@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 
 const navigation = [
   { label: "Inicio", href: "/" },
-  { label: "Asociación", href: "/asociacion" },
   { label: "CDE", href: "/cde" },
   { label: "Blog", href: "/blog" },
   { label: "Tienda", href: "/tienda" },

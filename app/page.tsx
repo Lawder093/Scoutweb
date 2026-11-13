@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero";
 import { FoundationOverview } from "@/components/foundation-overview";
 import { Map } from "@/components/map";
 import { FoundationTrust } from "@/components/foundation-trust";
+import { FoundationContent } from "@/components/foundation-page";
 import { CoroEsperanza } from "@/components/coro-esperanza";
 import { LibraryPreview } from "@/components/library-preview";
 import { PostcardSection } from "@/components/postcards/postcard-section";
@@ -27,6 +28,7 @@ export default async function HomePage() {
         <CoroEsperanza />
         <FoundationOverview />
         <FoundationTrust />
+        <FoundationContent />
         <Map />
         <LibraryPreview resources={resources} />
         <PostcardSection postcards={postcards} />

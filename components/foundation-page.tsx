@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, Check, HeartHandshake, HeartPulse, Leaf, LucideIcon, Music2, ShieldCheck } from "lucide-react";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
 import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationVision, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
 
 const sectionLinks = [
@@ -22,11 +20,9 @@ const workAreaIcons: Record<string, LucideIcon> = {
   "Territorio y ambiente": Leaf,
 };
 
-export function FoundationPage() {
+export function FoundationContent() {
   return (
     <>
-      <SiteHeader />
-      <main id="contenido-principal" tabIndex={-1}>
         <section className="bg-mist pb-14 pt-32 md:pt-48 xl:pt-36">
           <div className="section-shell">
             <div className="grid items-end gap-7 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
@@ -81,8 +77,6 @@ export function FoundationPage() {
           </div>
           <div className="section-shell mt-16 border-t border-ink/15 pt-8"><h3 className="text-xl font-extrabold">Compromisos de desarrollo sostenible</h3><ul className="mt-5 flex flex-wrap gap-3">{foundationODS.map((objective) => <li key={objective} className="rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold">{objective}</li>)}</ul><p className="mt-6 max-w-3xl text-sm leading-7 text-ink/65">La ficha de la organización en <a href="https://agenda2030.puebla.gob.mx/sociedad/comunidad-critica-de-escultismo-popular-a-c" target="_blank" rel="noreferrer" className="focus-ring rounded font-bold text-primary underline underline-offset-4">Agenda 2030 Puebla</a> recoge su misión, visión y líneas asistenciales. Su inclusión en el directorio es informativa y no implica un aval gubernamental.</p></div>
         </section>
-      </main>
-      <SiteFooter />
     </>
   );
 }

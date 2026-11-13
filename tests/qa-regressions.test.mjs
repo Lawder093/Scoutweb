@@ -44,7 +44,7 @@ test("production CSP allows only our public PDF bucket and retains protections",
   assert.ok(!csp.includes("'unsafe-eval'"));
   assert.equal(headers.find((header) => header.key === "X-Frame-Options").value, "DENY");
   const redirects = await config.redirects();
-  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/asociacion#historia");
+  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/#historia");
   assert.equal(redirects.find((entry) => entry.source === "/escultismo").destination, "/cde/mexico");
   process.env.NEXT_PUBLIC_SUPABASE_URL = "http://localhost:54321";
   const invalid = await import("../next.config.mjs?qa-invalid");
@@ -78,6 +78,7 @@ test("homepage preserves requested order and excludes the removed Instagram sect
   assert.match(home, /<Hero\s*\/>\s*<CoroEsperanza\s*\/>\s*<FoundationOverview\s*\/>/);
   assert.ok(home.includes("<PostcardSection"));
   assert.ok(!home.includes("InstagramSection"));
+  assert.ok(home.includes("<FoundationContent />"));
 });
 
 test("previous homepage presentation keeps current content without the removed captions", () => {
