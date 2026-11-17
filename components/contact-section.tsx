@@ -41,6 +41,12 @@ const socialIcons = {
   YouTube: Youtube,
 };
 
+const countryFlags: Record<string, string> = {
+  México: "🇲🇽",
+  Argentina: "🇦🇷",
+  Colombia: "🇨🇴",
+};
+
 export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   const Heading = headingLevel;
 
@@ -150,7 +156,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
           <Reveal><SectionHeading eyebrow="Centros de Desarrollo Escultista" title={<>La red se encuentra en <span className="text-primary">varios territorios</span></>} description="Cada CDE sostiene una experiencia propia y comparte los principios de la Comunidad Crítica de Escultismo Popular." /></Reveal>
           <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {cdeContacts.map((cde, index) => <Reveal key={cde.slug} delay={index * 0.08} className="flex h-full flex-col rounded-[2rem] border border-ink/10 bg-paper p-6 shadow-card transition-transform hover:-translate-y-1 sm:p-7">
-              <div className="flex items-center justify-between gap-3"><span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.15em] text-primary">{cde.country}</span><Link href={`/cde/${cde.slug}`} className="focus-ring rounded-full p-2 text-primary transition-colors hover:bg-primary/10" aria-label={`Explorar CDE ${cde.country}`}><ArrowUpRight size={18} /></Link></div>
+              <div className="flex items-center justify-between gap-3"><span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.15em] text-primary"><span aria-hidden="true" className="text-base leading-none">{countryFlags[cde.country] ?? "🌐"}</span>{cde.country}</span><Link href={`/cde/${cde.slug}`} className="focus-ring rounded-full p-2 text-primary transition-colors hover:bg-primary/10" aria-label={`Explorar CDE ${cde.country}`}><ArrowUpRight size={18} /></Link></div>
               <h2 className="display-title mt-7 text-3xl leading-none">{cde.name}</h2>
               <p className="mt-4 text-sm leading-6 text-ink/60">{cde.description}</p>
               <div className="mt-6 space-y-4 border-t border-ink/10 pt-6 text-sm leading-6 text-ink/70">
