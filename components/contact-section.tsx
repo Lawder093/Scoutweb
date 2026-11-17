@@ -177,9 +177,6 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
           </div>
         </div>
 
-        <Reveal delay={0.12} className="mt-16 rounded-[2rem] bg-primary p-7 text-white sm:p-10">
-          <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end"><div><div className="flex items-center gap-2 text-accent"><MessageCircle size={20} /><span className="text-xs font-extrabold uppercase tracking-[0.16em]">Para empezar</span></div><h2 className="display-title mt-5 max-w-2xl text-4xl leading-[0.95] sm:text-5xl">Cuéntanos qué quieres poner en movimiento</h2></div><TrackedLink eventName="contact_email_click" eventParams={{ location: "sumate", source: "footer_cta" }} href={`mailto:${institutionalContact.email}`} className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-extrabold text-ink transition-transform hover:-translate-y-1">Mandar un correo <ArrowUpRight size={16} /></TrackedLink></div>
-        </Reveal>
       </div>
     </section>
   );
