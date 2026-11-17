@@ -10,6 +10,7 @@ const navigation = [
   { label: "Inicio", href: "/" },
   { label: "CDE", href: "/cde" },
   { label: "Blog", href: "/blog" },
+  { label: "Biblioteca", href: "/biblioteca" },
   { label: "Tienda", href: "/tienda" },
   { label: "Contacto", href: "/contacto" },
   { label: "Currículum institucional", href: "/curriculum-institucional" },

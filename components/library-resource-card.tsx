@@ -40,35 +40,18 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
   }
 
   return (
-    <article className={`group relative flex min-h-[300px] min-w-0 flex-col overflow-hidden rounded-[1.6rem] ${toneClasses[resource.tone]} p-5 transition-transform hover:-translate-y-1 sm:min-h-[350px] sm:p-7`}>
-      <div className="flex items-start justify-between">
-        <span className="text-3xl font-black opacity-20">{String(resource.displayOrder).padStart(2, "0")}</span>
-        <BookOpen size={21} strokeWidth={1.6} />
-      </div>
-      {resource.coverImageUrl ? (
-        <Image src={resource.coverImageUrl} alt="" fill className="absolute inset-0 -z-0 object-cover opacity-20" sizes="(max-width: 768px) 50vw, 33vw" />
-      ) : (
-        <div className="absolute -right-6 top-16 h-28 w-28 rounded-full border-[18px] border-current opacity-10" aria-hidden="true" />
-      )}
-      <div className="relative z-10 mt-auto">
-        <p className="break-words text-[10px] font-extrabold uppercase tracking-[0.13em] opacity-60">{resource.creator}</p>
-        <h3 className={`display-title mt-3 break-words leading-[0.95] ${compact ? "text-2xl" : "text-2xl sm:text-3xl"}`}>{resource.title}</h3>
-        {!compact && <p className="mt-4 max-w-sm text-sm leading-6 opacity-70">{resource.description}</p>}
-        <div className="mt-5 flex flex-wrap gap-2">
-          <Link href={readerUrl} className="focus-ring inline-flex items-center gap-1 rounded-full bg-paper/20 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[0.1em] transition-colors hover:bg-paper/35">
-            Leer <ArrowUpRight size={13} />
-          </Link>
-          {resource.downloadUrl ? (
-            <a href={resource.downloadUrl} download className="focus-ring inline-flex items-center gap-1 rounded-full border border-current/25 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[0.1em] transition-colors hover:bg-paper/20">
-              <ArrowDownToLine size={13} /> Descargar
-            </a>
-          ) : (
-            <span title="El archivo se publicará próximamente" className="inline-flex cursor-not-allowed items-center gap-1 rounded-full border border-current/15 px-3 py-2 text-[10px] font-extrabold uppercase tracking-[0.1em] opacity-45">
-              <ArrowDownToLine size={13} /> Descargar
-            </span>
-          )}
+    <article className="group min-w-0">
+      <Link href={readerUrl} aria-label={`Abrir vista previa de ${resource.title}`} className="focus-ring block rounded-[1.35rem]">
+        <div className={`relative aspect-[0.72] overflow-hidden rounded-[1.35rem] ${toneClasses[resource.tone]} shadow-card ring-1 ring-ink/10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-soft`}>
+          {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 220px" /> : <><div className="absolute -right-8 -top-8 h-36 w-36 rounded-full border-[18px] border-current opacity-15" aria-hidden="true" /><BookOpen className="absolute bottom-5 right-5 opacity-20" size={48} strokeWidth={1.2} aria-hidden="true" /></>}
+          <span className="absolute left-4 top-4 text-2xl font-black opacity-35">{String(resource.displayOrder).padStart(2, "0")}</span>
         </div>
-      </div>
+        <div className="mt-4 px-1">
+          <p className="break-words text-[10px] font-extrabold uppercase tracking-[0.13em] text-ink/50">{resource.creator}</p>
+          <h3 className="display-title mt-2 line-clamp-3 break-words text-xl leading-[0.98] text-ink sm:text-2xl">{resource.title}</h3>
+          <p className="mt-2 inline-flex items-center gap-1 text-xs font-extrabold text-secondary">Leer <ArrowUpRight size={13} /></p>
+        </div>
+      </Link>
     </article>
   );
 }

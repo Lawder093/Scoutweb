@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Grid2X2, List, Search, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { LibraryResource } from "@/lib/content/types";
 import { LibraryResourceCard } from "./library-resource-card";
@@ -8,6 +8,7 @@ import { Reveal } from "./reveal";
 
 const PAGE_SIZE = 6;
 type SortOption = "recent" | "title" | "order";
+type ViewOption = "grid" | "list";
 
 export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) {
   const [query, setQuery] = useState("");
@@ -15,6 +16,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
   const [tag, setTag] = useState("Todas");
   const [sort, setSort] = useState<SortOption>("order");
   const [page, setPage] = useState(1);
+  const [view, setView] = useState<ViewOption>("grid");
 
   const categories = useMemo(() => ["Todas", ...Array.from(new Set(resources.flatMap((resource) => resource.categories)))], [resources]);
   const tags = useMemo(() => ["Todas", ...Array.from(new Set(resources.flatMap((resource) => resource.tags)))], [resources]);
@@ -57,7 +59,13 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
   return (
     <div id="recursos" className="mt-14 scroll-mt-32">
       <div className="rounded-[1.8rem] border border-ink/10 bg-paper p-5 shadow-card sm:p-6">
-        <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-secondary"><SlidersHorizontal size={15} /> Filtrar recursos</div>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-secondary"><SlidersHorizontal size={15} /> Filtrar recursos</div>
+          <div className="flex items-center gap-1 rounded-full border border-ink/10 p-1" role="group" aria-label="Vista de la biblioteca">
+            <button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")} className={`focus-ring inline-flex items-center gap-1 rounded-full px-3 py-2 text-xs font-extrabold transition-colors ${view === "grid" ? "bg-primary text-white" : "text-ink/55 hover:text-primary"}`}><Grid2X2 size={14} /> Mosaico</button>
+            <button type="button" aria-pressed={view === "list"} onClick={() => setView("list")} className={`focus-ring inline-flex items-center gap-1 rounded-full px-3 py-2 text-xs font-extrabold transition-colors ${view === "list" ? "bg-primary text-white" : "text-ink/55 hover:text-primary"}`}><List size={14} /> Lista</button>
+          </div>
+        </div>
         <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))]">
           <label className="block text-sm font-bold text-ink">
             Buscar
@@ -76,7 +84,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
 
       {visibleResources.length > 0 ? (
         <div className="mt-5">
-          <div className="space-y-4">{visibleResources.map((resource, index) => <Reveal key={resource.id} delay={index * 0.05}><LibraryResourceCard resource={resource} /></Reveal>)}</div>
+          <div className={view === "grid" ? "grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-3 lg:grid-cols-4" : "space-y-4"}>{visibleResources.map((resource, index) => <Reveal key={resource.id} delay={index * 0.05}><LibraryResourceCard resource={resource} compact={view === "grid"} /></Reveal>)}</div>
         </div>
       ) : (
         <div className="mt-5 rounded-[1.8rem] border border-dashed border-ink/20 bg-paper px-6 py-14 text-center">
