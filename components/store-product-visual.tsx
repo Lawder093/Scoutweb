@@ -28,8 +28,10 @@ export function StoreProductVisual({ product, variant = "card" }: StoreProductVi
 
   if (product.image) {
     return (
-      <div className={`relative flex items-center justify-center overflow-hidden bg-mist ${isDetail ? "min-h-[480px] p-7 sm:min-h-[620px] sm:p-10" : "h-64 p-4 sm:h-72"}`}>
-        <Image src={product.image} alt={product.imageAlt ?? product.name} fill className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.02]" sizes={isDetail ? "(max-width: 1024px) 92vw, 520px" : "(max-width: 640px) 92vw, 50vw"} />
+      <div className={`relative flex items-center justify-center overflow-hidden bg-mist ${isDetail ? "min-h-[480px] p-7 sm:min-h-[620px] sm:p-10" : "aspect-[4/3] p-5 sm:p-7"}`}>
+        <div className="relative flex h-full w-full items-center justify-center">
+          <Image src={product.image} alt={product.imageAlt ?? product.name} fill className="object-contain transition-transform duration-500 group-hover:scale-[1.02]" sizes={isDetail ? "(max-width: 1024px) 92vw, 520px" : "(max-width: 640px) 92vw, 50vw"} />
+        </div>
         <span className={`absolute rounded-full bg-ink px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.16em] text-white ${isDetail ? "right-7 top-7" : "right-5 top-5"}`}>Objeto físico</span>
       </div>
     );
