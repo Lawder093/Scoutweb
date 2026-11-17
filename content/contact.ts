@@ -27,6 +27,7 @@ export type CDEContact = {
 export const institutionalContact = {
   name: "Comunidad Crítica de Escultismo Popular, A. C.",
   address: "Av. Campestre #5303, Santa Cruz Buenavista, C.P. 72150, Puebla, Puebla. México.",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Av.%20Campestre%205303%2C%20Santa%20Cruz%20Buenavista%2C%20Puebla%2C%20Pue.",
   email: "scouts@escultista.org",
   phone: "+52 222 743 1265",
   whatsappUrl: "https://api.whatsapp.com/send?phone=522227431265&text=Hola%20CCEP%2C%20quiero%20conocer%20la%20comunidad.",
