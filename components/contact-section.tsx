@@ -10,7 +10,6 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  ShieldCheck,
   ExternalLink,
   Youtube,
 } from "lucide-react";
@@ -22,8 +21,6 @@ import {
   cdeContacts,
   contactChannels,
   institutionalContact,
-  legalDetails,
-  legalNotice,
   representatives,
   socialLinks,
 } from "@/content/contact";
@@ -133,24 +130,6 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
             </div>
           </Reveal>
         </div>
-
-        <Reveal className="mt-5 rounded-[2.2rem] border border-ink/10 bg-paper p-7 shadow-card sm:p-10">
-          <div className="grid gap-9 lg:grid-cols-[.8fr_1.2fr]">
-            <div>
-              <div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-secondary text-white"><ShieldCheck size={20} /></span><span className="eyebrow">Transparencia</span></div>
-              <h2 className="display-title mt-7 text-3xl leading-none sm:text-4xl">Un proyecto con memoria y responsabilidad</h2>
-              <p className="mt-5 text-sm leading-7 text-ink/60">Consulta aquí los datos públicos de registro y el aviso legal que acompaña nuestra labor.</p>
-            </div>
-            <div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {legalDetails.map((detail) => <div key={detail.label} className="rounded-2xl bg-mist p-4"><p className="text-[10px] font-extrabold uppercase tracking-[0.13em] text-ink/45">{detail.label}</p><p className="mt-2 text-sm font-bold leading-6 text-ink">{detail.value}</p></div>)}
-              </div>
-              <div className="mt-5 space-y-2">
-                {legalNotice.map((notice) => <details key={notice.title} className="group rounded-2xl border border-ink/10 px-5 py-4"><summary className="cursor-pointer list-none text-sm font-extrabold text-ink marker:hidden">{notice.title}<span className="float-right text-primary transition-transform group-open:rotate-45">+</span></summary><p className="max-w-2xl pt-3 text-sm leading-7 text-ink/60">{notice.text}</p></details>)}
-              </div>
-            </div>
-          </div>
-        </Reveal>
 
         <div id="centros" className="mt-24 scroll-mt-28">
           <Reveal><SectionHeading eyebrow="Centros de Desarrollo Escultista" title={<>La red se encuentra en <span className="text-primary">varios territorios</span></>} description="Cada CDE sostiene una experiencia propia y comparte los principios de la Comunidad Crítica de Escultismo Popular." /></Reveal>
