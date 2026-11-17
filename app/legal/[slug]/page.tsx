@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { LegalPageView } from "@/components/legal/legal-page-view";
@@ -14,6 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
+  if (slug === "transparencia") redirect("/curriculum-institucional#transparencia");
   const page = getLegalPage(slug);
   return page ? pageMetadata({ title: page.title, description: page.summary, path: `/legal/${page.slug}` }) : { title: "Página legal no encontrada", robots: { index: false, follow: false } };
 }

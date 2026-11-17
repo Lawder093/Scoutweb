@@ -29,8 +29,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: absoluteUrl("/contacto"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/donacion"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/sumate"), lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: absoluteUrl("/curriculum-institucional"), lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: absoluteUrl("/legal/donataria-donaciones"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
     { url: absoluteUrl("/legal/politica-de-privacidad"), lastModified: now, changeFrequency: "yearly", priority: 0.5 },
-    { url: absoluteUrl("/legal/transparencia"), lastModified: now, changeFrequency: "monthly", priority: 0.5 },
   ];
 }

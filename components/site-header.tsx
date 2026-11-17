@@ -12,7 +12,7 @@ const navigation = [
   { label: "Blog", href: "/blog" },
   { label: "Tienda", href: "/tienda" },
   { label: "Contacto", href: "/contacto" },
-  { label: "Transparencia", href: "/legal/transparencia" },
+  { label: "Currículum institucional", href: "/curriculum-institucional" },
 ];
 
 const loginItem = { label: "Entrar", href: "/login" };
