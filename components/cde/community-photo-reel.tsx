@@ -32,14 +32,13 @@ export function CommunityPhotoReel({ communityName, photos }: CommunityPhotoReel
   return (
     <section className="overflow-hidden bg-paper py-14 sm:py-20" aria-labelledby="momentos-comunidad-title">
       <div className="section-shell">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
           <div>
             <span className="eyebrow text-secondary">Momentos de la comunidad</span>
             <h2 id="momentos-comunidad-title" className="display-title mt-4 text-4xl leading-[0.95] sm:text-5xl">
               {communityName} <span className="text-primary">en movimiento</span>
             </h2>
           </div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-ink/45">Carrusel de derecha a izquierda</p>
         </div>
       </div>
 
