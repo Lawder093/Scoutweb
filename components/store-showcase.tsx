@@ -44,18 +44,6 @@ export function StoreShowcase() {
           </div>
         </Reveal>
         <div className="mt-14 grid gap-5 sm:grid-cols-2">{storeProducts.map((product, index) => <ProductCard key={product.id} product={product} index={index} />)}</div>
-        <Reveal delay={0.12} className="mt-5 rounded-[2rem] border border-ink/10 bg-paper p-7 shadow-card sm:p-10">
-          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-primary">Importante</p>
-              <h2 className="display-title mt-3 text-3xl sm:text-4xl">No es una tienda en línea todavía</h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/65">Por ahora mostramos el catálogo físico. Para conocer existencias, tallas, modelos y formas de entrega, escríbenos.</p>
-            </div>
-            <Link href="/sumate" className="focus-ring inline-flex w-fit items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-extrabold text-white transition-transform hover:-translate-y-1">
-              Hablar con la comunidad <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
