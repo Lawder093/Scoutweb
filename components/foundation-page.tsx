@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen, Check, HeartHandshake, HeartPulse, Leaf, LucideIcon, Music2, ShieldCheck } from "lucide-react";
-import { foundationBankDetails, foundationBeneficiaries, foundationMission, foundationODS, foundationRights, foundationValues, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
+import { foundationBankDetails, foundationBeneficiaries, foundationGeneralObjective, foundationInitiatives, foundationMission, foundationODS, foundationRights, foundationSpecificObjectives, foundationValues, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
 
 const sectionLinks = [
   { href: "#proposito", label: "Nuestro propósito" },
   { href: "#trabajo", label: "Qué hacemos" },
+  { href: "#objetivos", label: "Objetivos" },
+  { href: "#solidaridad", label: "Solidaridad" },
   { href: "#beneficiarios", label: "A quiénes acompañamos" },
   { href: "#historia", label: "Nuestra historia" },
   { href: "#transparencia", label: "Transparencia y apoyo" },
@@ -48,6 +50,24 @@ export function FoundationContent() {
             <div className="grid gap-5 lg:grid-cols-2 lg:gap-16"><h2 className="display-title text-4xl leading-tight sm:text-6xl">Nuestro trabajo tiene <span className="text-primary">muchas formas</span></h2><p className="self-end text-lg leading-8 text-ink/75">Estas líneas orientan el proyecto de la asociación. Cada actividad parte del diálogo con las personas y de las necesidades de su entorno.</p></div>
             <div className="mt-12 grid gap-x-10 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">{foundationWorkAreas.map((area, index) => { const Icon = workAreaIcons[area.title] ?? BookOpen; return <article key={area.title} className="border-t border-ink/20 pt-5"><div className="flex items-center justify-between gap-4"><span className="text-sm font-bold text-primary">{String(index + 1).padStart(2, "0")}</span><span className="grid h-10 w-10 place-items-center rounded-full border border-primary/20 bg-white text-primary" aria-hidden="true"><Icon size={19} strokeWidth={1.8} /></span></div><h3 className="mt-5 text-xl font-extrabold">{area.title}</h3><p className="mt-3 text-base leading-7 text-ink/70">{area.description}</p></article>; })}</div>
             <div className="mt-12 flex flex-wrap gap-4"><Link href="/donacion" className="focus-ring inline-flex items-center gap-3 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white hover:bg-ink">Ver actividades y apoyar <ArrowUpRight size={18} aria-hidden="true" /></Link><Link href="/#coro-esperanza" className="focus-ring inline-flex items-center gap-3 rounded-full border border-ink/20 px-6 py-4 text-sm font-bold hover:bg-white">Conocer el Coro Esperanza <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+          </div>
+        </section>
+
+        <section id="objetivos" className="bg-primary py-16 text-white sm:py-24" data-glass-tone="dark">
+          <div className="section-shell">
+            <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+              <div><p className="text-sm font-extrabold uppercase tracking-[0.16em] text-accent">Objetivos institucionales</p><h2 className="display-title mt-5 text-4xl leading-tight sm:text-6xl">La ayuda se organiza para abrir oportunidades</h2><p className="mt-6 text-lg leading-8 text-white/80">{foundationGeneralObjective}</p></div>
+              <div className="grid gap-5 sm:grid-cols-2">{foundationSpecificObjectives.map((objective) => <article key={objective.title} className="rounded-2xl bg-white/10 p-6 ring-1 ring-white/10"><h3 className="text-lg font-extrabold text-accent">{objective.title}</h3><p className="mt-3 text-sm leading-6 text-white/75">{objective.description}</p></article>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="solidaridad" className="bg-white py-16 sm:py-24">
+          <div className="section-shell">
+            <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+              <div><p className="eyebrow">Memoria de solidaridad</p><h2 className="display-title mt-5 text-4xl leading-tight sm:text-6xl">Donar también es acompañar</h2><p className="mt-6 text-lg leading-8 text-ink/70">Estas experiencias forman parte de la memoria pública de la asociación. Cada apoyo se articula con personas, escuelas, colectivos y comunidades que conocen sus propias necesidades.</p><Link href="/donacion" className="focus-ring mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-4 text-sm font-bold text-white hover:bg-ink">Conocer cómo apoyar <ArrowUpRight size={18} aria-hidden="true" /></Link></div>
+              <div className="grid gap-4 sm:grid-cols-2">{foundationInitiatives.map((initiative) => <article key={initiative.title} className="rounded-2xl border border-ink/12 bg-mist p-6"><p className="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">{initiative.place}</p><h3 className="mt-3 text-xl font-extrabold">{initiative.title}</h3><p className="mt-3 text-sm leading-6 text-ink/70">{initiative.description}</p><Link href={initiative.sourcePath} className="focus-ring mt-5 inline-flex items-center gap-2 rounded font-bold text-primary hover:text-ink">Leer la memoria <ArrowUpRight size={16} aria-hidden="true" /></Link></article>)}</div>
+            </div>
           </div>
         </section>
 

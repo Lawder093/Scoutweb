@@ -9,6 +9,36 @@ export const foundationMission =
 export const foundationVision =
   "Ser una asociación asistencial y de desarrollo social referente, cuyas acciones ayuden a niñas, niños y adolescentes a alcanzar condiciones de vida más justas y humanas y a transformar su entorno social.";
 
+export const foundationGeneralObjective =
+  "Contribuir al bienestar y al desarrollo de niñas, niños y adolescentes en contextos de desigualdad mediante educación no formal, participación comunitaria, cultura, asistencia social y acciones que hagan efectivos sus derechos al descanso, al juego y a la vida cultural.";
+
+export const foundationSpecificObjectives: FoundationCard[] = [
+  {
+    title: "Comunidades educativas",
+    description: "Crear Centros de Desarrollo Escultista donde niñas, niños y adolescentes aprendan, participen y tomen parte en la transformación de su entorno.",
+  },
+  {
+    title: "Asistencia y cuidados",
+    description: "Organizar apoyos de alimentación, vestido, vivienda, becas y otras necesidades básicas junto con las comunidades.",
+  },
+  {
+    title: "Salud y educación",
+    description: "Vincular iniciativas de salud, nutrición, educación accesible y acompañamiento para responder a necesidades concretas.",
+  },
+  {
+    title: "Inclusión y derechos",
+    description: "Impulsar medidas de apoyo para pueblos originarios, personas con discapacidad y familias que enfrentan situaciones de riesgo.",
+  },
+  {
+    title: "Alianzas sostenibles",
+    description: "Construir colaboraciones con escuelas, organizaciones y comunidades para que los proyectos puedan sostenerse y crecer.",
+  },
+  {
+    title: "Territorio y participación",
+    description: "Promover campamentos, acciones ambientales, cultura y formación para reconocer el territorio y actuar sobre sus desigualdades.",
+  },
+];
+
 export const foundationValues: FoundationCard[] = [
   { title: "Dignidad", description: "Reconocemos a cada persona como sujeto de derechos, saberes y decisiones." },
   { title: "Cuidado", description: "Construimos espacios seguros, libres de violencia y atentos a cada proceso." },
@@ -85,6 +115,44 @@ export const foundationODS = [
   "ODS 3 · Salud y bienestar",
   "ODS 4 · Educación de calidad",
   "ODS 10 · Reducción de las desigualdades",
+];
+
+export type FoundationInitiative = FoundationCard & {
+  place: string;
+  sourcePath: string;
+};
+
+export const foundationInitiatives: FoundationInitiative[] = [
+  {
+    title: "Apoyos para Nanacatlán",
+    place: "Sierra Norte de Puebla",
+    description: "Recolección y entrega de ropa, calzado, juguetes, medicinas y alimentos para familias y para el desayunador comunitario de la escuela.",
+    sourcePath: "/blog/escultista-9101-entrega-de-donativos-a-la-comunidad-de-nanacatlan",
+  },
+  {
+    title: "Campañas de salud comunitaria",
+    place: "Nanacatlán e Ixcuintepec",
+    description: "Gestión solidaria de medicamentos y materiales para atender necesidades de salud identificadas junto con las comunidades.",
+    sourcePath: "/blog/escultista-8430-donaciones-para-nanacatlan",
+  },
+  {
+    title: "Ropa y juguetes para la niñez",
+    place: "San Miguel Tecuanipa",
+    description: "Colectas comunitarias entregadas con apoyo de educadoras y organizaciones locales, vinculando el servicio con la participación juvenil.",
+    sourcePath: "/blog/escultista-1587-donacion-juguetes-y-ropa-a-la-comunidad-de-san-miguel-tecuanipa",
+  },
+  {
+    title: "Juguetes para el juego",
+    place: "Comunidades de Atlixco",
+    description: "Entrega de juguetes para favorecer el juego y la recreación como parte del desarrollo de niñas y niños.",
+    sourcePath: "/blog/escultista-1882-entrega-de-juguetes",
+  },
+  {
+    title: "Redes para sostener la ayuda",
+    place: "Puebla, Cholula y Tlaxcala",
+    description: "Colaboración con colectivos locales para reunir, trasladar y distribuir donativos de manera más cercana y sostenible.",
+    sourcePath: "/blog/escultista-9128-apoyos-continuos-para-la-sierra-norte-solidaridad-en-movimiento",
+  },
 ];
 
 export const foundationMilestones = [
