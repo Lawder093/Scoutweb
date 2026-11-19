@@ -17,7 +17,13 @@ export const revalidate = 300;
 
 const transparencyPage = getLegalPage("transparencia");
 const transparencyLinks = transparencyPage?.blocks.filter((block): block is Extract<LegalBlock, { type: "link" }> => block.type === "link") ?? [];
-const transparencyPdfLinks = transparencyLinks.filter((link) => link.href.includes("drive.google.com") || /\.pdf(?:$|[?#])/i.test(link.label) || /\.pdf(?:$|[?#])/i.test(link.href));
+const documentYear = (link: Extract<LegalBlock, { type: "link" }>) => {
+  const years = `${link.label} ${link.href}`.match(/\b20\d{2}\b/g)?.map(Number) ?? [];
+  return years.length > 0 ? Math.max(...years) : 0;
+};
+const transparencyPdfLinks = transparencyLinks
+  .filter((link) => link.href.includes("drive.google.com") || /\.pdf(?:$|[?#])/i.test(link.label) || /\.pdf(?:$|[?#])/i.test(link.href))
+  .sort((a, b) => documentYear(b) - documentYear(a) || a.label.localeCompare(b.label, "es"));
 const transparencyOtherLinks = transparencyLinks.filter((link) => !transparencyPdfLinks.includes(link));
 
 function PdfPreviewCard({ label, href }: { label: string; href: string }) {
