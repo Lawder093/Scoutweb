@@ -1,12 +1,12 @@
 "use client";
 
 import { Grid2X2, List, Search, SlidersHorizontal } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { LibraryResource } from "@/lib/content/types";
 import { LibraryResourceCard } from "./library-resource-card";
 import { Reveal } from "./reveal";
 
-const PAGE_SIZE = 6;
+const LOAD_BATCH = 12;
 type SortOption = "recent" | "title" | "order";
 type ViewOption = "grid" | "list";
 
@@ -15,8 +15,9 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
   const [category, setCategory] = useState("Todas");
   const [tag, setTag] = useState("Todas");
   const [sort, setSort] = useState<SortOption>("order");
-  const [page, setPage] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(LOAD_BATCH);
   const [view, setView] = useState<ViewOption>("grid");
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   const categories = useMemo(() => ["Todas", ...Array.from(new Set(resources.flatMap((resource) => resource.categories)))], [resources]);
   const tags = useMemo(() => ["Todas", ...Array.from(new Set(resources.flatMap((resource) => resource.tags)))], [resources]);
@@ -37,24 +38,32 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
     });
   }, [category, query, resources, sort, tag]);
 
-  const pageCount = Math.max(1, Math.ceil(filteredResources.length / PAGE_SIZE));
-  const currentPage = Math.min(page, pageCount);
-  const visibleResources = filteredResources.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+  const visibleResources = filteredResources.slice(0, visibleCount);
+  const hasMoreResources = visibleCount < filteredResources.length;
 
-  const updateQuery = (value: string) => {
-    setQuery(value);
-    setPage(1);
-  };
+  const resetVisibleResources = () => setVisibleCount(LOAD_BATCH);
+  const updateQuery = (value: string) => { setQuery(value); resetVisibleResources(); };
 
-  const updateCategory = (value: string) => {
-    setCategory(value);
-    setPage(1);
-  };
+  const updateCategory = (value: string) => { setCategory(value); resetVisibleResources(); };
 
-  const updateTag = (value: string) => {
-    setTag(value);
-    setPage(1);
-  };
+  const updateTag = (value: string) => { setTag(value); resetVisibleResources(); };
+
+  useEffect(() => {
+    const target = loadMoreRef.current;
+    if (!target || !hasMoreResources || !("IntersectionObserver" in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setVisibleCount((current) => Math.min(current + LOAD_BATCH, filteredResources.length));
+        }
+      },
+      { rootMargin: "640px 0px" },
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [filteredResources.length, hasMoreResources, visibleCount]);
 
   return (
     <div id="recursos" className="mt-14 scroll-mt-32">
@@ -80,7 +89,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
         </div>
       </div>
 
-      <p className="mt-7 text-sm font-bold text-ink/60" aria-live="polite">{filteredResources.length} {filteredResources.length === 1 ? "recurso encontrado" : "recursos encontrados"}</p>
+      <p className="mt-7 text-sm font-bold text-ink/60" aria-live="polite">Mostrando {visibleResources.length} de {filteredResources.length} {filteredResources.length === 1 ? "recurso" : "recursos"}</p>
 
       {visibleResources.length > 0 ? (
         <div className="mt-5">
@@ -90,11 +99,11 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
         <div className="mt-5 rounded-[1.8rem] border border-dashed border-ink/20 bg-paper px-6 py-14 text-center">
           <h2 className="display-title text-3xl">No encontramos ese recurso</h2>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-ink/60">Prueba con otra palabra o limpia los filtros para explorar toda la colección.</p>
-          <button type="button" onClick={() => { setQuery(""); setCategory("Todas"); setTag("Todas"); setPage(1); }} className="focus-ring mt-6 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white">Limpiar filtros</button>
+          <button type="button" onClick={() => { setQuery(""); setCategory("Todas"); setTag("Todas"); resetVisibleResources(); }} className="focus-ring mt-6 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white">Limpiar filtros</button>
         </div>
       )}
 
-      {pageCount > 1 && <nav className="mt-8 flex items-center justify-center gap-3" aria-label="Paginación de recursos"><button type="button" disabled={currentPage === 1} onClick={() => setPage((value) => Math.max(1, value - 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Anterior</button><span className="text-sm font-bold text-ink/60" aria-current="page">Página {currentPage} de {pageCount}</span><button type="button" disabled={currentPage === pageCount} onClick={() => setPage((value) => Math.min(pageCount, value + 1))} className="focus-ring rounded-full border border-ink/15 px-4 py-2 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-35">Siguiente</button></nav>}
+      {hasMoreResources && <div ref={loadMoreRef} className="mt-10 flex min-h-12 items-center justify-center"><button type="button" onClick={() => setVisibleCount((current) => Math.min(current + LOAD_BATCH, filteredResources.length))} className="focus-ring rounded-full border border-ink/15 px-6 py-3 text-sm font-bold text-ink hover:border-primary hover:text-primary">Cargar más recursos</button></div>}
     </div>
   );
 }
