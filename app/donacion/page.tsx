@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { ActivityMosaicCarousel } from "@/components/donation/activity-mosaic-carousel";
 import { institutionalContact } from "@/content/contact";
+import { foundationBankDetails } from "@/content/foundation";
 import { pageMetadata } from "@/lib/seo";
 
 const paypalDonationUrl = "https://www.paypal.com/ncp/payment/GJQBV668ZBNJC";
@@ -41,7 +42,18 @@ export default function DonacionPage() {
             <div className="rounded-[2rem] border border-ink/10 bg-mist p-7 sm:p-9">
               <div className="flex items-center gap-3 text-primary"><ShieldCheck size={20} aria-hidden="true" /><span className="eyebrow">Transparencia</span></div>
               <h2 className="display-title mt-6 text-3xl leading-none sm:text-4xl">Donar con claridad</h2>
-              <p className="mt-5 text-sm leading-7 text-ink/65">Consulta la información institucional, fiscal y legal de nuestra asociación en la página de donataria.</p>
+              <p className="mt-5 text-sm leading-7 text-ink/65">También puedes hacer una transferencia bancaria. Estos son los datos publicados en nuestra página institucional de donaciones.</p>
+              <dl className="mt-6 grid gap-3 rounded-2xl border border-ink/10 bg-white p-4 text-sm">
+                <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink/10 pb-3">
+                  <dt className="font-extrabold text-ink/60">Cuenta</dt>
+                  <dd className="font-black tracking-wide text-ink">{foundationBankDetails.account}</dd>
+                </div>
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <dt className="font-extrabold text-ink/60">CLABE</dt>
+                  <dd className="font-black tracking-wide text-ink">{foundationBankDetails.clabe}</dd>
+                </div>
+              </dl>
+              <p className="mt-4 text-xs leading-5 text-ink/55">Antes de transferir, confirma los datos y solicita tu comprobante o información fiscal escribiendo a {institutionalContact.email}.</p>
               <a href="/legal/donataria-donaciones" className="focus-ring mt-6 inline-flex items-center gap-2 text-sm font-extrabold text-secondary hover:text-primary">Ver información legal <ArrowUpRight size={16} /></a>
             </div>
           </div>
