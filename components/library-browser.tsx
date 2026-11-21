@@ -85,7 +85,7 @@ export function LibraryBrowser({ resources }: { resources: LibraryResource[] }) 
           </label>
           <label className="block text-sm font-bold text-ink">Categoría<select value={category} onChange={(event) => updateCategory(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm">{categories.map((option) => <option key={option}>{option}</option>)}</select></label>
           <label className="block text-sm font-bold text-ink">Etiqueta<select value={tag} onChange={(event) => updateTag(event.target.value)} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm">{tags.map((option) => <option key={option}>{option}</option>)}</select></label>
-          <label className="block text-sm font-bold text-ink">Ordenar<select value={sort} onChange={(event) => { setSort(event.target.value as SortOption); setPage(1); }} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm"><option value="order">Orden editorial</option><option value="recent">Más recientes</option><option value="title">Título A–Z</option></select></label>
+          <label className="block text-sm font-bold text-ink">Ordenar<select value={sort} onChange={(event) => { setSort(event.target.value as SortOption); resetVisibleResources(); }} className="focus-ring mt-2 h-12 w-full rounded-xl border border-ink/15 bg-paper px-3 text-base font-medium outline-none sm:text-sm"><option value="order">Orden editorial</option><option value="recent">Más recientes</option><option value="title">Título A–Z</option></select></label>
         </div>
       </div>
 
