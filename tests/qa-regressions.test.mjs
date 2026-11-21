@@ -76,7 +76,9 @@ test("every main landmark can receive the skip-link focus", () => {
 
 test("homepage preserves requested order and excludes the removed Instagram section", () => {
   const home = readFileSync("app/page.tsx", "utf8");
-  assert.match(home, /<Hero\s*\/>\s*<CoroEsperanza\s*\/>\s*<FoundationOverview\s*\/>/);
+  assert.match(home, /<Hero\s*\/>\s*<CoroEsperanza\s*\/>\s*<ShashamayoCampaign\s*\/\>\s*<FoundationOverview\s*\/>/);
+  const campaign = readFileSync("components/shashamayo-campaign.tsx", "utf8");
+  assert.ok(campaign.includes("San José Xacxamayo") && campaign.includes("1581822990645739"));
   assert.ok(home.includes("<PostcardSection"));
   assert.ok(!home.includes("InstagramSection"));
   assert.ok(home.includes("<FoundationContent />"));

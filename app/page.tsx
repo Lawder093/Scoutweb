@@ -5,6 +5,7 @@ import { Map } from "@/components/map";
 import { FoundationTrust } from "@/components/foundation-trust";
 import { FoundationContent } from "@/components/foundation-page";
 import { CoroEsperanza } from "@/components/coro-esperanza";
+import { ShashamayoCampaign } from "@/components/shashamayo-campaign";
 import { LibraryPreview } from "@/components/library-preview";
 import { PostcardSection } from "@/components/postcards/postcard-section";
 import { CTA } from "@/components/cta";
@@ -26,6 +27,7 @@ export default async function HomePage() {
       <main id="contenido-principal" tabIndex={-1}>
         <Hero />
         <CoroEsperanza />
+        <ShashamayoCampaign />
         <FoundationOverview />
         <FoundationTrust />
         <FoundationContent />
