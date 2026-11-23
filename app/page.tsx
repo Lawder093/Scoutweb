@@ -1,14 +1,12 @@
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
-import { FoundationOverview } from "@/components/foundation-overview";
 import { Map } from "@/components/map";
-import { FoundationTrust } from "@/components/foundation-trust";
-import { FoundationContent } from "@/components/foundation-page";
 import { CoroEsperanza } from "@/components/coro-esperanza";
 import { ShashamayoCampaign } from "@/components/shashamayo-campaign";
 import { LibraryPreview } from "@/components/library-preview";
 import { PostcardSection } from "@/components/postcards/postcard-section";
 import { CTA } from "@/components/cta";
+import { HomeMosaicBoard } from "@/components/home-mosaic-board";
 import { SiteFooter } from "@/components/site-footer";
 import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
 import { getLibraryResources } from "@/lib/content/services";
@@ -26,11 +24,9 @@ export default async function HomePage() {
       <SiteHeader />
       <main id="contenido-principal" tabIndex={-1}>
         <Hero />
+        <HomeMosaicBoard />
         <CoroEsperanza />
         <ShashamayoCampaign />
-        <FoundationOverview />
-        <FoundationTrust />
-        <FoundationContent />
         <Map />
         <LibraryPreview resources={resources} />
         <PostcardSection postcards={postcards} />

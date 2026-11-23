@@ -44,8 +44,8 @@ test("production CSP allows only our public PDF bucket and retains protections",
   assert.ok(!csp.includes("'unsafe-eval'"));
   assert.equal(headers.find((header) => header.key === "X-Frame-Options").value, "DENY");
   const redirects = await config.redirects();
-  assert.equal(redirects.find((entry) => entry.source === "/asociacion").destination, "/#proposito");
-  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/#historia");
+  assert.equal(redirects.find((entry) => entry.source === "/asociacion").destination, "/nosotros#proposito");
+  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/nosotros#historia");
   assert.equal(redirects.find((entry) => entry.source === "/escultismo").destination, "/cde/mexico");
   process.env.NEXT_PUBLIC_SUPABASE_URL = "http://localhost:54321";
   const invalid = await import("../next.config.mjs?qa-invalid");
@@ -76,12 +76,15 @@ test("every main landmark can receive the skip-link focus", () => {
 
 test("homepage preserves requested order and excludes the removed Instagram section", () => {
   const home = readFileSync("app/page.tsx", "utf8");
-  assert.match(home, /<Hero\s*\/>\s*<CoroEsperanza\s*\/>\s*<ShashamayoCampaign\s*\/\>\s*<FoundationOverview\s*\/>/);
+  assert.match(home, /<Hero\s*\/>\s*<HomeMosaicBoard\s*\/\>\s*<CoroEsperanza\s*\/>\s*<ShashamayoCampaign\s*\/\>/);
   const campaign = readFileSync("components/shashamayo-campaign.tsx", "utf8");
   assert.ok(campaign.includes("San José Xacxamayo") && campaign.includes("1581822990645739"));
   assert.ok(home.includes("<PostcardSection"));
   assert.ok(!home.includes("InstagramSection"));
-  assert.ok(home.includes("<FoundationContent />"));
+  assert.ok(home.includes("<HomeMosaicBoard />"));
+  assert.ok(!home.includes("<FoundationContent />"));
+  const nosotros = readFileSync("app/nosotros/page.tsx", "utf8");
+  assert.ok(nosotros.includes("<FoundationOverview />") && nosotros.includes("<FoundationTrust />") && nosotros.includes("<FoundationContent />"));
 });
 
 test("previous homepage presentation keeps current content without the removed captions", () => {
@@ -98,7 +101,7 @@ test("previous homepage presentation keeps current content without the removed c
   assert.ok(hero.includes("Acompañamos a niños, jóvenes y comunidades a través de la educación, la cultura y la solidaridad. Porque crecer también significa tener oportunidades, participar y contar con los demás."));
   assert.ok(choir.includes("Beneficiando a las juventudes a través de la música, la expresión y el encuentro."));
   assert.ok(choir.includes("El coro es un espacio para aprender a escucharnos, compartir lo que sentimos y construir confianza. Cada ensayo reúne voces distintas y nos recuerda que podemos crear algo juntos."));
-  assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#asociacion"'));
+  assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#mosaicos"'));
   assert.ok(choir.includes('href="/contacto"'));
   assert.ok(hero.includes('data-glass-tone="dark"') && hero.includes('sizes="100vw"'));
   assert.ok(choir.includes("bg-secondary") && choir.includes("object-contain"));
