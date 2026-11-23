@@ -84,7 +84,7 @@ test("homepage preserves requested order and excludes the removed Instagram sect
   assert.ok(home.includes("<HomeMosaicBoard />"));
   assert.ok(!home.includes("<FoundationContent />"));
   const nosotros = readFileSync("app/nosotros/page.tsx", "utf8");
-  assert.ok(nosotros.includes("<FoundationOverview />") && nosotros.includes("<FoundationTrust />") && nosotros.includes("<FoundationContent />"));
+  assert.ok(nosotros.includes("<NosotrosMosaicBoard />") && nosotros.includes("<FoundationContent />"));
 });
 
 test("previous homepage presentation keeps current content without the removed captions", () => {
