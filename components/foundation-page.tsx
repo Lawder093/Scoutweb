@@ -28,7 +28,7 @@ export function FoundationContent() {
         <section className="apple-module apple-module--mist pb-14 pt-32 md:pt-48 xl:pt-36">
           <div className="section-shell">
             <div className="grid items-end gap-7 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
-              <div><p className="text-sm font-bold leading-6 text-primary">Comunidad Crítica de Escultismo Popular, A. C.</p><h1 className="display-title mt-6 max-w-3xl text-5xl leading-[1.02] sm:text-7xl">Acompañar el presente, <span className="text-primary">abrir posibilidades</span></h1></div>
+              <div><p className="text-sm font-bold leading-6 text-primary">Comunidad Crítica de Escultismo Popular, A. C.</p><h2 className="display-title mt-6 max-w-3xl text-5xl leading-[1.02] sm:text-7xl">Acompañar el presente, <span className="text-primary">abrir posibilidades</span></h2></div>
               <p className="max-w-xl text-lg leading-8 text-ink/75">Somos una asociación civil sin fines de lucro. Impulsamos educación, cultura y asistencia social con una convicción: una vida más justa y humana se construye con las comunidades.</p>
             </div>
             <figure className="mt-10">
