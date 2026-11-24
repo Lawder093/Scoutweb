@@ -5,7 +5,7 @@ const campaignUrl = "https://www.facebook.com/photo/?fbid=1581822990645739&set=a
 
 export function ShashamayoCampaign() {
   return (
-    <section id="shashamayo" data-glass-tone="dark" className="bg-primary py-24 text-white sm:py-32">
+    <section id="shashamayo" data-glass-tone="dark" className="apple-module apple-module--primary py-24 text-white sm:py-32">
       <div className="section-shell">
         <div className="grid gap-12 lg:grid-cols-[.95fr_1.05fr] lg:items-start lg:gap-20">
           <div>

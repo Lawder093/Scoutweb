@@ -16,7 +16,7 @@ const toneClasses: Record<ContentTone, string> = {
 
 export function BlogPostCard({ post, index = 0 }: { post: BlogPost | BlogPostSummary; index?: number }) {
   return (
-    <Reveal delay={index * 0.05} className={"group overflow-hidden rounded-[1.8rem] " + toneClasses[post.tone] + " " + (post.tone === "accent" || post.tone === "mist" ? "text-ink" : "text-white") + " shadow-card transition-transform hover:-translate-y-1"}>
+    <Reveal delay={index * 0.05} className={"apple-card group overflow-hidden rounded-[1.8rem] " + toneClasses[post.tone] + " " + (post.tone === "accent" || post.tone === "mist" ? "text-ink" : "text-white") }>
       <Link href={"/blog/" + post.slug} className="focus-ring block">
         <div className="relative aspect-[1.35/1] overflow-hidden">
           {post.coverImageUrl ? <Image src={post.coverImageUrl} alt="" fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width: 1024px) 90vw, 33vw" /> : <div className="h-full w-full bg-current opacity-10" aria-hidden="true" />}

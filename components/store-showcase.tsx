@@ -7,7 +7,7 @@ import { StoreProductVisual } from "./store-product-visual";
 
 function ProductCard({ product, index }: { product: StoreProduct; index: number }) {
   return (
-    <Reveal delay={index * 0.06} className="group overflow-hidden rounded-[1.8rem] bg-paper shadow-card ring-1 ring-ink/10 transition-transform hover:-translate-y-1">
+    <Reveal delay={index * 0.06} className="apple-card group overflow-hidden rounded-[1.8rem] bg-paper">
       <StoreProductVisual product={product} />
       <div className="p-6 sm:p-7">
         <div className="flex items-center justify-between gap-3 text-[10px] font-extrabold uppercase tracking-[0.15em] text-secondary">
@@ -29,7 +29,7 @@ function ProductCard({ product, index }: { product: StoreProduct; index: number 
 
 export function StoreShowcase() {
   return (
-    <section id="productos" className="bg-mist py-24 sm:py-32">
+    <section id="productos" className="apple-module apple-module--mist py-24 sm:py-32">
       <div className="section-shell">
         <Reveal>
           <div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">

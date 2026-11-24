@@ -80,6 +80,48 @@ button {
   margin-inline: auto;
 }
 
+/* Shared presentation layer: lightweight, product-like modules that keep the
+   established brand palette while giving long pages a clearer rhythm. */
+.apple-module {
+  position: relative;
+  width: min(calc(100% - 1rem), 1280px);
+  margin-inline: auto;
+  border: 1px solid rgb(29 43 52 / 0.1);
+  border-radius: clamp(1.5rem, 3vw, 2.75rem);
+  box-shadow: 0 18px 48px rgb(29 43 52 / 0.08), 0 3px 12px rgb(29 43 52 / 0.04);
+  overflow: clip;
+}
+
+.apple-module--paper { background: var(--color-paper); }
+.apple-module--mist { background: var(--color-mist); }
+.apple-module--ink { background: var(--color-ink); border-color: rgb(255 255 255 / 0.12); }
+.apple-module--primary { background: var(--color-primary); border-color: rgb(255 255 255 / 0.14); }
+.apple-module--accent { background: var(--color-accent); }
+
+.apple-intro {
+  border: 1px solid rgb(29 43 52 / 0.1);
+  border-radius: clamp(1.5rem, 3vw, 2.75rem);
+  background: var(--color-mist);
+  box-shadow: 0 18px 48px rgb(29 43 52 / 0.07), 0 3px 12px rgb(29 43 52 / 0.04);
+}
+
+.apple-card {
+  border: 1px solid rgb(29 43 52 / 0.1);
+  border-radius: 1.6rem;
+  box-shadow: 0 8px 26px rgb(29 43 52 / 0.07), 0 2px 8px rgb(29 43 52 / 0.04);
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.apple-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 18px 42px rgb(29 43 52 / 0.11), 0 4px 12px rgb(29 43 52 / 0.06);
+}
+
+@media (max-width: 640px) {
+  .apple-module { width: calc(100% - 0.75rem); border-radius: 1.35rem; }
+  .apple-intro { border-radius: 1.5rem; }
+}
+
 .site-header {
   padding-left: max(0.75rem, env(safe-area-inset-left));
   padding-right: max(0.75rem, env(safe-area-inset-right));

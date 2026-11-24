@@ -104,7 +104,7 @@ test("previous homepage presentation keeps current content without the removed c
   assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#mosaicos"'));
   assert.ok(choir.includes('href="/contacto"'));
   assert.ok(hero.includes('data-glass-tone="dark"') && hero.includes('sizes="100vw"'));
-  assert.ok(choir.includes("bg-secondary") && choir.includes("object-contain"));
+  assert.ok(choir.includes("apple-module--ink") && choir.includes("object-contain"));
 });
 
 test("association work areas expose one semantic icon without changing their copy", () => {

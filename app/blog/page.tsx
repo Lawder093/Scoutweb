@@ -19,7 +19,7 @@ export default async function BlogPage() {
     <>
       <SiteHeader />
       <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16">
-        <section className="section-shell py-20 sm:py-28">
+        <section className="section-shell apple-intro py-20 sm:py-28">
           <span className="eyebrow">Blog del movimiento</span>
           <h1 className="display-title mt-6 max-w-4xl break-words text-5xl leading-[0.88] sm:text-8xl">Historias que<br /><span className="text-primary">se organizan</span></h1>
         </section>

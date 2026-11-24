@@ -16,7 +16,7 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
 
   if (!compact) {
     return (
-      <article className="group flex flex-col gap-5 rounded-[1.6rem] border border-ink/10 bg-paper p-4 shadow-card transition-shadow hover:shadow-soft sm:flex-row sm:items-center sm:p-5">
+      <article className="apple-card group flex flex-col gap-5 rounded-[1.6rem] bg-paper p-4 sm:flex-row sm:items-center sm:p-5">
         <Link href={readerUrl} aria-label={`Abrir vista previa de ${resource.title}`} className="focus-ring flex min-w-0 flex-1 flex-col gap-5 rounded-xl sm:flex-row sm:items-center">
           <div className={`relative h-24 w-full shrink-0 overflow-hidden rounded-[1.15rem] ${toneClasses[resource.tone]} sm:h-28 sm:w-40`}>
             {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-cover" sizes="(max-width: 640px) 100vw, 160px" /> : <div className="absolute -right-6 -top-8 h-28 w-28 rounded-full border-[18px] border-current opacity-15" aria-hidden="true" />}
@@ -42,7 +42,7 @@ export function LibraryResourceCard({ resource, compact = false }: { resource: L
   return (
     <article className="group min-w-0">
       <Link href={readerUrl} aria-label={`Abrir vista previa de ${resource.title}`} className="focus-ring block rounded-[1.35rem]">
-        <div className={`relative aspect-[0.72] overflow-hidden rounded-[1.35rem] ${toneClasses[resource.tone]} shadow-card ring-1 ring-ink/10 transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-soft`}>
+        <div className={`apple-card relative aspect-[0.72] overflow-hidden rounded-[1.35rem] ${toneClasses[resource.tone]} ring-1 ring-ink/10`}>
           {resource.coverImageUrl ? <Image src={resource.coverImageUrl} alt="" fill className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]" sizes="(max-width: 640px) 44vw, (max-width: 1024px) 30vw, 220px" /> : <><div className="absolute -right-8 -top-8 h-36 w-36 rounded-full border-[18px] border-current opacity-15" aria-hidden="true" /><BookOpen className="absolute bottom-5 right-5 opacity-20" size={48} strokeWidth={1.2} aria-hidden="true" /></>}
           <span className="absolute left-4 top-4 text-2xl font-black opacity-35">{String(resource.displayOrder).padStart(2, "0")}</span>
         </div>

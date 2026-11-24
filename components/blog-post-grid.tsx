@@ -7,7 +7,7 @@ import { BlogPostCard } from "./blog-post-card";
 
 export function BlogPostGrid({ posts, dark = false, showAllLink = true }: { posts: (BlogPost | BlogPostSummary)[]; dark?: boolean; showAllLink?: boolean }) {
   return (
-    <section id="historias" className={dark ? "bg-ink py-24 text-white sm:py-32" : "bg-mist py-24 sm:py-32"}>
+    <section id="historias" className={dark ? "apple-module apple-module--ink py-24 text-white sm:py-32" : "apple-module apple-module--mist py-24 sm:py-32"}>
       <div className="section-shell">
         <Reveal><div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-end">
           <SectionHeading dark={dark} eyebrow="En movimiento" title={<>Lo que estamos <span className="text-accent">haciendo</span></>} description="Ideas que salen del cuaderno, se prueban en el territorio y regresan convertidas en preguntas nuevas." />

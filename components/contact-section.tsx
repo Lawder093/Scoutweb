@@ -48,7 +48,7 @@ export function ContactSection({ headingLevel = "h2" }: { headingLevel?: "h1" | 
   const Heading = headingLevel;
 
   return (
-    <section id="sumate" className="relative overflow-hidden bg-mist py-20 sm:py-28">
+    <section id="sumate" className="apple-module apple-module--mist relative overflow-hidden py-20 sm:py-28">
       <div className="pointer-events-none absolute -right-28 top-16 h-72 w-72 rounded-full border-[36px] border-accent/20" />
       <div className="pointer-events-none absolute -left-24 top-[32rem] h-64 w-64 rounded-full border-[24px] border-primary/10" />
 

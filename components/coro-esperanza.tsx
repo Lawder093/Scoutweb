@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export function CoroEsperanza() {
   return (
-    <section id="coro-esperanza" data-glass-tone="dark" className="bg-secondary py-24 text-white sm:py-32">
+    <section id="coro-esperanza" data-glass-tone="dark" className="apple-module apple-module--ink py-24 text-white sm:py-32">
       <div className="section-shell grid min-w-0 items-center gap-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
         <div className="order-2 min-w-0 lg:order-1">
           <h2 className="display-title text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">Coro Esperanza <span className="text-accent">Paulo Freire</span></h2>

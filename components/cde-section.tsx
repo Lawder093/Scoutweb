@@ -9,7 +9,7 @@ const cdeList = Object.values(cdes);
 
 export function CdeSection({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
   return (
-    <section id="cde" className="overflow-hidden bg-paper py-24 sm:py-32">
+    <section id="cde" className="apple-module apple-module--paper overflow-hidden py-24 sm:py-32">
       <div className="section-shell">
         <Reveal>
           <SectionHeading headingLevel={headingLevel} eyebrow="La red" title={<>Crecer en <span className="text-secondary">comunidad</span></>} description="En la propuesta de Gerardo Martínez Hernández, un Centro de Desarrollo Escultista es un espacio comunitario de educación no formal que parte del territorio para aprender, organizar proyectos y transformar la realidad en colectivo. Hoy los CDE activos están en México, Colombia y Argentina." />

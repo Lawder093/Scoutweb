@@ -12,7 +12,7 @@ const toneClasses: Record<HomeMosaic["tone"], string> = {
 
 export function HomeMosaicBoard() {
   return (
-    <section id="mosaicos" className="bg-paper py-16 sm:py-24" aria-labelledby="mosaicos-title">
+    <section id="mosaicos" className="apple-module apple-module--paper py-16 sm:py-24" aria-labelledby="mosaicos-title">
       <div className="section-shell">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -24,7 +24,7 @@ export function HomeMosaicBoard() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {homeMosaics.map((mosaic) => {
             const Icon = icons[mosaic.icon];
-            return <Link key={mosaic.id} href={mosaic.href} className={`home-mosaic-card focus-ring group rounded-[1.75rem] p-6 transition-transform hover:-translate-y-1 sm:p-7 ${toneClasses[mosaic.tone]} ${mosaic.span === "wide" ? "lg:col-span-2" : ""}`}>
+            return <Link key={mosaic.id} href={mosaic.href} className={`home-mosaic-card apple-card focus-ring group rounded-[1.75rem] p-6 sm:p-7 ${toneClasses[mosaic.tone]} ${mosaic.span === "wide" ? "lg:col-span-2" : ""}`}>
               <div className="flex items-start justify-between gap-5"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-current/15" aria-hidden="true"><Icon size={21} strokeWidth={1.8} /></span><span className="text-xs font-extrabold uppercase tracking-[0.15em] opacity-70">Abrir módulo</span></div>
               <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.15em] opacity-70">{mosaic.eyebrow}</p>
               <h3 className="mt-3 max-w-xl text-2xl font-extrabold leading-tight sm:text-3xl">{mosaic.title}</h3>

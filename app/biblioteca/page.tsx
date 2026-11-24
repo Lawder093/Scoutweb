@@ -19,7 +19,7 @@ export default async function BibliotecaPage() {
     <>
       <SiteHeader />
       <main id="contenido-principal" tabIndex={-1} className="pt-20 sm:pt-16">
-        <section className="section-shell py-20 sm:py-28"><span className="eyebrow">Biblioteca de la asociación</span><h1 className="display-title mt-6 max-w-4xl break-words text-5xl leading-[0.88] sm:text-8xl">Leer, adaptar,<br /><span className="text-primary">compartir</span></h1><p className="mt-8 max-w-2xl text-lg leading-8 text-ink/65 sm:text-xl">Una colección viva de publicaciones, documentos y herramientas para acompañar procesos de educación popular.</p></section>
+        <section className="section-shell apple-intro py-20 sm:py-28"><span className="eyebrow">Biblioteca de la asociación</span><h1 className="display-title mt-6 max-w-4xl break-words text-5xl leading-[0.88] sm:text-8xl">Leer, adaptar,<br /><span className="text-primary">compartir</span></h1><p className="mt-8 max-w-2xl text-lg leading-8 text-ink/65 sm:text-xl">Una colección viva de publicaciones, documentos y herramientas para acompañar procesos de educación popular.</p></section>
         <LibrarySection resources={resources} />
       </main>
       <SiteFooter />

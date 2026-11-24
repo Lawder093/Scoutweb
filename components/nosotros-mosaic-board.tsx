@@ -12,7 +12,7 @@ const mosaics = [
 
 export function NosotrosMosaicBoard() {
   return (
-    <section className="bg-paper px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="nosotros-mosaicos-title">
+    <section className="apple-module apple-module--paper px-4 py-14 sm:px-6 sm:py-20" aria-labelledby="nosotros-mosaicos-title">
       <div className="mx-auto max-w-[1180px]">
         <div className="max-w-3xl">
           <p className="eyebrow text-primary">Mapa de la asociación</p>
