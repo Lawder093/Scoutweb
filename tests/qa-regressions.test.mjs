@@ -44,8 +44,8 @@ test("production CSP allows only our public PDF bucket and retains protections",
   assert.ok(!csp.includes("'unsafe-eval'"));
   assert.equal(headers.find((header) => header.key === "X-Frame-Options").value, "DENY");
   const redirects = await config.redirects();
-  assert.equal(redirects.find((entry) => entry.source === "/asociacion").destination, "/nosotros#proposito");
-  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/nosotros#historia");
+  assert.equal(redirects.find((entry) => entry.source === "/asociacion").destination, "/curriculum-institucional#proposito");
+  assert.equal(redirects.find((entry) => entry.source === "/historia").destination, "/curriculum-institucional#historia");
   assert.equal(redirects.find((entry) => entry.source === "/escultismo").destination, "/cde/mexico");
   process.env.NEXT_PUBLIC_SUPABASE_URL = "http://localhost:54321";
   const invalid = await import("../next.config.mjs?qa-invalid");
@@ -83,8 +83,10 @@ test("homepage preserves requested order and excludes the removed Instagram sect
   assert.ok(!home.includes("InstagramSection"));
   assert.ok(home.includes("<HomeMosaicBoard />"));
   assert.ok(!home.includes("<FoundationContent />"));
+  const curriculum = readFileSync("app/curriculum-institucional/page.tsx", "utf8");
   const nosotros = readFileSync("app/nosotros/page.tsx", "utf8");
-  assert.ok(nosotros.includes("<NosotrosMosaicBoard />") && nosotros.includes("<FoundationContent />"));
+  assert.ok(curriculum.includes("<InstitutionalMosaicBoard />") && curriculum.includes("foundationInitiatives") && curriculum.includes("foundationBankDetails"));
+  assert.ok(nosotros.includes("permanentRedirect(\"/curriculum-institucional#proposito\")"));
 });
 
 test("previous homepage presentation keeps current content without the removed captions", () => {

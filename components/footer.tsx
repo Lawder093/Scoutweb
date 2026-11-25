@@ -32,7 +32,7 @@ export function Footer() {
               <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-accent">Explora</p>
               <div className="mt-5 space-y-3 text-sm font-semibold text-white/70">
                 <Link href="/" className="focus-ring block rounded-lg hover:text-accent">Inicio</Link>
-                <Link href="/nosotros#proposito" className="focus-ring block rounded-lg hover:text-accent">Nuestra labor</Link>
+                <Link href="/curriculum-institucional#proposito" className="focus-ring block rounded-lg hover:text-accent">Nuestra labor</Link>
                 <Link href="/cde" className="focus-ring block rounded-lg hover:text-accent">CDE</Link>
                 <Link href="/biblioteca" className="focus-ring block rounded-lg hover:text-accent">Recursos</Link>
                 <Link href="/blog" className="focus-ring block rounded-lg hover:text-accent">Blog</Link>
@@ -55,7 +55,6 @@ export function Footer() {
             <div>
               <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-accent">Legal</p>
               <div className="mt-5 space-y-3 text-sm font-semibold text-white/70">
-                <Link href="/nosotros" className="focus-ring block rounded-lg hover:text-accent">Nosotros</Link>
                 <Link href="/curriculum-institucional#transparencia" className="focus-ring block rounded-lg hover:text-accent">Currículum institucional</Link>
                 <Link href="/legal/donataria-donaciones" className="focus-ring block rounded-lg hover:text-accent">Donataria y donaciones</Link>
                 <Link href="/legal/politica-de-privacidad" className="focus-ring block rounded-lg hover:text-accent">Política de privacidad</Link>

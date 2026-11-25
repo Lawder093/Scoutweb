@@ -11,7 +11,7 @@ export type HomeMosaic = {
 
 /** Inicio se compone de módulos configurables para facilitar futuras ediciones. */
 export const homeMosaics: HomeMosaic[] = [
-  { id: "nosotros", eyebrow: "La asociación", title: "Quiénes somos y cómo trabajamos", description: "Conoce nuestra historia, propósito, beneficiarios, donaciones y compromisos de transparencia.", href: "/nosotros", tone: "primary", icon: "heart", span: "wide" },
+  { id: "curriculum", eyebrow: "La asociación", title: "Currículum institucional", description: "Conoce nuestra historia, propósito, beneficiarios, donaciones y compromisos de transparencia.", href: "/curriculum-institucional", tone: "primary", icon: "heart", span: "wide" },
   { id: "cde", eyebrow: "La red", title: "Centros de Desarrollo Escultista", description: "Explora los territorios y comunidades que forman parte de la red.", href: "/cde", tone: "mist", icon: "globe", span: "wide" },
   { id: "blog", eyebrow: "Historias", title: "Blog", description: "Ideas, experiencias y conversaciones desde el territorio.", href: "/blog", tone: "ink", icon: "book" },
   { id: "tienda", eyebrow: "Objetos con sentido", title: "Tienda", description: "Materiales y publicaciones para acompañar el proyecto.", href: "/tienda", tone: "accent", icon: "store" },
