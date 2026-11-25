@@ -76,12 +76,12 @@ test("every main landmark can receive the skip-link focus", () => {
 
 test("homepage preserves requested order and excludes the removed Instagram section", () => {
   const home = readFileSync("app/page.tsx", "utf8");
-  assert.match(home, /<Hero\s*\/>\s*<HomeMosaicBoard\s*\/\>\s*<CoroEsperanza\s*\/>\s*<ShashamayoCampaign\s*\/\>/);
+  assert.match(home, /<Hero\s*\/>\s*<CoroEsperanza\s*\/>\s*<ShashamayoCampaign\s*\/\>/);
   const campaign = readFileSync("components/shashamayo-campaign.tsx", "utf8");
   assert.ok(campaign.includes("San José Xacxamayo") && campaign.includes("1581822990645739"));
   assert.ok(home.includes("<PostcardSection"));
   assert.ok(!home.includes("InstagramSection"));
-  assert.ok(home.includes("<HomeMosaicBoard />"));
+  assert.ok(!home.includes("<HomeMosaicBoard />"));
   assert.ok(!home.includes("<FoundationContent />"));
   const curriculum = readFileSync("app/curriculum-institucional/page.tsx", "utf8");
   const transparency = readFileSync("components/transparency-page.tsx", "utf8");
@@ -105,7 +105,7 @@ test("previous homepage presentation keeps current content without the removed c
   assert.ok(hero.includes("Acompañamos a niños, jóvenes y comunidades a través de la educación, la cultura y la solidaridad. Porque crecer también significa tener oportunidades, participar y contar con los demás."));
   assert.ok(choir.includes("Beneficiando a las juventudes a través de la música, la expresión y el encuentro."));
   assert.ok(choir.includes("El coro es un espacio para aprender a escucharnos, compartir lo que sentimos y construir confianza. Cada ensayo reúne voces distintas y nos recuerda que podemos crear algo juntos."));
-  assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#mosaicos"'));
+  assert.ok(hero.includes('href="/donacion"') && hero.includes('href="#coro-esperanza"'));
   assert.ok(choir.includes('href="/contacto"'));
   assert.ok(hero.includes('data-glass-tone="dark"') && hero.includes('sizes="100vw"'));
   assert.ok(choir.includes("apple-module--ink") && choir.includes("object-contain"));

@@ -15,7 +15,7 @@ export function Hero() {
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/90">Acompañamos a niños, jóvenes y comunidades a través de la educación, la cultura y la solidaridad. Porque crecer también significa tener oportunidades, participar y contar con los demás.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/donacion" className="focus-ring inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-4 text-sm font-extrabold text-white shadow-card transition-transform hover:-translate-y-1">Quiero apoyar <ArrowUpRight size={18} aria-hidden="true" /></Link>
-            <a href="#mosaicos" className="focus-ring inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/10 px-6 py-4 text-sm font-extrabold text-white backdrop-blur-sm hover:border-accent hover:text-accent">Conoce nuestra labor <ArrowDown size={17} aria-hidden="true" /></a>
+            <a href="#coro-esperanza" className="focus-ring inline-flex items-center justify-center gap-3 rounded-full border border-white/40 bg-white/10 px-6 py-4 text-sm font-extrabold text-white backdrop-blur-sm hover:border-accent hover:text-accent">Conoce nuestra labor <ArrowDown size={17} aria-hidden="true" /></a>
           </div>
         </div>
       </div>

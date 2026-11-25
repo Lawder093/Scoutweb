@@ -6,7 +6,6 @@ import { ShashamayoCampaign } from "@/components/shashamayo-campaign";
 import { LibraryPreview } from "@/components/library-preview";
 import { PostcardSection } from "@/components/postcards/postcard-section";
 import { CTA } from "@/components/cta";
-import { HomeMosaicBoard } from "@/components/home-mosaic-board";
 import { SiteFooter } from "@/components/site-footer";
 import { OrganizationJsonLd } from "@/components/seo/organization-json-ld";
 import { getLibraryResources } from "@/lib/content/services";
@@ -24,7 +23,6 @@ export default async function HomePage() {
       <SiteHeader />
       <main id="contenido-principal" tabIndex={-1}>
         <Hero />
-        <HomeMosaicBoard />
         <CoroEsperanza />
         <ShashamayoCampaign />
         <Map />
