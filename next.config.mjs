@@ -88,11 +88,6 @@ const nextConfig = {
         destination: "/legal/politica-de-privacidad",
         permanent: true,
       },
-      {
-        source: "/transparencia",
-        destination: "/legal/transparencia",
-        permanent: true,
-      },
     ];
   },
   async headers() {
