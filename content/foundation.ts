@@ -1,3 +1,5 @@
+import importedBlogPosts from "@/content/blog/posts.json";
+
 export type FoundationCard = {
   title: string;
   description: string;
@@ -118,42 +120,84 @@ export const foundationODS = [
 ];
 
 export type FoundationInitiative = FoundationCard & {
+  id: string;
   place: string;
   sourcePath: string;
+  date: string;
+  year: string;
+  image: string | null;
 };
 
-export const foundationInitiatives: FoundationInitiative[] = [
-  {
-    title: "Apoyos para Nanacatlán",
-    place: "Sierra Norte de Puebla",
-    description: "Recolección y entrega de ropa, calzado, juguetes, medicinas y alimentos para familias y para el desayunador comunitario de la escuela.",
-    sourcePath: "/blog/escultista-9101-entrega-de-donativos-a-la-comunidad-de-nanacatlan",
-  },
-  {
-    title: "Campañas de salud comunitaria",
-    place: "Nanacatlán e Ixcuintepec",
-    description: "Gestión solidaria de medicamentos y materiales para atender necesidades de salud identificadas junto con las comunidades.",
-    sourcePath: "/blog/escultista-8430-donaciones-para-nanacatlan",
-  },
-  {
-    title: "Ropa y juguetes para la niñez",
-    place: "San Miguel Tecuanipa",
-    description: "Colectas comunitarias entregadas con apoyo de educadoras y organizaciones locales, vinculando el servicio con la participación juvenil.",
-    sourcePath: "/blog/escultista-1587-donacion-juguetes-y-ropa-a-la-comunidad-de-san-miguel-tecuanipa",
-  },
-  {
-    title: "Juguetes para el juego",
-    place: "Comunidades de Atlixco",
-    description: "Entrega de juguetes para favorecer el juego y la recreación como parte del desarrollo de niñas y niños.",
-    sourcePath: "/blog/escultista-1882-entrega-de-juguetes",
-  },
-  {
-    title: "Redes para sostener la ayuda",
-    place: "Puebla, Cholula y Tlaxcala",
-    description: "Colaboración con colectivos locales para reunir, trasladar y distribuir donativos de manera más cercana y sostenible.",
-    sourcePath: "/blog/escultista-9128-apoyos-continuos-para-la-sierra-norte-solidaridad-en-movimiento",
-  },
-];
+const legacyDonationIds = new Set([
+  "escultista-11666",
+  "escultista-11464",
+  "escultista-9941",
+  "escultista-9668",
+  "escultista-9483",
+  "escultista-1137",
+  "escultista-9128",
+  "escultista-9101",
+  "escultista-9042",
+  "escultista-9030",
+  "escultista-9013",
+  "escultista-9007",
+  "escultista-8999",
+  "escultista-8910",
+  "escultista-8804",
+  "escultista-8772",
+  "escultista-8482",
+  "escultista-8430",
+  "escultista-2464",
+  "escultista-2517",
+  "escultista-2358",
+  "escultista-2306",
+  "escultista-1882",
+  "escultista-1587",
+  "escultista-1419",
+  "escultista-1337",
+  "escultista-1219",
+  "escultista-1205",
+  "escultista-1187",
+  "escultista-1180",
+  "escultista-1164",
+  "escultista-1154",
+]);
+
+const normalizeExcerpt = (excerpt: string) => {
+  const clean = excerpt.replace(/\s+/g, " ").replace(/\[\.\.\.\]/g, "").trim();
+  return clean.length > 210 ? `${clean.slice(0, 207).trimEnd()}…` : clean;
+};
+
+const placeForInitiative = (value: string) => {
+  const text = value.toLocaleLowerCase("es-MX");
+  if (text.includes("xacxamayo")) return "San José Xacxamayo";
+  if (text.includes("nanacatlán") || text.includes("nanacatlan") || text.includes("ixcuintepec")) return "Sierra Norte de Puebla";
+  if (text.includes("guerrero")) return "Centro de acopio · Guerrero";
+  if (text.includes("tecuanipa")) return "San Miguel Tecuanipa";
+  if (text.includes("resurrección")) return "Junta auxiliar de La Resurrección";
+  if (text.includes("chetla") || text.includes("totimehuacán")) return "Chetla · San Francisco Totimehuacán";
+  if (text.includes("oaxaca")) return "Ixcuintepec · Oaxaca";
+  if (text.includes("alfabetiza")) return "Puebla se Alfabetiza";
+  if (text.includes("pandemia")) return "Puebla y sus comunidades";
+  return "Puebla y sus comunidades";
+};
+
+const importedDonationInitiatives: FoundationInitiative[] = importedBlogPosts
+  .filter((post) => legacyDonationIds.has(post.id))
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  .map((post) => ({
+    id: post.id,
+    title: post.title,
+    place: placeForInitiative(`${post.title} ${post.excerpt}`),
+    description: normalizeExcerpt(post.excerpt),
+    sourcePath: `/blog/${post.slug}`,
+    date: post.dateLabel,
+    year: post.publishedAt.slice(0, 4),
+    image: post.coverImageUrl ?? null,
+  }));
+
+export const foundationInitiatives = importedDonationInitiatives;
+export const foundationDonationYears = Array.from(new Set(foundationInitiatives.map((initiative) => initiative.year))).sort();
 
 export const foundationMilestones = [
   { year: "1933", title: "Primeras experiencias en Puebla", text: "La historia de la asociación se enlaza con el establecimiento del escultismo en la ciudad de Puebla." },
