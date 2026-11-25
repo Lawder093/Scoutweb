@@ -25,7 +25,7 @@ export function HomeMosaicBoard() {
           {homeMosaics.map((mosaic) => {
             const Icon = icons[mosaic.icon];
             return <Link key={mosaic.id} href={mosaic.href} className={`home-mosaic-card apple-card focus-ring group rounded-[1.75rem] p-6 sm:p-7 ${toneClasses[mosaic.tone]} ${mosaic.span === "wide" ? "lg:col-span-2" : ""}`}>
-              <div className="flex items-start justify-between gap-5"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-current/15" aria-hidden="true"><Icon size={21} strokeWidth={1.8} /></span><span className="text-xs font-extrabold uppercase tracking-[0.15em] opacity-70">Abrir módulo</span></div>
+              <div><span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/15 ring-1 ring-current/15" aria-hidden="true"><Icon size={21} strokeWidth={1.8} /></span></div>
               <p className="mt-8 text-xs font-extrabold uppercase tracking-[0.15em] opacity-70">{mosaic.eyebrow}</p>
               <h3 className="mt-3 max-w-xl text-2xl font-extrabold leading-tight sm:text-3xl">{mosaic.title}</h3>
               <p className="mt-3 max-w-xl text-sm leading-6 opacity-75">{mosaic.description}</p>
