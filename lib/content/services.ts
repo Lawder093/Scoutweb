@@ -29,6 +29,11 @@ function formatDate(date: string): string {
   return new Intl.DateTimeFormat("es-MX", { day: "2-digit", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(date));
 }
 
+function librarySectionFromCreator(creator: string): string {
+  const section = creator.split("·").at(-1)?.trim();
+  return section || "Recursos educativos";
+}
+
 function logFallback(message: string, error: unknown): void {
   if (process.env.NODE_ENV === "production") return;
   const detail = error instanceof Error ? error.message : "Error desconocido";
@@ -66,7 +71,7 @@ function mapLibraryResource(row: LibraryResourceRow, index: number, client: Retu
     title: row.title,
     creator: row.creator,
     description: row.description,
-    categories: ["Recursos educativos"],
+    categories: [librarySectionFromCreator(row.creator)],
     tags: [],
     publishedAt,
     dateLabel: formatDate(publishedAt),
