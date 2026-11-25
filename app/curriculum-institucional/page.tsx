@@ -4,7 +4,6 @@ import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { InstitutionalMosaicBoard } from "@/components/institutional-mosaic-board";
 import { foundationBeneficiaries, foundationDonationYears, foundationGeneralObjective, foundationInitiatives, foundationMission, foundationODS, foundationRights, foundationSpecificObjectives, foundationValues, foundationVision, foundationWorkAreas, foundationMilestones } from "@/content/foundation";
 import type { FoundationInitiative } from "@/content/foundation";
 import { pageMetadata } from "@/lib/seo";
@@ -46,8 +45,6 @@ export default function CurriculumInstitucionalPage() {
         <section className="apple-module apple-module--ink px-4 pb-16 pt-24 text-white sm:px-6 sm:pb-24 sm:pt-32">
           <div className="mx-auto max-w-[1180px]"><div className="flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-accent"><ShieldCheck size={16} aria-hidden="true" /> Información institucional</div><h1 className="display-title mt-6 max-w-4xl text-5xl leading-[0.92] sm:text-8xl">Currículum <span className="text-accent">institucional</span></h1><p className="mt-8 max-w-3xl text-lg leading-8 text-white/75 sm:text-xl">La información que explica quiénes somos, a quiénes acompañamos, qué hacemos, cuáles son nuestras metas y qué hemos construido con las comunidades.</p><nav aria-label="Secciones del currículum institucional" className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-white/70"><a href="#proposito" className="focus-ring rounded py-2 hover:text-accent">Propósito</a><a href="#objetivos" className="focus-ring rounded py-2 hover:text-accent">Trabajo</a><a href="#solidaridad" className="focus-ring rounded py-2 hover:text-accent">Donaciones</a><a href="#historia" className="focus-ring rounded py-2 hover:text-accent">Historia</a></nav></div>
         </section>
-
-        <InstitutionalMosaicBoard />
 
         <section id="proposito" className="apple-module apple-module--paper px-4 py-16 sm:px-6 sm:py-24"><div className="mx-auto max-w-[1180px]"><div className="grid gap-10 lg:grid-cols-2 lg:gap-20"><div><p className="eyebrow">Quiénes somos</p><h2 className="display-title mt-5 text-4xl sm:text-6xl">Una asociación que acompaña procesos</h2><p className="mt-6 max-w-xl text-lg leading-8 text-ink/70">{foundationMission}</p></div><div className="rounded-[2rem] bg-mist p-7 sm:p-10"><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Nuestra visión</p><p className="mt-5 text-xl leading-9 text-ink/80">{foundationVision}</p><div className="mt-8 border-t border-ink/10 pt-7"><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-primary">Valores que orientan el trabajo</p><div className="mt-5 grid gap-4 sm:grid-cols-2">{foundationValues.map((value) => <div key={value.title}><h3 className="font-extrabold">{value.title}</h3><p className="mt-1 text-sm leading-6 text-ink/65">{value.description}</p></div>)}</div></div></div></div></div></section>
 
