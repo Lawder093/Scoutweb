@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 const navigation = [
   { label: "Inicio", href: "/" },
   { label: "Currículum institucional", href: "/curriculum-institucional" },
+  { label: "Transparencia", href: "/transparencia" },
   { label: "CDE", href: "/cde" },
   { label: "Blog", href: "/blog" },
   { label: "Tienda", href: "/tienda" },

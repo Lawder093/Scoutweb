@@ -14,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === "transparencia") redirect("/curriculum-institucional#transparencia");
+  if (slug === "transparencia") redirect("/transparencia");
   const page = getLegalPage(slug);
   return page ? pageMetadata({ title: page.title, description: page.summary, path: `/legal/${page.slug}` }) : { title: "Página legal no encontrada", robots: { index: false, follow: false } };
 }

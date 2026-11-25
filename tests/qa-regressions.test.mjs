@@ -84,8 +84,10 @@ test("homepage preserves requested order and excludes the removed Instagram sect
   assert.ok(home.includes("<HomeMosaicBoard />"));
   assert.ok(!home.includes("<FoundationContent />"));
   const curriculum = readFileSync("app/curriculum-institucional/page.tsx", "utf8");
+  const transparency = readFileSync("components/transparency-page.tsx", "utf8");
   const nosotros = readFileSync("app/nosotros/page.tsx", "utf8");
-  assert.ok(curriculum.includes("<InstitutionalMosaicBoard />") && curriculum.includes("foundationInitiatives") && curriculum.includes("foundationBankDetails"));
+  assert.ok(curriculum.includes("<InstitutionalMosaicBoard />") && curriculum.includes("foundationInitiatives"));
+  assert.ok(transparency.includes("foundationBankDetails") && transparency.includes("transparencyPdfLinks") && transparency.includes("Documentos públicos"));
   assert.ok(nosotros.includes("permanentRedirect(\"/curriculum-institucional#proposito\")"));
 });
 

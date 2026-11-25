@@ -55,7 +55,7 @@ export function Footer() {
             <div>
               <p className="text-[10px] font-extrabold uppercase tracking-[0.17em] text-accent">Legal</p>
               <div className="mt-5 space-y-3 text-sm font-semibold text-white/70">
-                <Link href="/curriculum-institucional#transparencia" className="focus-ring block rounded-lg hover:text-accent">Currículum institucional</Link>
+                <Link href="/transparencia" className="focus-ring block rounded-lg hover:text-accent">Transparencia</Link>
                 <Link href="/legal/donataria-donaciones" className="focus-ring block rounded-lg hover:text-accent">Donataria y donaciones</Link>
                 <Link href="/legal/politica-de-privacidad" className="focus-ring block rounded-lg hover:text-accent">Política de privacidad</Link>
               </div>
