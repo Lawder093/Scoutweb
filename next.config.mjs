@@ -60,6 +60,9 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    agentUpgrade: "security",
+  },
   outputFileTracingRoot: projectRoot,
   poweredByHeader: false,
   async redirects() {
