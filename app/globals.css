@@ -140,6 +140,7 @@ button {
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   backdrop-filter: blur(24px) saturate(160%);
   isolation: isolate;
+  overflow: hidden;
 }
 
 .site-header__surface::before {
@@ -176,6 +177,10 @@ button {
 
 .site-header__surface[data-tone="dark"][data-state="open"] {
   --glass-background: rgb(12 15 19 / 0.93);
+}
+
+.site-header__desktop-nav a[aria-current="page"] {
+  box-shadow: inset 0 -2px currentColor;
 }
 
 .site-header__logo {

@@ -190,30 +190,30 @@ export function SiteHeader() {
     }
   };
   const isDarkGlass = glassTone === "dark";
-  const navBaseClass = isDarkGlass ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-ink/70 hover:bg-secondary/10 hover:text-secondary";
-  const navActiveClass = isDarkGlass ? "bg-white/10 text-white" : "bg-primary/10 text-primary";
+  const navBaseClass = isDarkGlass ? "text-white/80 hover:text-white" : "text-ink/70 hover:text-primary";
+  const navActiveClass = isDarkGlass ? "font-extrabold text-white" : "font-extrabold text-primary";
   const mobileNavBaseClass = isDarkGlass ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-ink/75 hover:bg-secondary/10 hover:text-secondary";
 
   return (
     <header className="site-header fixed inset-x-0 top-0 z-50" data-glass-tone={glassTone}>
       {isOpen && <button type="button" aria-label="Cerrar menú" className="fixed inset-0 z-40 bg-ink/45 backdrop-blur-[2px] md:hidden" onClick={() => setIsOpen(false)} />}
       <div
-        className={`site-header__surface relative z-50 mx-auto max-w-[1240px] px-3 transition-[border-radius,background-color,box-shadow,border-color,color] duration-300 sm:px-5 ${isOpen ? "rounded-[1.75rem]" : "rounded-full"}`}
+        className="site-header__surface relative z-50 mx-auto max-w-[1240px] rounded-[1.35rem] px-3 transition-[background-color,box-shadow,border-color,color] duration-300 sm:px-5"
         data-tone={glassTone}
         data-state={isOpen ? "open" : "closed"}
       >
-        <div className="flex min-h-[62px] flex-wrap items-center justify-between gap-y-2 py-1 md:py-2 xl:min-h-[62px] xl:flex-nowrap xl:gap-y-0 xl:py-0">
+        <div className="flex min-h-[66px] flex-wrap items-center justify-between gap-y-2 py-1.5 md:py-2 xl:min-h-[66px] xl:flex-nowrap xl:gap-y-0 xl:py-0">
           <Link href="/" scroll={false} className="focus-ring order-1 flex shrink-0 items-center gap-3 rounded-full" onClick={() => handleNavigation("/")}>
             <span className="site-header__logo block rounded-lg px-2 py-1"><Image src="/images/ccep-logo-horizontal.png" alt="Comunidad Crítica de Escultismo Popular" width={315} height={108} className="h-9 w-auto sm:h-10" /></span>
           </Link>
 
-          <nav className="order-3 hidden items-center gap-1 md:mt-2 md:basis-full md:justify-center md:border-t md:pt-2 md:flex xl:order-2 xl:mt-0 xl:basis-auto xl:justify-start xl:border-t-0 xl:pt-0" aria-label="Navegación principal">
+          <nav className="site-header__desktop-nav order-3 hidden items-center gap-0.5 md:mt-2 md:basis-full md:justify-center md:border-t md:pt-2 md:flex xl:order-2 xl:mt-0 xl:basis-auto xl:justify-start xl:border-t-0 xl:pt-0" aria-label="Navegación principal">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 scroll={false}
-                className={`focus-ring whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors ${navBaseClass} ${isActive(item.href) ? navActiveClass : ""}`}
+                className={`focus-ring whitespace-nowrap rounded-lg px-3 py-2 text-xs font-semibold transition-colors lg:px-3.5 ${navBaseClass} ${isActive(item.href) ? navActiveClass : ""}`}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 onClick={() => handleNavigation(item.href)}
               >
